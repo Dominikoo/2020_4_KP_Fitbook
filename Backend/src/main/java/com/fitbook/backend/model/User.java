@@ -3,6 +3,7 @@ package com.fitbook.backend.model;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,21 +20,19 @@ public class User{
     )
     private Long id;
 
-    @UniqueElements
     @Size(min = 6, max = 30)
-    @Column(columnDefinition = "text")
-    @NotNull
+    @Column(columnDefinition = "text", unique = true)
+    @NotEmpty
     private String login;
 
-    @UniqueElements
     @Size(max = 50)
-    @Column(columnDefinition = "text")
-    @NotNull
+    @Column(columnDefinition = "text", unique = true)
+    @NotEmpty
     private String email;
 
     @Size(max = 50)
     @Column(columnDefinition = "text")
-    @NotNull
+    @NotEmpty
     private String password;
 
     public Long getId() {
