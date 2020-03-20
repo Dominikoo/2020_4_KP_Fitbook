@@ -25,6 +25,17 @@ public class User{
     @NotNull
     private String login;
 
+    @UniqueElements
+    @Size(max = 50)
+    @Column(columnDefinition = "text")
+    @NotNull
+    private String email;
+
+    @Size(max = 50)
+    @Column(columnDefinition = "text")
+    @NotNull
+    private String password;
+
     public Long getId() {
         return id;
     }
@@ -39,5 +50,21 @@ public class User{
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
