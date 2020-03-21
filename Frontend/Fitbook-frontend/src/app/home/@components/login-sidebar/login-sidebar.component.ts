@@ -17,4 +17,8 @@ export class LoginSidebarComponent implements OnInit {
     this.router.navigate(['/pages']);
   }
 
+  signUp(): void {
+    this.router.navigate(['register']);
+  }
+
 }
