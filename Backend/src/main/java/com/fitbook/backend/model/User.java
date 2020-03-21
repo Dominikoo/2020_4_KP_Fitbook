@@ -30,7 +30,7 @@ public class User{
     @NotEmpty
     private String email;
 
-    @Size(max = 50)
+    @Size(min = 6, max = 50)
     @Column(columnDefinition = "text")
     @NotEmpty
     private String password;
