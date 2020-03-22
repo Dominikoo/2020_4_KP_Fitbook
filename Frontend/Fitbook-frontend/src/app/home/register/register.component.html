@@ -1,50 +1,44 @@
-<p>Rejestracja</p>
-<p>Login</p>
-<form #todoForm="ngForm">
-    <input id="login" name="login" class="form-control"
-        required minlength="6" required maxlength="30"
-        [(ngModel)]="newUser.login" #loginModel="ngModel" >
+<div class="container-fluid register-container">
+    <p>
+        Rejestracja</p>
+    <p>Login</p>
+    <form #todoForm="ngForm">
+        <input id="login" name="login" class="form-control" required minlength="6" required maxlength="30" [(ngModel)]="newUser.login" #loginModel="ngModel">
 
-    <div *ngIf="loginModel.invalid && (loginModel.dirty || loginModel.touched)"
-        class="alert alert-danger">
+        <div *ngIf="loginModel.invalid && (loginModel.dirty || loginModel.touched)" class="alert alert-danger">
 
-    <div *ngIf="loginModel.errors.required">
-        Login jest wymagany
-    </div>
-    <div *ngIf="loginModel.errors.minlength">
-        Login musi składać się z przynajmniej 6 znaków.
-    </div>
-    </div>
-</form>
-<p>Email</p>
-<form #todoForm="ngForm">
-    <input id="email" name="email" class="form-control"
-        required maxlength="50"
-        [(ngModel)]="newUser.email" #emailModel="ngModel" >
+            <div *ngIf="loginModel.errors.required">
+                Login jest wymagany
+            </div>
+            <div *ngIf="loginModel.errors.minlength">
+                Login musi składać się z przynajmniej 6 znaków.
+            </div>
+        </div>
+    </form>
+    <p>Email</p>
+    <form #todoForm="ngForm">
+        <input id="email" name="email" class="form-control" required maxlength="50" [(ngModel)]="newUser.email" #emailModel="ngModel">
 
-    <div *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)"
-        class="alert alert-danger">
+        <div *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)" class="alert alert-danger">
 
-    <div *ngIf="emailModel.errors.required">
-        Email jest wymagany
-    </div>
-    </div>
-</form>
-<p>Hasło</p>
-<form #todoForm="ngForm">
-    <input id="password" name="password" class="form-control"
-        required minlength="6" required maxlength="50"
-        [(ngModel)]="newUser.password" #passwordModel="ngModel" >
+            <div *ngIf="emailModel.errors.required">
+                Email jest wymagany
+            </div>
+        </div>
+    </form>
+    <p>Hasło</p>
+    <form #todoForm="ngForm">
+        <input id="password" name="password" class="form-control" required minlength="6" required maxlength="50" [(ngModel)]="newUser.password" #passwordModel="ngModel">
 
-    <div *ngIf="passwordModel.invalid && (passwordModel.dirty || passwordModel.touched)"
-        class="alert alert-danger">
+        <div *ngIf="passwordModel.invalid && (passwordModel.dirty || passwordModel.touched)" class="alert alert-danger">
 
-    <div *ngIf="passwordModel.errors.required">
-        Hasło jest wymagane
-    </div>
-    <div *ngIf="passwordModel.errors.minlength">
-        Hasło musi składać się z przynajmniej 6 znaków.
-    </div>
-    </div>
-</form>
-<button (click)="signUp()" type="button">Zarejestruj się</button>
+            <div *ngIf="passwordModel.errors.required">
+                Hasło jest wymagane
+            </div>
+            <div *ngIf="passwordModel.errors.minlength">
+                Hasło musi składać się z przynajmniej 6 znaków.
+            </div>
+        </div>
+    </form>
+    <button (click)="signUp()" type="button">Zarejestruj się</button>
+</div>

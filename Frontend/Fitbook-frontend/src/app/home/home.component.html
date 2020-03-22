@@ -1,5 +1,9 @@
 <app-topbar></app-topbar>
 <div class="container-fluid">
-  <router-outlet></router-outlet>
-  <app-login-sidebar class="login-sidebar float-right col-4"></app-login-sidebar>
+
+    <span id="orange-container" class="float-left col-9">
+      <router-outlet></router-outlet>
+    </span>
+
+    <app-login-sidebar class="login-sidebar float-right col-3"></app-login-sidebar>
 </div>

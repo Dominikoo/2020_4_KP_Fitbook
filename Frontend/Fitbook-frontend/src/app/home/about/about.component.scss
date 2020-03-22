@@ -1,7 +1,25 @@
 .header {
-  background-color: #282828;
+    background-color: #282828;
+    padding: 5px;
+    padding-left: 15px;
 }
 
 .header-text {
-  color: white;
+    color: white;
 }
+
+.about-us-container {
+    background-color: #cccccc;
+    padding: 15px;
+}
+
+.empty-space {
+    height: 5vh;
+}
+
+.about-us-block {
+    height: 500px;
+    background-color: #282828;
+}
+
+.container-fluid {}
