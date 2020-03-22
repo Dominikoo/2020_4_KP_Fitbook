@@ -1,4 +1,16 @@
 .container-fluid {
     background-color: orange;
     height: 85vh;
+    padding: 15px;
+}
+
+.header {
+    display: flex;
+    margin-bottom: 20px;
+    ;
+}
+
+.img-fluid {
+    width: 40px;
+    height: 40px;
 }

@@ -8,6 +8,11 @@ import { Router } from '@angular/router';
 })
 export class LoginSidebarComponent implements OnInit {
 
+    loginData = {
+      login: '',
+      password: ''
+    }
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {

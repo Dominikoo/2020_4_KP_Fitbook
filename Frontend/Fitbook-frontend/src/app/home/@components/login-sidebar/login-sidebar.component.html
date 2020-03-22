@@ -1,5 +1,39 @@
-<div class="container-fluid">
-    <p>login-sidebar works!</p>
-    <button (click)="signIn()" type="button">login</button>
-    <button (click)="signUp()" type="button">Dołącz do nas!</button>
+<div class="container-fluid login-container">
+    <div class="header">
+        <img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image">
+        <h4 style="color: white; margin-left: 6px;" class="float-left">Zaloguj się</h4>
+    </div>
+    <form #todoForm="ngForm">
+        <input id="login" name="login" class="form-control" required minlength="6" required maxlength="30" [(ngModel)]="loginData.login" #loginModel="ngModel" placeholder="Login">
+
+        <div *ngIf="loginModel.invalid && (loginModel.dirty || loginModel.touched)" class="alert alert-danger">
+
+            <div *ngIf="loginModel.errors.required">
+                Login jest wymagany
+            </div>
+            <div *ngIf="loginModel.errors.minlength">
+                Login musi składać się z przynajmniej 6 znaków.
+            </div>
+        </div>
+    </form>
+    <form #todoForm="ngForm">
+        <input id="passwd" name="passwd" class="form-control" required maxlength="30" [(ngModel)]="loginData.password" #passwdModel="ngModel" placeholder="Hasło">
+
+        <div *ngIf="passwdModel.invalid && (passwdModel.dirty || passwdModel.touched)" class="alert alert-danger">
+
+            <div *ngIf="passwdModel.errors.required">
+                Hasło jest wymagane
+            </div>
+        </div>
+    </form>
+    <button (click)="signIn()" type="button" class="btn btn-light">Zaloguj</button>
+
+    <div class="header"></div>
+
+    <div class="header">
+        <img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image">
+        <h4 style="color: white; margin-left: 6px;" class="float-left">Nie masz konta?</h4>
+    </div>
+
+    <button (click)="signUp()" type="button" class="btn btn-light">Dołącz do nas!</button>
 </div>
