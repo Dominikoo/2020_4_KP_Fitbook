@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -13,12 +14,15 @@ export class LoginSidebarComponent implements OnInit {
       password: ''
     }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
   signIn(): void {
+    this.userService.post(this.loginData).subscribe(
+      Response => {}
+    )
     this.router.navigate(['/pages']);
   }
 
