@@ -1,5 +1,6 @@
 import { UserService } from './../../services/user.service';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,12 +13,33 @@ export class RegisterComponent implements OnInit {
     login: '',
     password: ''
   }
-  constructor(private userService: UserService) { }
+
+  isLoginUsed = false;
+  isEmailUsed = false;
+
+  constructor(private router: Router, private userService: UserService) { }
 
   signUp(): void {
-    this.userService.post(this.newUser).subscribe(
-      Response => {}
-    )
+      this.userService.getByLogin(this.newUser.login).subscribe(
+        response =>{
+          this.isLoginUsed = response != null
+          if(!this.isLoginUsed){
+            this.userService.getByEmail(this.newUser.email).subscribe(
+              response =>{
+                this.isEmailUsed = response != null
+                if(! this.isEmailUsed){
+                  this.userService.post(this.newUser).subscribe(
+                    response =>{
+                      if(response != null){
+                        this.router.navigate(['/pages']);
+                      }
+                    }
+                  )
+                }
+              }
+            )}
+        }
+      )
   }
 
   ngOnInit(): void {

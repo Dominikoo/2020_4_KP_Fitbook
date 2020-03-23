@@ -6,12 +6,16 @@
             <input id="login" name="login" class="form-control" required minlength="6" required maxlength="30" [(ngModel)]="newUser.login" #loginModel="ngModel">
 
             <div *ngIf="loginModel.invalid && (loginModel.dirty || loginModel.touched)" class="alert alert-danger">
-
                 <div *ngIf="loginModel.errors.required">
                     Login jest wymagany
                 </div>
                 <div *ngIf="loginModel.errors.minlength">
                     Login musi składać się z przynajmniej 6 znaków.
+                </div>
+            </div>
+            <div *ngIf="this.isLoginUsed" class="alert alert-danger">
+                <div *ngIf="this.isLoginUsed">
+                    Wybrany login jest już zajęty
                 </div>
             </div>
         </form>
@@ -23,6 +27,11 @@
 
                 <div *ngIf="emailModel.errors.required">
                     Email jest wymagany
+                </div>
+            </div>
+            <div *ngIf="this.isEmailUsed" class="alert alert-danger">
+                <div *ngIf="this.isEmailUsed">
+                    Istnieje już konto zarejestrowane na podany email
                 </div>
             </div>
         </form>
