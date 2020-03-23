@@ -10,15 +10,18 @@ export class UserService {
   private url = 'http://localhost:8080/users';
   constructor(private httpClient: HttpClient) { }
   getById(userId) {
-    return this.httpClient.get<any>(`${this.url}/${userId}`)
+    return this.httpClient.get<any>(`${this.url}/id/${userId}`)
   }
   getByLogin(userLogin) {
-    return this.httpClient.get<any>(`${this.url}/${userLogin}`)
+    return this.httpClient.get<any>(`${this.url}/login/${userLogin}`)
   }
   getByEmail(userEmail) {
-    return this.httpClient.get<any>(`${this.url}/${userEmail}`)
+    return this.httpClient.get<any>(`${this.url}/email/${userEmail}`)
   }
   post(newUser) {
     return this.httpClient.post<any>(this.url, newUser)
+  }
+  validateUser(userLogin, userPassword){
+    return this.httpClient.get<any>(`${this.url}/validate/${userLogin}/${userPassword}`)
   }
 }

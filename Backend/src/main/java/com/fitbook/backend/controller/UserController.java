@@ -43,4 +43,11 @@ public class UserController {
         Optional<User> user = userRepository.findAll().stream().filter(u -> u.getEmail().equals(userEmail)).findFirst();
         return user.orElse(null);
     }
+
+    @GetMapping("users/validate/{userLogin}/{userPassword}")
+    public Boolean validateUser(@PathVariable String userLogin, @PathVariable String userPassword){
+        Optional<User> user = userRepository.findAll().stream().filter(u -> u.getLogin().equals(userLogin)).findFirst();
+        if(user.isPresent() && user.get().getPassword().equals(userPassword)) return true;
+        else return false;
+    }
 }

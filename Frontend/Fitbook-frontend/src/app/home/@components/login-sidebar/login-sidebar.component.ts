@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
 })
 export class LoginSidebarComponent implements OnInit {
 
-    loginData = {
-      login: '',
-      password: ''
-    }
+  loginData = {
+    login: '',
+    password: ''
+  }
+
+  invalidLoginData = false;
 
   constructor(private router: Router, private userService: UserService) { }
 
@@ -20,10 +22,26 @@ export class LoginSidebarComponent implements OnInit {
   }
 
   signIn(): void {
-    this.userService.post(this.loginData).subscribe(
-      Response => {}
-    )
-    this.router.navigate(['/pages']);
+    if(this.loginData.login != '' && this.loginData.password != ''){
+      this.userService.validateUser(this.loginData.login, this.loginData.password).subscribe(
+        response => {
+          console.log(response);
+          if(response){
+            this.router.navigate(['/pages']);
+          }
+          else{
+            this.invalidLoginData = true;
+            this.loginData.login = '';
+            this.loginData.password = '';
+          }
+        })
+    }
+    else{
+      this.invalidLoginData = true;
+      this.loginData.login = '';
+      this.loginData.password = '';
+    }
+
   }
 
   signUp(): void {
