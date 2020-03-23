@@ -100,3 +100,14 @@ ng serve
 ```
 5. Wejść w przeglądarce na stronę
 <br/> http://localhost:4200/
+
+## backend 
+
+1. Należy przejść do folderu backend i uruchomić z wiersza poleceń komendą
+```
+mvn spring-boot:run
+```
+
+## baza danych
+
+Baza danych jest postawiona na serwerze, więc nie trzeba jej konfigurować lokalnie
