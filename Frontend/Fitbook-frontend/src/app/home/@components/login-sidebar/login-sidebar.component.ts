@@ -31,15 +31,11 @@ export class LoginSidebarComponent implements OnInit {
           }
           else{
             this.invalidLoginData = true;
-            this.loginData.login = '';
-            this.loginData.password = '';
           }
         })
     }
     else{
       this.invalidLoginData = true;
-      this.loginData.login = '';
-      this.loginData.password = '';
     }
 
   }
