@@ -32,7 +32,7 @@ public class UserController {
         return user.orElse(null);
     }
 
-    @GetMapping("/auth/users/login/{userLogin}")
+    @GetMapping("/users/login/{userLogin}")
     public User getUserByLogin(@PathVariable String userLogin){
         Optional<User> user = userRepository.findAll().stream().filter(u -> u.getLogin().equals(userLogin)).findFirst();
         return user.orElse(null);

@@ -1,4 +1,6 @@
 import { UserService } from './../../../services/user.service';
+import { AuthService } from './../../../services/auth.service';
+import { AuthManager } from './../../../auth/auth.manager';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -16,17 +18,17 @@ export class LoginSidebarComponent implements OnInit {
 
   invalidLoginData = false;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private authService: AuthService, private authManager: AuthManager) { }
 
   ngOnInit(): void {
   }
 
   signIn(): void {
     if(this.loginData.login != '' && this.loginData.password != ''){
-      this.userService.validateUser(this.loginData.login, this.loginData.password).subscribe(
+      this.authService.logInUser(this.loginData).subscribe(
         response => {
-          console.log(response);
-          if(response){
+          if(response != ''){
+            this.authManager.setToken(response);
             this.router.navigate(['/pages']);
           }
           else{

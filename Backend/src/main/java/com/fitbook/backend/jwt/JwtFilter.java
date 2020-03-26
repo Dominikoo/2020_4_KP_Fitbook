@@ -2,7 +2,6 @@ package com.fitbook.backend.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -13,6 +12,7 @@ import java.io.IOException;
 public class JwtFilter implements javax.servlet.Filter {
 
     public static String key = "sdcvgbhjhtrdf";
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;

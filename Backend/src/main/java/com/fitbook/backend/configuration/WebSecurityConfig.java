@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-public class CorsConfiguration
+public class WebSecurityConfig
 {
     @Bean
     public WebMvcConfigurer corsConfigurer()

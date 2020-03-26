@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { HttpClientModule }    from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 
@@ -20,8 +22,5 @@ export class UserService {
   }
   post(newUser) {
     return this.httpClient.post<any>(this.url, newUser)
-  }
-  validateUser(userLogin, userPassword){
-    return this.httpClient.get<any>(`${this.url}/validate/${userLogin}/${userPassword}`)
   }
 }
