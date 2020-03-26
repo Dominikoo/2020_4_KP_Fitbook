@@ -23,4 +23,10 @@ export class UserService {
   post(newUser) {
     return this.httpClient.post<any>(this.url, newUser)
   }
+  isLoginUsed(userLogin){
+    return this.httpClient.get<any>(`${this.url}/existsLogin/${userLogin}`)
+  }
+  isEmailUsed(userEmail){
+    return this.httpClient.get<any>(`${this.url}/existsEmail/${userEmail}`)
+  }
 }

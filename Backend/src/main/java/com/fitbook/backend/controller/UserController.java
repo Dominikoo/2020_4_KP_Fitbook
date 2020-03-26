@@ -43,4 +43,16 @@ public class UserController {
         Optional<User> user = userRepository.findAll().stream().filter(u -> u.getEmail().equals(userEmail)).findFirst();
         return user.orElse(null);
     }
+
+    @GetMapping("/users/existsLogin/{userLogin}")
+    public Boolean getExistUserLogin(@PathVariable String userLogin){
+        Optional<User> user = userRepository.findAll().stream().filter(u -> u.getLogin().equals(userLogin)).findFirst();
+        return user.isPresent();
+    }
+
+    @GetMapping("/users/existsEmail/{userEmail}")
+    public Boolean getExistUserEmail(@PathVariable String userEmail){
+        Optional<User> user = userRepository.findAll().stream().filter(u -> u.getEmail().equals(userEmail)).findFirst();
+        return user.isPresent();
+    }
 }

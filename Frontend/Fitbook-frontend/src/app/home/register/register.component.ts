@@ -20,14 +20,14 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   signUp(): void {
-      this.userService.getByLogin(this.newUser.login).subscribe(
+      this.userService.isLoginUsed(this.newUser.login).subscribe(
         response =>{
-          this.isLoginUsed = response != null
-          if(!this.isLoginUsed){
-            this.userService.getByEmail(this.newUser.email).subscribe(
+          this.isLoginUsed = response;
+          if(! response){
+            this.userService.isEmailUsed(this.newUser.email).subscribe(
               response =>{
-                this.isEmailUsed = response != null
-                if(! this.isEmailUsed){
+                this.isEmailUsed = response;
+                if(! response){
                   this.userService.post(this.newUser).subscribe(
                     response =>{
                       if(response != null){
