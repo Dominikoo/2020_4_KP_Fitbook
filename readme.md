@@ -85,7 +85,9 @@ TO DO: DOKOŃCZYĆ
 1. należy pobrać oraz zainstalować oprogramowanie Node.js
 <br/>
 https://nodejs.org/en/download/ 
+
 1. Należy otworzyć terminal systemowy w folderze `Frontend`
+
 2. Następnie wykonać pokolei następujące komendy:
 ``` 
 npm install -g @angular/cli@latest
