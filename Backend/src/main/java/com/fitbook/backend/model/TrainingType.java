@@ -17,18 +17,29 @@ public class TrainingType {
     )
     private Long id;
 
+    @Column(columnDefinition = "text", unique = true)
+    private String code;
+
     @Column(columnDefinition = "text", unique = false)
-    private String description;
+    private String displayName;
 
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }
 
-    public String getDescription() {
-        return description;
+    public String getCode() {
+        return code;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 }

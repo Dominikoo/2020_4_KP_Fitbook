@@ -23,6 +23,18 @@ public class TrainingPlan {
     @ManyToOne
     private TrainingType trainingType;
 
+    @JoinColumn(name ="trainingLength")
+    @ManyToOne
+    private TrainingType trainingLength;
+
+    @JoinColumn(name ="trainingIntensity")
+    @ManyToOne
+    private TrainingType trainingIntensity;
+
+    @JoinColumn(name ="trainingDifficulty")
+    @ManyToOne
+    private TrainingType trainingDifficulty;
+
     public Long getId() {
         return id;
     }
@@ -47,5 +59,27 @@ public class TrainingPlan {
         this.trainingType = trainingType;
     }
 
+    public TrainingType getTrainingLength() {
+        return trainingLength;
+    }
 
+    public void setTrainingLength(TrainingType trainingLength) {
+        this.trainingLength = trainingLength;
+    }
+
+    public TrainingType getTrainingIntensity() {
+        return trainingIntensity;
+    }
+
+    public void setTrainingIntensity(TrainingType trainingIntensity) {
+        this.trainingIntensity = trainingIntensity;
+    }
+
+    public TrainingType getTrainingDifficulty() {
+        return trainingDifficulty;
+    }
+
+    public void setTrainingDifficulty(TrainingType trainingDifficulty) {
+        this.trainingDifficulty = trainingDifficulty;
+    }
 }
