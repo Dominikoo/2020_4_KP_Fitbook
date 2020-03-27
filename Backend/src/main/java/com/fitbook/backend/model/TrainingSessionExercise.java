@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Table(name = "Training_Session_Exercises")
 public class TrainingSessionExercise {
 
-
     @Id
     @GeneratedValue(generator = "training_session_exercise_generator")
     @SequenceGenerator(
