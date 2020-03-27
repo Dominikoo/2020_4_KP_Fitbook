@@ -25,15 +25,15 @@ public class TrainingPlan {
 
     @JoinColumn(name ="trainingLength")
     @ManyToOne
-    private TrainingType trainingLength;
+    private TrainingLength trainingLength;
 
     @JoinColumn(name ="trainingIntensity")
     @ManyToOne
-    private TrainingType trainingIntensity;
+    private TrainingIntensity trainingIntensity;
 
     @JoinColumn(name ="trainingDifficulty")
     @ManyToOne
-    private TrainingType trainingDifficulty;
+    private TrainingDifficulty trainingDifficulty;
 
     public Long getId() {
         return id;
