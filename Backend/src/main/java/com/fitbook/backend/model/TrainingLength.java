@@ -3,14 +3,13 @@ package com.fitbook.backend.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Training_Intensity")
-public class TrainingIntensity {
-
+@Table(name = "Training_Length")
+public class TrainingLength {
     @Id
-    @GeneratedValue(generator = "training_intensity_generator")
+    @GeneratedValue(generator = "training_length_generator")
     @SequenceGenerator(
-            name = "training_intensity_generator",
-            sequenceName = "training_intensity_sequence",
+            name = "training_length_generator",
+            sequenceName = "training_length_sequence",
             initialValue = 1000
     )
     private Long id;
