@@ -59,27 +59,27 @@ public class TrainingPlan {
         this.trainingType = trainingType;
     }
 
-    public TrainingType getTrainingLength() {
+    public TrainingLength getTrainingLength() {
         return trainingLength;
     }
 
-    public void setTrainingLength(TrainingType trainingLength) {
+    public void setTrainingLength(TrainingLength trainingLength) {
         this.trainingLength = trainingLength;
     }
 
-    public TrainingType getTrainingIntensity() {
+    public TrainingIntensity getTrainingIntensity() {
         return trainingIntensity;
     }
 
-    public void setTrainingIntensity(TrainingType trainingIntensity) {
+    public void setTrainingIntensity(TrainingIntensity trainingIntensity) {
         this.trainingIntensity = trainingIntensity;
     }
 
-    public TrainingType getTrainingDifficulty() {
+    public TrainingDifficulty getTrainingDifficulty() {
         return trainingDifficulty;
     }
 
-    public void setTrainingDifficulty(TrainingType trainingDifficulty) {
+    public void setTrainingDifficulty(TrainingDifficulty trainingDifficulty) {
         this.trainingDifficulty = trainingDifficulty;
     }
 }
