@@ -1,2 +1,21 @@
-<p>training-management works!</p>
-<a routerLink="/pages/wall">przejdź na ścianę</a>
+<div class="container-fluid training-management-container">
+    <a routerLink="/pages/wall">przejdź na ścianę</a>
+</div>
+
+<div class="row">
+    <div class="col-12 pr-0">
+        <ul *ngIf="this.apartments != undefined" class="list-group">
+            <li *ngFor="let apartment of this.apartments" [routerLink]="'/apartmentDetail/' + apartment.NrLokalu" class="list-group-item">
+                <div class="row apartment">
+                    <div class="col-md-3">
+                        <img [src]="'http://localhost/poproject/img/apart'+ apartment.NrLokalu +'.jpg'" class="img-fluid" alt="Responsive image" />
+                    </div>
+                    <div class="col-md-9">
+                        <h5 class="mt-4"><strong>{{ apartment.nazwaUlicy }}&nbsp;{{ apartment.nrMieszkania }}/{{ apartment.nrUlicy }}</strong></h5>
+                        <p>{{ apartment.login }}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
