@@ -6,13 +6,15 @@ import { PagesComponent } from './pages.component';
 import { WallComponent } from './sb-layout/wall/wall.component';
 import { TrainingManagementComponent } from './training-management/training-management.component';
 import { SbLayoutComponent } from './sb-layout/sb-layout.component';
+import { SharedModule } from '../@shared/shared.module';
 
 
 @NgModule({
   declarations: [PagesComponent, WallComponent, TrainingManagementComponent, SbLayoutComponent],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    SharedModule
   ]
 })
 export class PagesModule { }
