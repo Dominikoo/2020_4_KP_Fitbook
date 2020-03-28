@@ -1,15 +1,23 @@
 <div class="container-fluid training-management-container">
     <a routerLink="/pages/wall">przejdź na ścianę</a>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <label formArrayName="diffFilters" *ngFor="let filter of form.controls.diffFilters; let i = index">
+          <input type="checkbox" [formControlName]="i" />
+          {{trainingDiffs[i].displayName}}
+        </label>
+
+        <button>submit</button>
+    </form>
     <button (click)="filterPlans()" type="button" class="btn btn-light">Szukaj</button>
 </div>
 
 <hr>
 
 <div class="container-fluid training-management-container">
-    <ul class="training-plans-list">      
+    <ul class="training-plans-list">
         <li *ngFor="let item of trainingPlans; index as i">
             <img src='assets/training1.png' width="200" height="200" class='your-order-item-photo' alt="LOGO">
             <div class='your-order-item-bar'> {{item.name}} </div>
         </li>
-      </ul>
+    </ul>
 </div>

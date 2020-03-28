@@ -33,7 +33,7 @@ public class TrainingFiltersController {
     TrainingTypeRepository trainingTypeRepository;
 
     @GetMapping("/auth/trainingDiffs")
-    public List<TrainingDifficulty> getTrainingDifficulties() {
+    public List<TrainingDifficulty> getTrainingDiffs() {
         return trainingDifficultyRepository.findAll();
     }
 
