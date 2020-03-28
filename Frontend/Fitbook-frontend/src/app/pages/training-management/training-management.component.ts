@@ -37,51 +37,55 @@ export class TrainingManagementComponent implements OnInit {
               private trainingFiltersService: FiltersService,
               private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-    diffFilters: new FormArray([])
-    // lengthFilters: new FormArray([]),
-    // intensityFilters: new FormArray([]),
-    // typeFilters: new FormArray([])
+    diffFilters: new FormArray([]),
+    lengthFilters: new FormArray([]),
+    intensityFilters: new FormArray([]),
+    typeFilters: new FormArray([])
     });
 
-    this.addCheckboxes();
+    this.initialize();
     }
 
-  private addCheckboxes(): void {
-    this.initialize();
 
-    this.trainingDiffs.forEach((id, code, displayName) => {
-      const control = new FormControl(id === 0); //if first item set to true, else false
-      (this.form.controls.diffFilters as FormArray).push(control);
-    });
-    // this.trainingLengths.forEach((id, code, displayName) => {
-    //   const control = new FormControl(id === 0); //if first item set to true, else false
-    //   (this.form.controls.lengthFilters as FormArray).push(control);
-    // });
-    // this.trainingIntensities.forEach((id, code, displayName) => {
-    //   const control = new FormControl(id === 0); //if first item set to true, else false
-    //   (this.form.controls.intensityFilters as FormArray).push(control);
-    // });
-    // this.trainingTypes.forEach((id, code, displayName) => {
-    //   const control = new FormControl(id === 0); //if first item set to true, else false
-    //   (this.form.controls.typeFilters as FormArray).push(control);
-    // });
-  }
   private initialize(): void {
     this.trainingFiltersService.getTrainingDiffs().subscribe(response => {
       this.trainingDiffs = response;
+      
+
+      this.trainingDiffs.forEach((o, i) => {
+        const control = new FormControl(i === 0); //if first item set to true, else false
+        (this.form.controls.diffFilters as FormArray).push(control);
+      });
+
     })
 
-    // this.trainingFiltersService.getTrainingLengths().subscribe(response => {
-    //   this.trainingLengths = response;
-    // })
+    this.trainingFiltersService.getTrainingLengths().subscribe(response => {
+      this.trainingLengths = response;
 
-    // this.trainingFiltersService.getTrainingIntensities().subscribe(response => {
-    //   this.trainingIntensities = response;
-    // })
+      this.trainingLengths.forEach((o, i) => {
+        const control = new FormControl(i === 0); //if first item set to true, else false
+        (this.form.controls.lengthFilters as FormArray).push(control);
+      });
+    })
 
-    // this.trainingFiltersService.getTrainingTypes().subscribe(response => {
-    //   this.trainingTypes = response;
-    // })
+    this.trainingFiltersService.getTrainingIntensities().subscribe(response => {
+      this.trainingIntensities = response;
+
+      this.trainingIntensities.forEach((o, i) => {
+        const control = new FormControl(i === 0); //if first item set to true, else false
+        (this.form.controls.intensityFilters as FormArray).push(control);
+      });
+    })
+
+    this.trainingFiltersService.getTrainingTypes().subscribe(response => {
+      this.trainingTypes = response;
+
+      this.trainingTypes.forEach((o, i) => {
+        const control = new FormControl(i === 0); //if first item set to true, else false chodzi o checkboxa xddddddd
+        (this.form.controls.typeFilters as FormArray).push(control);
+      });
+    })
+
   }   
 
   ngOnInit(): void { }

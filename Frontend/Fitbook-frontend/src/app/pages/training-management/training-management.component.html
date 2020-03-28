@@ -1,10 +1,25 @@
 <div class="container-fluid training-management-container">
     <a routerLink="/pages/wall">przejdź na ścianę</a>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-        <label formArrayName="diffFilters" *ngFor="let filter of form.controls.diffFilters; let i = index">
+    <form [formGroup]="form">
+        <label formArrayName="diffFilters" *ngFor="let filter of form.controls.diffFilters['controls'] ; let i = index">
           <input type="checkbox" [formControlName]="i" />
           {{trainingDiffs[i].displayName}}
         </label>
+
+        <label formArrayName="lengthFilters" *ngFor="let filter of form.controls.lengthFilters['controls'] ; let i = index">
+            <input type="checkbox" [formControlName]="i" />
+            {{trainingLengths[i].displayName}}
+          </label>
+
+        <label formArrayName="intensityFilters" *ngFor="let filter of form.controls.intensityFilters['controls'] ; let i = index">
+            <input type="checkbox" [formControlName]="i" />
+            {{trainingIntensities[i].displayName}}
+          </label>
+
+        <label formArrayName="typeFilters" *ngFor="let filter of form.controls.typeFilters['controls'] ; let i = index">
+            <input type="checkbox" [formControlName]="i" />
+            {{trainingTypes[i].displayName}}
+          </label>
 
         <button>submit</button>
     </form>
