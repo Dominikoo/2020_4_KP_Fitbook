@@ -32,7 +32,7 @@
       <div *ngFor="let item of trainingPlans; index as i">
         <div class="trainig-item-container" style="margin: 22px; background-color: #cccccc; position: relative; border-style: solid;border-width: 1px;">
           <img src='assets/training1.png' width="200" height="200" class='training-item-photo' style="margin: 10px; border-style: solid;border-width: 1px;" alt="LOGO">
-          <div class='training-item-name' style="position: absolute; top: 8px; left: 240px; font-size: 24px;"> {{item.name}} </div>
+          <div class='training-item-name' style="position: absolute; top: 6px; left: 240px; font-size: 24px;"> <b>{{item.name}}</b> </div>
           <div class='training-item-description' style="position: absolute; top: 44px; left: 220px; right: 400px; font-size: 16px;"> {{item.description}} </div>
           <div class='training-item-traits' style="position: absolute; top: 8px; right: 20px; font-size: 16px; text-align: right;"> 
             Typ: <b>{{item.trainingType.displayName}}</b> <br>
