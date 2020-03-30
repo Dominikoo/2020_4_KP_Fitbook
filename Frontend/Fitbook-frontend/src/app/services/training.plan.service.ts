@@ -11,4 +11,5 @@ export class TrainingPlanService {
   getFilteredTrainingPlans(filter) {
     return this.httpClient.post(this.url + '/filtered', filter)
   }
+
 }
