@@ -19,6 +19,9 @@ public class TrainingPlan {
     @Column(columnDefinition = "text", unique = false)
     private String name;
 
+    @Column(columnDefinition = "text", unique = false)
+    private String description;
+
     @JoinColumn(name ="trainingType")
     @ManyToOne
     private TrainingType trainingType;
@@ -49,6 +52,14 @@ public class TrainingPlan {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public TrainingType getTrainingType() {
