@@ -1,46 +1,72 @@
 <div class="container-fluid training-management-container">
     <a routerLink="/pages/wall">przejdź na ścianę</a>
     <form [formGroup]="form">
-        <label formArrayName="diffFilters" *ngFor="let filter of form.controls.diffFilters['controls'] ; let i = index">
-          <input type="checkbox" [formControlName]="i" />
-          {{trainingDiffs[i].displayName}}
-        </label>
+      <table>
+        <tr>
+          <th><b>Typ treningu</b></th>
+          <th><b>Poziom trudności</b></th>
+          <th><b>Długość treningu</b></th>
+          <th><b>Intensywność</b></th>
+        </tr>
+        <tr>
+          <th>
+            <span>
+              <div class="filter-element" style="display: grid; width: 240px;">
+                <label formArrayName="typeFilters" *ngFor="let filter of form.controls.typeFilters['controls'] ; let i = index">
+                    <input type="checkbox" [formControlName]="i" />
+                    {{trainingTypes[i].displayName}}
+                </label>
+              </div>
+            </span>
+          </th>
+          <th>
+            <span>
+              <div class="filter-element" style="display: grid; width: 240px;">
+                <label formArrayName="diffFilters" *ngFor="let filter of form.controls.diffFilters['controls'] ; let i = index">
+                  <input type="checkbox" [formControlName]="i" />
+                  {{trainingDiffs[i].displayName}}<br>
+                </label>
+              </div>
+            </span>
+          </th>
+          <th>
+            <span>
+              <div class="filter-element" style="display: grid; width: 240px;">
+                <label formArrayName="lengthFilters" *ngFor="let filter of form.controls.lengthFilters['controls'] ; let i = index">
+                    <input type="checkbox" [formControlName]="i" />
+                    {{trainingLengths[i].displayName}} &nbsp;
+                </label>
+              </div>
+            </span>
+          </th>
+          <th>
+        <span>
+          <div class="filter-element" style="display: grid; width: 240px;">
+            <label formArrayName="intensityFilters" *ngFor="let filter of form.controls.intensityFilters['controls'] ; let i = index">
+                <input type="checkbox" [formControlName]="i" />
+                {{trainingIntensities[i].displayName}}
+            </label>
+          </div>
+        </span>
+      </th>
+      </table>
 
-        <label formArrayName="lengthFilters" *ngFor="let filter of form.controls.lengthFilters['controls'] ; let i = index">
-            <input type="checkbox" [formControlName]="i" />
-            {{trainingLengths[i].displayName}}
-          </label>
-
-        <label formArrayName="intensityFilters" *ngFor="let filter of form.controls.intensityFilters['controls'] ; let i = index">
-            <input type="checkbox" [formControlName]="i" />
-            {{trainingIntensities[i].displayName}}
-          </label>
-
-        <label formArrayName="typeFilters" *ngFor="let filter of form.controls.typeFilters['controls'] ; let i = index">
-            <input type="checkbox" [formControlName]="i" />
-            {{trainingTypes[i].displayName}}
-          </label>
-
-        <button>submit</button>
+        <button (click)="submit()" type="button" class="btn btn-light">Szukaj</button>
     </form>
-    <button (click)="filterPlans()" type="button" class="btn btn-light">Szukaj</button>
 </div>
 
 <hr>
 
 <div class="trainig-list-container">
-      <div *ngFor="let item of trainingPlans; index as i">
+    <div *ngFor="let item of trainingPlans; index as i">
         <div class="trainig-item-container" style="margin: 22px; background-color: #cccccc; position: relative; border-style: solid;border-width: 1px;">
-          <img src='assets/training1.png' width="200" height="200" class='training-item-photo' style="margin: 10px; border-style: solid;border-width: 1px;" alt="LOGO">
-          <div class='training-item-name' style="position: absolute; top: 6px; left: 240px; font-size: 24px;"> <b>{{item.name}}</b> </div>
-          <div class='training-item-description' style="position: absolute; top: 44px; left: 220px; right: 400px; font-size: 16px;"> {{item.description}} </div>
-          <div class='training-item-traits' style="position: absolute; top: 8px; right: 20px; font-size: 16px; text-align: right;"> 
-            Typ: <b>{{item.trainingType.displayName}}</b> <br>
-            Trudność:  <b>{{item.trainingDifficulty.displayName}}</b> <br>
-            Długość:  <b>{{item.trainingLength.displayName}}</b> <br>
-            Intensywność:  <b>{{item.trainingIntensity.displayName}}</b> <br>
-          </div>
-          <button (click)="filterPlans()" type="button" class="btn btn-light" style="position: absolute; right: 20px; bottom: 20px;">Personalizuj</button>
+            <img src='assets/training1.png' width="200" height="200" class='training-item-photo' style="margin: 10px; border-style: solid;border-width: 1px;" alt="LOGO">
+            <div class='training-item-name' style="position: absolute; top: 6px; left: 240px; font-size: 24px;"> <b>{{item.name}}</b> </div>
+            <div class='training-item-description' style="position: absolute; top: 44px; left: 220px; right: 400px; font-size: 16px;"> {{item.description}} </div>
+            <div class='training-item-traits' style="position: absolute; top: 8px; right: 20px; font-size: 16px; text-align: right;">
+                Typ: <b>{{item.trainingType.displayName}}</b> <br> Trudność: <b>{{item.trainingDifficulty.displayName}}</b> <br> Długość: <b>{{item.trainingLength.displayName}}</b> <br> Intensywność: <b>{{item.trainingIntensity.displayName}}</b> <br>
+            </div>
+            <button (click)="filterPlans()" type="button" class="btn btn-light" style="position: absolute; right: 20px; bottom: 20px;">Personalizuj</button>
         </div>
-      </div>
+    </div>
 </div>
