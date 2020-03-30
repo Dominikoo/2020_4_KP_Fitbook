@@ -6,14 +6,14 @@
           {{trainingDiffs[i].displayName}}
         </label>
 
-        <label formArrayName="lengthFilters" *ngFor="let filter of form.controls.lengthFilters['controls'] ; let i = index">
-            <input type="checkbox" [formControlName]="i" />
-            {{trainingLengths[i].displayName}}
-          </label>
-
         <label formArrayName="intensityFilters" *ngFor="let filter of form.controls.intensityFilters['controls'] ; let i = index">
             <input type="checkbox" [formControlName]="i" />
             {{trainingIntensities[i].displayName}}
+          </label>
+
+        <label formArrayName="lengthFilters" *ngFor="let filter of form.controls.lengthFilters['controls'] ; let i = index">
+            <input type="checkbox" [formControlName]="i" />
+            {{trainingLengths[i].displayName}}
           </label>
 
         <label formArrayName="typeFilters" *ngFor="let filter of form.controls.typeFilters['controls'] ; let i = index">
@@ -21,9 +21,8 @@
             {{trainingTypes[i].displayName}}
           </label>
 
-        <button>submit</button>
+        <button (click)="submit()" type="button" class="btn btn-light">Szukaj</button>
     </form>
-    <button (click)="filterPlans()" type="button" class="btn btn-light">Szukaj</button>
 </div>
 
 <hr>

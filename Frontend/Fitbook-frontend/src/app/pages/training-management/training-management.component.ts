@@ -90,6 +90,31 @@ export class TrainingManagementComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  submit(): void {
+    const selectedDiffIds = this.form.value.diffFilters
+    .map((v, k) => (v ? this.trainingDiffs[k]['id'] : null))
+    .filter(v => v !== null);
+    
+    const selectedIntensityIds = this.form.value.intensityFilters
+    .map((v, k) => (v ? this.trainingIntensities[k]['id'] : null))
+    .filter(v => v !== null);
+    
+    const selectedLengthIds = this.form.value.lengthFilters
+    .map((v, k) => (v ? this.trainingLengths[k]['id'] : null))
+    .filter(v => v !== null);
+
+    const selectedTypeIds = this.form.value.typeFilters
+    .map((v, k) => (v ? this.trainingTypes[k]['id'] : null))
+    .filter(v => v !== null);
+
+    this.trainingPlanFilter['difficulty'] = selectedDiffIds.toString();
+    this.trainingPlanFilter['intensity'] = selectedIntensityIds.toString();
+    this.trainingPlanFilter['length'] = selectedLengthIds.toString();
+    this.trainingPlanFilter['type'] = selectedTypeIds.toString();
+
+    this.filterPlans();
+  }
+
   filterPlans(): void {
     this.trainingPlanService.getFilteredTrainingPlans(this.trainingPlanFilter).subscribe(
     response => this.trainingPlans = response)
