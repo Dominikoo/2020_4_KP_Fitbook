@@ -29,6 +29,7 @@ export class LoginSidebarComponent implements OnInit {
         response => {
           if(response != ''){
             this.authManager.setToken(response);
+            this.authManager.setLogin(this.loginData.login)
             this.router.navigate(['/pages']);
           }
           else{

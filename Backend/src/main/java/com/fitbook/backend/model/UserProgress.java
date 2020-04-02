@@ -2,7 +2,6 @@ package com.fitbook.backend.model;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity
@@ -19,7 +18,7 @@ public class UserProgress implements Serializable {
     private TrainingSessionExercise trainingSessionExercise;
 
     @Column(columnDefinition = "int")
-    private int progress;
+    private Integer progress;
 
     public User getUser() {
         return user;
@@ -37,11 +36,11 @@ public class UserProgress implements Serializable {
         this.trainingSessionExercise = trainingSessionExercise;
     }
 
-    public int getProgress() {
+    public Integer getProgress() {
         return progress;
     }
 
-    public void setProgress(int progress) {
+    public void setProgress(Integer progress) {
         this.progress = progress;
     }
 }

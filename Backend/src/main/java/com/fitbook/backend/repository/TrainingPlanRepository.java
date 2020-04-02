@@ -1,7 +1,6 @@
 package com.fitbook.backend.repository;
 
 import com.fitbook.backend.model.TrainingPlan;
-import com.fitbook.backend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,5 +17,19 @@ public interface TrainingPlanRepository extends JpaRepository<TrainingPlan, Long
             @Param("intensityIds") List<Long> intensityIds,
             @Param("lengthIds") List<Long> lengthIds,
             @Param("typeIds") List<Long> typeIds
+    );
+
+    @Query( "SELECT DISTINCT up.trainingSessionExercise.trainingSession.trainingPlan FROM UserProgress up " +
+            "WHERE up.trainingSessionExercise.trainingSession.trainingPlan.trainingDifficulty.id IN :difficultyIds AND " +
+            "up.trainingSessionExercise.trainingSession.trainingPlan.trainingIntensity.id IN :intensityIds AND " +
+            "up.trainingSessionExercise.trainingSession.trainingPlan.trainingLength.id IN :lengthIds AND " +
+            "up.trainingSessionExercise.trainingSession.trainingPlan.trainingType.id IN :typeIds AND " +
+            "up.user.login = :userLogin ")
+    List<TrainingPlan> getFilteredTrainingPlansForUser(
+            @Param("difficultyIds") List<Long> difficultyIds,
+            @Param("intensityIds") List<Long> intensityIds,
+            @Param("lengthIds") List<Long> lengthIds,
+            @Param("typeIds") List<Long> typeIds,
+            @Param("userLogin") String userLogin
     );
 }

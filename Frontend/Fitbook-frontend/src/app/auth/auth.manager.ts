@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthManager {
     private token: String = '';
+    private login: String = '';
 
     setToken(token){
         this.token = token;
@@ -12,5 +13,13 @@ export class AuthManager {
 
     getToken(){
         return this.token
+    }
+
+    setLogin(login){
+        this.login = login
+    }
+
+    getLogin(){
+        return this.login;
     }
 }

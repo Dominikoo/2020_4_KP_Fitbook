@@ -24,6 +24,9 @@ public class TrainingSessionExercise {
     @ManyToOne
     private TrainingSession trainingSession;
 
+    @Column(columnDefinition = "int")
+    private Integer orderNumber;
+
     public Long getId() {
         return id;
     }
@@ -46,6 +49,14 @@ public class TrainingSessionExercise {
 
     public void setTrainingSession(TrainingSession trainingSession) {
         this.trainingSession = trainingSession;
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     @Override

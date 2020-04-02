@@ -22,7 +22,6 @@ public class Exercise {
     private String name;
 
     @Column(columnDefinition = "text", unique = false)
-    @NotEmpty
     private String description;
 
 
@@ -33,7 +32,7 @@ public class Exercise {
     private int reps;
 
     @Column(columnDefinition = "int")
-    private int time;
+    private int lengthInSecondsPerSet;
 
     public Long getId() {
         return id;
@@ -71,9 +70,9 @@ public class Exercise {
 
     public void setReps(int reps) { this.reps = reps; }
 
-    public int getTime() {
-        return time;
+    public int getLengthInSecondsPerSet() {
+        return lengthInSecondsPerSet;
     }
 
-    public void setTime(int time) { this.time = time; }
+    public void setLengthInSecondsPerSet(int lengthInSecondsPerSet) { this.lengthInSecondsPerSet = lengthInSecondsPerSet; }
 }

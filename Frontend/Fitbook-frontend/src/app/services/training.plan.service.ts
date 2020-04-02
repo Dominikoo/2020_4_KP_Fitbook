@@ -12,4 +12,7 @@ export class TrainingPlanService {
     return this.httpClient.post(this.url + '/filtered', filter)
   }
 
+  getFilteredTrainingPlansForUser(filter, userLogin, progress) {
+    return this.httpClient.post(this.url + `/filtered/${userLogin}/${progress}`, filter)
+  }
 }
