@@ -22,7 +22,7 @@ export class UserTrainingManagementComponent implements OnInit {
   trainingPlanFilter = {
     difficulty: '1,2,3',
     intensity: '1,2,3',
-    length: '1,2,3',
+    length: '1,2,3,4,5',
     type: '1,2,3',
   }
 
@@ -87,7 +87,7 @@ export class UserTrainingManagementComponent implements OnInit {
         (this.form.controls.typeFilters as FormArray).push(control);
       });
     })
-
+    this.filterPlans()
   }   
 
   ngOnInit(): void { }
