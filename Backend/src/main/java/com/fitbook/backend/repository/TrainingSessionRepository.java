@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface TrainingSessionRepository extends JpaRepository<TrainingSession, Long> {
 
-    @Query("SELECT ts FROM TrainingSession ts WHERE ts.trainingPlan IN :trainingPlanId")
+    @Query("SELECT ts FROM TrainingSession ts WHERE ts.trainingPlan.id IN :trainingPlanId")
     List<TrainingSession> getTrainingPlanSession(
             @Param("trainingPlanId") Long trainingPlanId
     );

@@ -1,0 +1,8 @@
+.exercise-item{
+    display: grid; 
+    justify-content: space-between; 
+}
+
+.exercise-item:nth-child(odd){
+    background-color: #cecbcb;
+}

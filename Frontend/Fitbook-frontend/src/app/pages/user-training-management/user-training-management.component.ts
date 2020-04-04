@@ -8,6 +8,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { FiltersService } from 'src/app/services/filters.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -37,7 +38,8 @@ export class UserTrainingManagementComponent implements OnInit {
   constructor(private trainingPlanService: TrainingPlanService,
               private trainingFiltersService: FiltersService,
               private formBuilder: FormBuilder,
-              private authManager: AuthManager) {
+              private authManager: AuthManager,
+              private router: Router) {
     this.form = this.formBuilder.group({
     diffFilters: new FormArray([]),
     lengthFilters: new FormArray([]),
@@ -122,5 +124,10 @@ export class UserTrainingManagementComponent implements OnInit {
       response => this.trainingPlansActive = response)
     this.trainingPlanService.getFilteredTrainingPlansForUser(this.trainingPlanFilter, this.authManager.getLogin(), 1).subscribe(
       response => this.trainingPlansFinished = response)
+  }
+
+  sendTraininigInfo(t) {
+    console.log(t)
+    this.router.navigate(['/pages/training-details'], {state: {training: t}});
   }
 }

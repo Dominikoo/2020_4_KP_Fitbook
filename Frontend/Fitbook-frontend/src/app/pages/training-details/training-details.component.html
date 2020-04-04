@@ -12,38 +12,20 @@
 </div>
 
 <div class="training-sessions" style="display: flex; flex-flow: wrap; max-width: initial; margin: 16px;">
-    <div class="training-sessions" style="background-color: #f0ecec; min-width: 340px; height: 400px; margin: 10px; border-style: 
+    <div *ngFor="let item of trainingSessions; index as i" class="training-sessions" style="background-color: #f0ecec; min-width: 340px; max-width: 340px; height: 400px; margin: 10px; border-style: 
         solid;border-width: 1px; display: grid; align-content: space-between;">
         <div>
-        <b style="font-size: 20px; margin-left: 18px;">Dzień 1</b> 
+        <b style="font-size: 20px; margin-left: 18px;">{{item.name}}</b> 
             <div style="margin-top: 10px">
-                <div style="display: grid; justify-content: space-between; background-color: #cecbcb;">
-                    <b style="font-size: 16px; margin-left: 8px; grid-column: 1;">T 1 </b> 
-                    <input type="checkbox" style="grid-column: 2; align-self: center; margin-right: 8px;"/> 
-                </div>
-                <div style="display: grid; justify-content: space-between;">
-                    <b style="font-size: 16px; margin-left: 8px; grid-column: 1;">T 2 </b> 
-                    <input type="checkbox" style="grid-column: 2; align-self: center; margin-right: 8px;"/> 
-                </div>
-                <div style="display: grid; justify-content: space-between; background-color: #cecbcb;">
-                    <b style="font-size: 16px; margin-left: 8px; grid-column: 1;">T 3 </b> 
-                    <input type="checkbox" style="grid-column: 2; align-self: center; margin-right: 8px;"/> 
-                </div>
-                <div style="display: grid; justify-content: space-between;">
-                    <b style="font-size: 16px; margin-left: 8px; grid-column: 1;">T 4 </b> 
-                    <input type="checkbox" style="grid-column: 2; align-self: center; margin-right: 8px;"/> 
+                <div *ngFor="let tse of exercises[i]" class="exercise-item">
+                    <b style="font-size: 16px; margin-left: 8px; grid-column: 1;">{{tse.exercise.name}} 
+                        <b style="font-size: 12px; margin-left: 8px; grid-column: 1; font-weight: lighter;">serie: {{tse.exercise.sets}}, powtórzenia: {{tse.exercise.reps}}</b> 
+                    </b> 
+                    <input type="checkbox" onclick="setStatus(tse)" style="grid-column: 2; align-self: center; margin-right: 8px; transform: scale(1.2)"/> 
                 </div>
             </div>
         </div> 
-        <button type="button" class="btn btn-light" style="max-height: 40px; position: static; right: -200px; margin: 6px; background-color: lightsteelblue; font-weight: bold;">Wykonane!</button>
+        <div type="button" style="min-height: 40px; line-height: 40px; position: static; right: -200px; background-color: lightsteelblue; font-weight: bold; text-align: center; ">Wykonane!</div>
     </div>
-    <div class="training-sessions" style="background-color: #f0ecec; min-width: 340px; height: 400px; margin: 10px; border-style: solid;border-width: 1px;"></div>
-    <div class="training-sessions" style="background-color: #f0ecec; min-width: 340px; height: 400px; margin: 10px; border-style: solid;border-width: 1px;"></div>
-    <div class="training-sessions" style="background-color: #f0ecec; min-width: 340px; height: 400px; margin: 10px; border-style: solid;border-width: 1px;"></div>
-    <div class="training-sessions" style="background-color: #f0ecec; min-width: 340px; height: 400px; margin: 10px; border-style: solid;border-width: 1px;"></div>
-    <div class="training-sessions" style="background-color: #f0ecec; min-width: 340px; height: 400px; margin: 10px; border-style: solid;border-width: 1px;"></div>
-    <div class="training-sessions" style="background-color: #f0ecec; min-width: 340px; height: 400px; margin: 10px; border-style: solid;border-width: 1px;"></div>
-    <div class="training-sessions" style="background-color: #f0ecec; min-width: 340px; height: 400px; margin: 10px; border-style: solid;border-width: 1px;"></div>
-    <div class="training-sessions" style="background-color: #f0ecec; min-width: 340px; height: 400px; margin: 10px; border-style: solid;border-width: 1px;"></div>
 
 </div>

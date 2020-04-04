@@ -2,6 +2,7 @@ package com.fitbook.backend.model;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Training_Sessions")
@@ -40,4 +41,7 @@ public class TrainingSession {
         this.trainingPlan = trainingPlan;
     }
 
+    public Long getId() {
+        return id;
+    }
 }
