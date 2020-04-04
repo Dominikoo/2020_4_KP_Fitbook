@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-topbar',
@@ -10,9 +11,12 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 export class TopbarComponent implements OnInit {
   isCollapsed = true;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  accountManagement(): void {
+    this.router.navigate(['/pages/acc-manage']);
+  }
 }

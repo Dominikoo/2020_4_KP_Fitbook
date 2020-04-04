@@ -10,17 +10,18 @@ import { SbLayoutComponent } from './sb-layout/sb-layout.component';
 import { SharedModule } from '../@shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AccountManagementComponent } from './account-management/account-management.component';
 
 
 
 @NgModule({
-  declarations: [PagesComponent, WallComponent, TrainingManagementComponent, UserTrainingManagementComponent, SbLayoutComponent],
+  declarations: [PagesComponent, WallComponent, TrainingManagementComponent, UserTrainingManagementComponent, SbLayoutComponent, AccountManagementComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class PagesModule { }
