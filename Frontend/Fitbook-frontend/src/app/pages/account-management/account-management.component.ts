@@ -35,28 +35,8 @@ export class AccountManagementComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  // signIn(): void {
-  //   if(this.loginData.login != '' && this.loginData.password != ''){
-  //     this.authService.logInUser(this.loginData).subscribe(
-  //       response => {
-  //         if(response != ''){
-  //           this.authManager.setToken(response);
-  //           this.authManager.setLogin(this.loginData.login)
-  //           this.router.navigate(['/pages']);
-  //         }
-  //         else{
-  //           this.invalidLoginData = true;
-  //         }
-  //       })
-  //   }
-  //   else{
-  //     this.invalidLoginData = true;
-  //   }
-
-  // }
-
-  // logInUser(user) {
-  //   return this.httpClient.post(this.url, user, {responseType: 'text'})
-  // }
+  saveChanges(): void {
+    
+   }
 
 }
