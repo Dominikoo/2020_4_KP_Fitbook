@@ -20,8 +20,8 @@ export class AccountManagementComponent implements OnInit {
     nickname: ''
   }
 
-  isLoginUsed = false;
-  isEmailUsed = false;
+  isSaveSuccesful = true
+  showLog = false
 
   constructor(private userService: UserService, private authManager:AuthManager) {
     
@@ -36,7 +36,13 @@ export class AccountManagementComponent implements OnInit {
   ngOnInit(): void { }
 
   saveChanges(): void {
-    
-   }
-
+      this.userService.post(this.userInfo).subscribe(
+        response =>{
+          if(response == null){
+            this.isSaveSuccesful = false;
+          };
+          this.showLog = true;
+        }
+      )
+  }
 }
