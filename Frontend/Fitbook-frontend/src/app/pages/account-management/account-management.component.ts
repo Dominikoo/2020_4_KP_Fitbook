@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-account-management',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountManagementComponent implements OnInit {
 
-  constructor() { }
+  newUser = {
+    email: '',
+    login: '',
+    password: ''
+  }
+
+  isLoginUsed = false;
+  isEmailUsed = false;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
