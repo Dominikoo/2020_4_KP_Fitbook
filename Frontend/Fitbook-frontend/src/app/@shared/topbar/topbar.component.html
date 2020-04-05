@@ -16,7 +16,7 @@
       <span class="navbar-toggler-icon bg-light"></span>
     </button>
 
-    <div *ngIf="true" class="collapse navbar-collapse" id="navbarSupportedContent" [collapse]="isCollapsed" [isAnimated]="false">
+    <div *ngIf="this.isTokenSet()" class="collapse navbar-collapse" id="navbarSupportedContent" [collapse]="isCollapsed" [isAnimated]="false">
         <!-- bo sie psuje z [isAnimated]="true" ticket: https://github.com/valor-software/ngx-bootstrap/issues/5369-->
 
 
