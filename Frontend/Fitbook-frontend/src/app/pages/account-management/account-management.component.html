@@ -25,25 +25,11 @@
                     <h5>Imię:</h5>
                 </span>
             <span class="col-6">
-                    <form #todoForm="ngForm">
-                        <input id="login" name="login" class="form-control" required minlength="6" required maxlength="30" [(ngModel)]="newUser.login" #loginModel="ngModel">
-        
-                        <div *ngIf="loginModel.invalid && (loginModel.dirty || loginModel.touched)" class="alert alert-danger">
-                            <div *ngIf="loginModel.errors.required">
-                                Login jest wymagany
-                            </div>
-                            <div *ngIf="loginModel.errors.minlength">
-                                Login musi składać się z przynajmniej 6 znaków.
-                            </div>
-                        </div>
-                        <div *ngIf="this.isLoginUsed" class="alert alert-danger">
-                            <div *ngIf="this.isLoginUsed">
-                                Wybrany login jest już zajęty
-                            </div>
-                        </div>
-                    </form>
+                <form #todoForm="ngForm">
+                    <input id="firstName" name="firstname" class="form-control" maxlength="30" [(ngModel)]="userInfo.firstName" #loginModel="ngModel">
+                </form>
     
-                </span>
+            </span>
         </div>
 
         <div class="row py-1">
@@ -51,25 +37,11 @@
                     <h5>Nazwisko:</h5>
                 </span>
             <span class="col-6">
-                    <form #todoForm="ngForm">
-                        <input id="login" name="login" class="form-control" required minlength="6" required maxlength="30" [(ngModel)]="newUser.login" #loginModel="ngModel">
-        
-                        <div *ngIf="loginModel.invalid && (loginModel.dirty || loginModel.touched)" class="alert alert-danger">
-                            <div *ngIf="loginModel.errors.required">
-                                Login jest wymagany
-                            </div>
-                            <div *ngIf="loginModel.errors.minlength">
-                                Login musi składać się z przynajmniej 6 znaków.
-                            </div>
-                        </div>
-                        <div *ngIf="this.isLoginUsed" class="alert alert-danger">
-                            <div *ngIf="this.isLoginUsed">
-                                Wybrany login jest już zajęty
-                            </div>
-                        </div>
-                    </form>
+                <form #todoForm="ngForm">
+                    <input id="lastName" name="lastname" class="form-control" maxlength="30" [(ngModel)]="userInfo.lastName" #loginModel="ngModel">
+                </form>
     
-                </span>
+            </span>
         </div>
 
 
@@ -79,7 +51,7 @@
                 </span>
             <span class="col-6">
                     <form #todoForm="ngForm">
-                        <input id="email" name="email" class="form-control" required maxlength="50" [(ngModel)]="newUser.email" #emailModel="ngModel" readonly>
+                        <input id="email" name="email" class="form-control" required maxlength="50" [(ngModel)]="userInfo.email" #emailModel="ngModel" readonly>
         
                         <div *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)" class="alert alert-danger">
         
@@ -122,19 +94,7 @@
             </span>
             <span class="col-6">
                 <form #todoForm="ngForm">
-                    <input id="email" name="email" class="form-control" required maxlength="50" [(ngModel)]="newUser.email" #emailModel="ngModel">
-    
-                    <div *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)" class="alert alert-danger">
-    
-                        <div *ngIf="emailModel.errors.required">
-                            Email jest wymagany
-                        </div>
-                    </div>
-                    <div *ngIf="this.isEmailUsed" class="alert alert-danger">
-                        <div *ngIf="this.isEmailUsed">
-                            Istnieje już konto zarejestrowane na podany email
-                        </div>
-                    </div>
+                    <input id="nickname" name="nickname" class="form-control" maxlength="50" [(ngModel)]="userInfo.nickname" #emailModel="ngModel">
                 </form>
             </span>
         </div>
@@ -168,7 +128,7 @@
 
     <div class="row py-1">
         <div class="col-md-3 offset-md-9 col-sm-3 offset-sm-7">
-            <button type="button" class="btn btn-light">Zapisz zmiany</button>
+            <button type="button" class="btn btn-light" (click)="saveChanges()">Zapisz zmiany</button>
         </div>
     </div>
 

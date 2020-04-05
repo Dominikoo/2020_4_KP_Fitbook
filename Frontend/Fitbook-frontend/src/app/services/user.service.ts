@@ -25,4 +25,7 @@ export class UserService {
   isEmailUsed(userEmail){
     return this.httpClient.get<any>(`${this.url}/existsEmail/${userEmail}`)
   }
+  saveUserInfo(){
+    
+  }
 }

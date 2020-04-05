@@ -35,6 +35,18 @@ public class User{
     @NotEmpty
     private String password;
 
+    @Size(max = 50)
+    @Column(columnDefinition = "text")
+    private String firstName;
+
+    @Size(max = 50)
+    @Column(columnDefinition = "text")
+    private String lastName;
+
+    @Size(max = 50)
+    @Column(columnDefinition = "text")
+    private String nickname;
+
     public Long getId() {
         return id;
     }
@@ -65,6 +77,30 @@ public class User{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     @Override

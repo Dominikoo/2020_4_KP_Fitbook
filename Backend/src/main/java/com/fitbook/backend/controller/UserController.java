@@ -55,4 +55,10 @@ public class UserController {
         Optional<User> user = userRepository.findAll().stream().filter(u -> u.getEmail().equals(userEmail)).findFirst();
         return user.isPresent();
     }
+
+    @GetMapping("/users/saveChanges/{userLogin}")
+    public void setUserInfo(@PathVariable String userLogin){
+        Optional<User> user = Optional.ofNullable(getUserByLogin(userLogin));
+
+    }
 }
