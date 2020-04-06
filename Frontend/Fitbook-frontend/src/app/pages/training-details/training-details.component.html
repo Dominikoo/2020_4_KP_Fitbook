@@ -17,15 +17,17 @@
         <div>
         <b style="font-size: 20px; margin-left: 18px;">{{item.name}}</b> 
             <div style="margin-top: 10px">
-                <div *ngFor="let tse of exercises[i]" class="exercise-item">
-                    <b style="font-size: 16px; margin-left: 8px; grid-column: 1;">{{tse.exercise.name}} 
-                        <b style="font-size: 12px; margin-left: 8px; grid-column: 1; font-weight: lighter;">serie: {{tse.exercise.sets}}, powtórzenia: {{tse.exercise.reps}}</b> 
+                <div *ngFor="let pr of progress[i]; index as j" (click)="changeProgress(pr)" class="exercise-item">
+                    <b style="font-size: 16px; margin-left: 8px; grid-column: 1;">{{pr.trainingSessionExercise.exercise.name}} 
+                        <b style="font-size: 12px; margin-left: 8px; grid-column: 1; font-weight: lighter;">serie: {{pr.trainingSessionExercise.exercise.sets}}, powtórzenia: {{pr.trainingSessionExercise.exercise.reps}}</b> 
                     </b> 
-                    <input type="checkbox" onclick="setStatus(tse)" style="grid-column: 2; align-self: center; margin-right: 8px; transform: scale(1.2)"/> 
+                    <input type="checkbox" [checked]="isChecked(pr)" style="grid-column: 2; align-self: center; margin-right: 8px; transform: scale(1.2)"/> 
                 </div>
             </div>
         </div> 
-        <div type="button" style="min-height: 40px; line-height: 40px; position: static; right: -200px; background-color: lightsteelblue; font-weight: bold; text-align: center; ">Wykonane!</div>
+        <div *ngIf="isTrainingDone(progress[i])">
+            <div type="button" style="min-height: 40px; line-height: 40px; position: static; right: -200px; background-color: lightsteelblue; font-weight: bold; text-align: center; ">Wykonane!</div>
+        </div>
     </div>
 
 </div>

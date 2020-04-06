@@ -1,18 +1,33 @@
 package com.fitbook.backend.model;
 
-import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 
 public class UserProgressID implements Serializable {
 
-    protected User user;
-    protected TrainingSessionExercise trainingSessionExercise;
+    protected Long user;
+    protected Long trainingSessionExercise;
 
     public UserProgressID() {}
 
-    public UserProgressID(User user, TrainingSessionExercise trainingSessionExercise) {
+    public UserProgressID(Long user, Long trainingSessionExercise) {
         this.user = user;
+        this.trainingSessionExercise = trainingSessionExercise;
+    }
+
+    public Long getUser() {
+        return user;
+    }
+
+    public void setUser(Long user) {
+        this.user = user;
+    }
+
+    public Long getTrainingSessionExercise() {
+        return trainingSessionExercise;
+    }
+
+    public void setTrainingSessionExercise(Long trainingSessionExercise) {
         this.trainingSessionExercise = trainingSessionExercise;
     }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainingSessionService } from './../../services/training.session.service';
 import { TrainingSessionExcerciseService } from './../../services/training.session.exercise.service';
+import { UserProgressService } from './../../services/user.progress.service';
 
 @Component({
   selector: 'app-training-details',
@@ -11,31 +12,37 @@ export class TrainingDetailsComponent implements OnInit {
 
   training;
   trainingSessions;
-  exercises: any[] = [];
+  progress: any[] = [];
 
-  constructor(private trainingSessionService: TrainingSessionService, private trainingSessionExcerciseService: TrainingSessionExcerciseService) { 
+  constructor(private trainingSessionService: TrainingSessionService, private trainingSessionExcerciseService: TrainingSessionExcerciseService,
+    private userProgressService: UserProgressService) { 
     this.initialize()
   }
 
   ngOnInit(): void {
   }
 
-  setStatus(tse): void {
-    
-  }
-
   private initialize(): void {
     this.training = history.state.training
-    this.trainingSessionService.getTrainingSessions(this.training.id).subscribe(response =>{ 
-      this.trainingSessions = response;
-      var i = 0;
-      for(i=0;i<this.trainingSessions.length;i++){
-        this.trainingSessionExcerciseService.getTrainingSessionExercises(this.trainingSessions[i].id).subscribe( 
-          response => this.exercises[0] = response)
-          console.log(this.exercises);
-          console.log(this.exercises[0]);
-      }
-    })
+    this.trainingSessions = history.state.sessions
+    this.progress = history.state.progress
   }
 
+  isTrainingDone(exercises): boolean{
+    var done = true;
+    for(var i=0;i<exercises.length;i++){
+      if(exercises[i].progress == 0) done = false; 
+    }
+    return done;
+  }
+
+  isChecked(userProgress): boolean{
+    return userProgress.progress == 1;
+  }
+
+  changeProgress(userProgress): void{
+    if(userProgress.progress == 1) userProgress.progress = 0
+    else userProgress.progress = 1
+    this.userProgressService.updateUserProgress(userProgress).subscribe(response => console.log(response));
+  }
 }

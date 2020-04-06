@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface UserProgressRepository extends JpaRepository<TrainingPlan, Long> {
+public interface UserProgressRepository extends JpaRepository<UserProgress, Long> {
     @Query( "SELECT up FROM UserProgress up " +
             "WHERE up.trainingSessionExercise.trainingSession.trainingPlan.id = :trainingPlanId AND " +
             "up.user.login = :userLogin")
@@ -16,4 +16,11 @@ public interface UserProgressRepository extends JpaRepository<TrainingPlan, Long
             @Param("trainingPlanId") Long trainingPlanId,
             @Param("userLogin") String userLogin
     );
+
+    @Query( "SELECT up FROM UserProgress up " +
+            "WHERE up.trainingSessionExercise.trainingSession.id = :trainingSessionId")
+    List<UserProgress> getProgressByTrainingSessionId(
+            @Param("trainingSessionId") Long trainingSessionId
+    );
+
 }
