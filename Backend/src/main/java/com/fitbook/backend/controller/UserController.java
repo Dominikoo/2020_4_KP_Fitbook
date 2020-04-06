@@ -55,4 +55,5 @@ public class UserController {
         Optional<User> user = userRepository.findAll().stream().filter(u -> u.getEmail().equals(userEmail)).findFirst();
         return user.isPresent();
     }
+    
 }

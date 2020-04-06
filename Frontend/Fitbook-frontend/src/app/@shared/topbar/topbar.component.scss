@@ -1,11 +1,15 @@
 .navbar {
-    height: 70px;
+    height: auto;
     width: 100%;
     background-color: #282828;
     margin-top: 5px;
 }
 
 .logo {
+    width: 60px;
+}
+
+.account {
     width: 60px;
 }
 
@@ -19,4 +23,12 @@
 
 .tempdiv {
     width: 100%;
+}
+
+.dropdown {
+    z-index: 999;
+}
+
+.account-click:hover {
+    cursor: pointer;
 }
