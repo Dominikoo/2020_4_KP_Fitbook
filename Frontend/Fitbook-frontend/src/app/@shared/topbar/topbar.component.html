@@ -21,30 +21,24 @@
 
 
         <form class="form-inline my-2 my-lg-0 mr-auto">
-            <input class="form-control mr-md-2 mx-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-md-2 mx-2" type="search" placeholder="wpisz szukaną frazę..." aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
         </form>
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="/pages/wall">Wall <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown" dropdown>
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href (click)="false" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dropdownToggle>
-            Dropdown
+            Treningi
           </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" *dropdownMenu>
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="/pages/training">Szukaj treningów</a>
+                    <a class="dropdown-item" href="/pages/user-training">Moje treningi</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
         </ul>
 
