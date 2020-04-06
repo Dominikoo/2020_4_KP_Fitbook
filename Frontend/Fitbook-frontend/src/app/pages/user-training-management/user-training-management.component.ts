@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainingPlanService } from './../../services/training.plan.service';
 import { AuthManager } from './../../auth/auth.manager';
+import { UserProgressService } from './../../services/user.progress.service';
 import {
   FormBuilder,
   FormGroup,
@@ -8,6 +9,8 @@ import {
   FormControl,
 } from '@angular/forms';
 import { FiltersService } from 'src/app/services/filters.service';
+import { Router } from '@angular/router';
+import { TrainingSessionService } from 'src/app/services/training.session.service';
 
 
 @Component({
@@ -37,7 +40,11 @@ export class UserTrainingManagementComponent implements OnInit {
   constructor(private trainingPlanService: TrainingPlanService,
               private trainingFiltersService: FiltersService,
               private formBuilder: FormBuilder,
-              private authManager: AuthManager) {
+              private authManager: AuthManager,
+              private router: Router,
+              private trainingSessionService: 
+              TrainingSessionService, 
+              private userProgressService: UserProgressService) {
     this.form = this.formBuilder.group({
     diffFilters: new FormArray([]),
     lengthFilters: new FormArray([]),
@@ -122,5 +129,25 @@ export class UserTrainingManagementComponent implements OnInit {
       response => this.trainingPlansActive = response)
     this.trainingPlanService.getFilteredTrainingPlansForUser(this.trainingPlanFilter, this.authManager.getLogin(), 1).subscribe(
       response => this.trainingPlansFinished = response)
+  }
+
+  sendTraininigInfo(training) {
+    var trainingSessions;
+    let progress: Array<any> = [];
+    var responses = 0;
+    this.trainingSessionService.getTrainingSessions(training.id).subscribe(response =>{ 
+      trainingSessions = response;
+      for(var i=0;i<trainingSessions.length;i++){
+        this.userProgressService.getTrainingSessionProgress(trainingSessions[i].id).subscribe( 
+          response => {
+            responses++;
+            progress.push(response)
+            if(responses == trainingSessions.length){
+              this.router.navigate(['/pages/training-details'], {state: {training: training, sessions: trainingSessions, progress: progress.reverse()}});
+            }
+          }
+        )
+      }
+    })
   }
 }

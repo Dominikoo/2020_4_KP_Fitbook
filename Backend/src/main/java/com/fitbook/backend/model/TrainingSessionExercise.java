@@ -59,6 +59,10 @@ public class TrainingSessionExercise {
         this.orderNumber = orderNumber;
     }
 
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

@@ -5,6 +5,7 @@ import { UserTrainingManagementComponent } from './user-training-management/user
 import { PagesComponent } from './pages.component';
 import { SbLayoutComponent } from './sb-layout/sb-layout.component';
 import { WallComponent } from './sb-layout/wall/wall.component';
+import { TrainingDetailsComponent } from './training-details/training-details.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'training', pathMatch: 'full' },
       { path: 'training', component: TrainingManagementComponent },
       { path: 'user-training', component: UserTrainingManagementComponent },
+      { path: 'training-details', component: TrainingDetailsComponent },
       { path: 'acc-manage', component: AccountManagementComponent },
       { path: 'wall', component: SbLayoutComponent, children: [{ path: '', component: WallComponent }] }
     ]

@@ -1,6 +1,7 @@
 <b style="font-size: 24px; margin-left: 18px;">MOJE PLANY TRENINGOWE</b>
 <div class="container-fluid training-management-container">
-    <a routerLink="/pages/wall">przejdź na ścianę</a>
+    <a routerLink="/pages/wall">przejdź na ścianę</a><br>
+    <a routerLink="/pages/training-details">przejdź do treningu</a>
     <form [formGroup]="form">
       <table>
         <tr>
@@ -69,7 +70,7 @@
             <div class='training-item-traits' style="position: absolute; top: 8px; right: 20px; font-size: 16px; text-align: right;">
                 Typ: <b>{{item.trainingType.displayName}}</b> <br> Trudność: <b>{{item.trainingDifficulty.displayName}}</b> <br> Długość: <b>{{item.trainingLength.displayName}}</b> <br> Intensywność: <b>{{item.trainingIntensity.displayName}}</b> <br>
             </div>
-            <button (click)="filterPlans()" type="button" class="btn btn-light" style="position: absolute; right: 20px; bottom: 20px;">Trenuj</button>
+            <button (click)="sendTraininigInfo(item)" type="button" class="btn btn-light" style="position: absolute; right: 20px; bottom: 20px;">Trenuj</button>
         </div>
     </div>
 </div>
@@ -86,7 +87,7 @@
           <div class='training-item-traits' style="position: absolute; top: 8px; right: 20px; font-size: 16px; text-align: right;">
               Typ: <b>{{item.trainingType.displayName}}</b> <br> Trudność: <b>{{item.trainingDifficulty.displayName}}</b> <br> Długość: <b>{{item.trainingLength.displayName}}</b> <br> Intensywność: <b>{{item.trainingIntensity.displayName}}</b> <br>
           </div>
-          <button (click)="filterPlans()" type="button" class="btn btn-light" style="position: absolute; right: 20px; bottom: 20px;">Ponów</button>
+          <button (click)="sendTraininigInfo(item)" type="button" class="btn btn-light" style="position: absolute; right: 20px; bottom: 20px;">Ponów</button>
       </div>
   </div>
 </div>
