@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainingPlanService } from './../../services/training.plan.service';
-import { AuthManager } from './../../auth/auth.manager';
 import { UserProgressService } from './../../services/user.progress.service';
 import {
   FormBuilder,
@@ -40,7 +39,6 @@ export class UserTrainingManagementComponent implements OnInit {
   constructor(private trainingPlanService: TrainingPlanService,
               private trainingFiltersService: FiltersService,
               private formBuilder: FormBuilder,
-              private authManager: AuthManager,
               private router: Router,
               private trainingSessionService: 
               TrainingSessionService, 
@@ -125,9 +123,9 @@ export class UserTrainingManagementComponent implements OnInit {
   }
 
   filterPlans(): void {
-    this.trainingPlanService.getFilteredTrainingPlansForUser(this.trainingPlanFilter, this.authManager.getLogin(), 0).subscribe(
+    this.trainingPlanService.getFilteredTrainingPlansForUser(this.trainingPlanFilter, localStorage.getItem('userLogin'), 0).subscribe(
       response => this.trainingPlansActive = response)
-    this.trainingPlanService.getFilteredTrainingPlansForUser(this.trainingPlanFilter, this.authManager.getLogin(), 1).subscribe(
+    this.trainingPlanService.getFilteredTrainingPlansForUser(this.trainingPlanFilter, localStorage.getItem('userLogin'), 1).subscribe(
       response => this.trainingPlansFinished = response)
   }
 

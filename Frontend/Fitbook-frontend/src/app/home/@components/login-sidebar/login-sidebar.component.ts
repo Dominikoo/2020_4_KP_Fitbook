@@ -1,6 +1,5 @@
 import { UserService } from './../../../services/user.service';
 import { AuthService } from './../../../services/auth.service';
-import { AuthManager } from './../../../auth/auth.manager';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -18,7 +17,7 @@ export class LoginSidebarComponent implements OnInit {
 
   invalidLoginData = false;
 
-  constructor(private router: Router, private userService: UserService, private authService: AuthService, private authManager: AuthManager) { }
+  constructor(private router: Router, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -28,8 +27,8 @@ export class LoginSidebarComponent implements OnInit {
       this.authService.logInUser(this.loginData).subscribe(
         response => {
           if(response != ''){
-            this.authManager.setToken(response);
-            this.authManager.setLogin(this.loginData.login)
+            localStorage.setItem('token', response)
+            localStorage.setItem('userLogin', this.loginData.login)
             this.router.navigate(['/pages']);
           }
           else{

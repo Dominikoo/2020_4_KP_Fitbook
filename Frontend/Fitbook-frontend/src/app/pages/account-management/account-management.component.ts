@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { AuthManager } from 'src/app/auth/auth.manager';
 import { Form, FormBuilder, FormArray, FormGroup } from '@angular/forms';
 
 @Component({
@@ -23,9 +22,9 @@ export class AccountManagementComponent implements OnInit {
   isSaveSuccesful = true
   showLog = false
 
-  constructor(private userService: UserService, private authManager:AuthManager) {
-    
-    this.userService.getByLogin(this.authManager.getLogin()).subscribe(
+  constructor(private userService: UserService) {
+
+    this.userService.getByLogin(localStorage.getItem('userLogin')).subscribe(
       response => {
         this.userInfo = response;
       }

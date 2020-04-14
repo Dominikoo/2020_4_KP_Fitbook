@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { Router } from '@angular/router';
-import { AuthManager } from 'src/app/auth/auth.manager';
 
 @Component({
   selector: 'app-topbar',
@@ -12,7 +11,7 @@ import { AuthManager } from 'src/app/auth/auth.manager';
 export class TopbarComponent implements OnInit {
   isCollapsed = true;
 
-  constructor(private router: Router, private authManager: AuthManager) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,6 +21,6 @@ export class TopbarComponent implements OnInit {
   }
 
   isTokenSet(): boolean {
-    return this.authManager.getToken() !== '';
+    return localStorage.getItem('token') !== '';
   }
 }
