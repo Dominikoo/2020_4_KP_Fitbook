@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TrainingPlanService {
-  private url = 'http://localhost:8080/auth/trainingPlans';
+  private url = 'https://backend-fitbook.herokuapp.com/auth/trainingPlans';
   constructor(private httpClient: HttpClient) { }
 
   getFilteredTrainingPlans(filter) {
