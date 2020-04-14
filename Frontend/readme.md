@@ -64,3 +64,55 @@ __training-management__ - komponent przeglądania dostępnych w bazie treningów
 __user-training-management__ - komponent panelu zarządzania treningami użytkownika
 
 __services__ - katalog z serwisami
+
+
+# Frontend na serwerze heroku
+
+## instrukcja utworzenia
+
+1. Pobranie heroku CLI --> [link](https://devcenter.heroku.com/categories/command-line)
+2. Utworzenie konta heroku --> [link](https://signup.heroku.com/)
+3. Konfiguracja pliku [package.json](Fitbook-frontend/package.json) według poradnika - [tutorial](https://www.youtube.com/watch?v=0bOJjAUXjhI)
+  
+      z tą różnicą, że zamiast 
+
+```
+"postinstall": "ng build --aot --target=production"
+```
+
+jest
+
+```
+"heroku-postbuild": "ng build --prod"
+```
+
+4. Utworzenie i konfiguracja pliku [server.js](Fitbook-frontend/server.js)
+5. Konfiguracja pliku [package.json](Fitbook-frontend/package.json)
+```
+"start": "ng serve"
+``` 
+na 
+```
+"start": "node server.js"
+```
+
+6. Instalacja `express` -> `npm install --save express`
+7. Inicjacja projektu w folderze [Fitbook-frontend](Fitbook-frontend/) i zbudowanie go na serwerze:
+```Console
+  $ heroku login
+  $ heroku git:clone -a fitbook-frontend-heroku
+  $ git add .
+  $ git commit -am "initial commit heroku"
+  $ git push heroku master
+```
+## instrukcja aktualizacji
+
+Przy każdej kolejnej aktualizacji wystarczy w folderze herokowego projektu wykonać następujące komendy:
+
+```
+  $ git add .
+  $ git commit -am "*zmiany*"
+  $ git push heroku master
+```
+
+A serwer sam sobie wszystko zbuduje od nowa.
