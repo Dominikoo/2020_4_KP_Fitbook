@@ -15,7 +15,8 @@
 	<description>Backend for Fitbook</description>
 
 	<properties>
-		<java.version>13</java.version>
+		<maven.compiler.source>13</maven.compiler.source>
+		<maven.compiler.target>13</maven.compiler.target>
 	</properties>
 
 	<dependencies>
