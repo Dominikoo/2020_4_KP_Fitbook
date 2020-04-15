@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TrainingSessionService } from './../../services/training.session.service';
 import { TrainingSessionExcerciseService } from './../../services/training.session.exercise.service';
 import { UserProgressService } from './../../services/user.progress.service';
+import { TrainingManagementPopupComponent } from './../../@popups/training-management-popup/training-management-popup.component'
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-training-details',
@@ -13,9 +15,13 @@ export class TrainingDetailsComponent implements OnInit {
   training;
   trainingSessions;
   progress: any[] = [];
+  bsModalRef: BsModalRef;
 
-  constructor(private trainingSessionService: TrainingSessionService, private trainingSessionExcerciseService: TrainingSessionExcerciseService,
-    private userProgressService: UserProgressService) { 
+  constructor(
+    private trainingSessionService: TrainingSessionService,
+    private trainingSessionExcerciseService: TrainingSessionExcerciseService,
+    private userProgressService: UserProgressService,
+    private modalService: BsModalService) { 
     this.initialize()
   }
 
@@ -44,5 +50,9 @@ export class TrainingDetailsComponent implements OnInit {
     if(userProgress.progress == 1) userProgress.progress = 0
     else userProgress.progress = 1
     this.userProgressService.updateUserProgress(userProgress).subscribe(response => console.log(response));
+  }
+
+  trainingManagementPopupOpen(): void {
+    this.bsModalRef = this.modalService.show(TrainingManagementPopupComponent)
   }
 }

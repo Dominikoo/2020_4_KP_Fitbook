@@ -1,32 +1,33 @@
 <b style="font-size: 24px; margin-left: 18px;">SZCZEGÓŁY TRENINGU</b>
 
 <div class="trainig-list-container">
-        <div class="trainig-item-container" style="margin: 22px; background-color: #cccccc; position: relative; border-style: solid;border-width: 1px;">
-            <img src='assets/training1.png' width="200" height="200" class='training-item-photo' style="margin: 10px; border-style: solid;border-width: 1px;" alt="LOGO">
-            <div class='training-item-name' style="position: absolute; top: 6px; left: 240px; font-size: 24px;"> <b>{{training.name}}</b> </div>
-            <div class='training-item-description' style="position: absolute; top: 44px; left: 220px; right: 400px; font-size: 16px;"> {{training.description}} </div>
-            <div class='training-item-traits' style="position: absolute; top: 8px; right: 20px; font-size: 16px; text-align: right;">
-                Typ: <b>{{training.trainingType.displayName}}</b> <br> Trudność: <b>{{training.trainingDifficulty.displayName}}</b> <br> Długość: <b>{{training.trainingLength.displayName}}</b> <br> Intensywność: <b>{{training.trainingIntensity.displayName}}</b> <br>
-            </div>
+    <div class="trainig-item-container" style="margin: 22px; background-color: #cccccc; position: relative; border-style: solid;border-width: 1px;">
+        <img src='assets/training1.png' width="200" height="200" class='training-item-photo' style="margin: 10px; border-style: solid;border-width: 1px;" alt="LOGO">
+        <div class='training-item-name' style="position: absolute; top: 6px; left: 240px; font-size: 24px;"> <b>{{training.name}}</b> </div>
+        <div class='training-item-description' style="position: absolute; top: 44px; left: 220px; right: 400px; font-size: 16px;"> {{training.description}} </div>
+        <div class='training-item-traits' style="position: absolute; top: 8px; right: 20px; font-size: 16px; text-align: right;">
+            Typ: <b>{{training.trainingType.displayName}}</b> <br> Trudność: <b>{{training.trainingDifficulty.displayName}}</b> <br> Długość: <b>{{training.trainingLength.displayName}}</b> <br> Intensywność: <b>{{training.trainingIntensity.displayName}}</b>            <br>
+        </div>
     </div>
 </div>
 
 <div class="training-sessions" style="display: flex; flex-flow: wrap; max-width: initial; margin: 16px;">
     <div *ngFor="let item of trainingSessions; index as i" class="training-sessions" style="background-color: #f0ecec; min-width: 340px; max-width: 340px; height: 400px; margin: 10px; border-style: 
-        solid;border-width: 1px; display: grid; align-content: space-between;">
+        solid; border-width: 1px; display: grid; align-content: space-between">
         <div>
-        <b style="font-size: 20px; margin-left: 18px;">{{item.name}}</b> 
-            <div style="margin-top: 10px">
-                <div *ngFor="let pr of progress[i]; index as j" (click)="changeProgress(pr)" class="exercise-item">
+            <b style="font-size: 20px; margin-left: 18px;">{{item.name}}</b>
+            <ul class="list-group" style="margin-top: 10px;">
+                <li class="list-group-item" *ngFor="let pr of progress[i]; index as j" (click)="changeProgress(pr)" class="exercise-item">
                     <b style="font-size: 16px; margin-left: 8px; grid-column: 1;">{{pr.trainingSessionExercise.exercise.name}} 
-                        <b style="font-size: 12px; margin-left: 8px; grid-column: 1; font-weight: lighter;">serie: {{pr.trainingSessionExercise.exercise.sets}}, powtórzenia: {{pr.trainingSessionExercise.exercise.reps}}</b> 
-                    </b> 
-                    <input type="checkbox" [checked]="isChecked(pr)" style="grid-column: 2; align-self: center; margin-right: 8px; transform: scale(1.2)"/> 
-                </div>
-            </div>
-        </div> 
+                        <b style="font-size: 12px; margin-left: 8px; grid-column: 1; font-weight: lighter;">serie: {{pr.trainingSessionExercise.exercise.sets}}, powtórzenia: {{pr.trainingSessionExercise.exercise.reps}}</b>
+                    </b>
+                    <input type="checkbox" [checked]="isChecked(pr)" style="grid-column: 2; align-self: center; margin-right: 8px; transform: scale(1.2)" />
+                </li>
+            </ul>
+            <button type="button" class="btn btn-light" style (click)="trainingManagementPopupOpen()">Modyfikuj</button>
+        </div>
         <div *ngIf="isTrainingDone(progress[i])">
-            <div type="button" style="min-height: 40px; line-height: 40px; position: static; right: -200px; background-color: lightsteelblue; font-weight: bold; text-align: center; ">Wykonane!</div>
+            <div style="min-height: 40px; line-height: 40px; position: static; background-color: lightsteelblue; font-weight: bold; text-align: center; ">Wykonane!</div>
         </div>
     </div>
 
