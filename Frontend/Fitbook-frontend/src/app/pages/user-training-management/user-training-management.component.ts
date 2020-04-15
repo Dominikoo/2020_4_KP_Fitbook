@@ -10,7 +10,8 @@ import {
 import { FiltersService } from 'src/app/services/filters.service';
 import { Router } from '@angular/router';
 import { TrainingSessionService } from 'src/app/services/training.session.service';
-
+import { AddTrainingPlanPopupComponent } from './../../@popups/add-training-plan-popup/add-training-plan-popup.component'
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-user-training-management',
@@ -36,13 +37,16 @@ export class UserTrainingManagementComponent implements OnInit {
   trainingIntensities: Array<any> = undefined;
   trainingTypes: Array<any> = undefined;
 
+  bsModalRef: BsModalRef;
+
   constructor(private trainingPlanService: TrainingPlanService,
               private trainingFiltersService: FiltersService,
               private formBuilder: FormBuilder,
               private router: Router,
               private trainingSessionService: 
               TrainingSessionService, 
-              private userProgressService: UserProgressService) {
+              private userProgressService: UserProgressService,
+              private modalService: BsModalService) {
     this.form = this.formBuilder.group({
     diffFilters: new FormArray([]),
     lengthFilters: new FormArray([]),
@@ -147,5 +151,9 @@ export class UserTrainingManagementComponent implements OnInit {
         )
       }
     })
+  }
+
+  addTrainingPlanPopupOpen() : void{
+    this.bsModalRef = this.modalService.show(AddTrainingPlanPopupComponent)
   }
 }
