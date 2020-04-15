@@ -6,3 +6,19 @@
 .exercise-item:nth-child(odd){
     background-color: #cecbcb;
 }
+
+.btn-circle.btn-sm { 
+    width: 30px; 
+    height: 30px; 
+    padding: 0px 0px; 
+    border-radius: 15px; 
+    font-size: 18px; 
+    font-weight: bolder;
+    text-align: center; 
+    background-color: orange;
+    border-color: black;
+} 
+
+.btn-circle.btn-sm:hover { 
+    background-color: chocolate;
+} 

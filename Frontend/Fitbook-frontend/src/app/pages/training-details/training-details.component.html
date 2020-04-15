@@ -24,7 +24,9 @@
                     <input type="checkbox" [checked]="isChecked(pr)" style="grid-column: 2; align-self: center; margin-right: 8px; transform: scale(1.2)" />
                 </li>
             </ul>
-            <button type="button" class="btn btn-light" style (click)="trainingManagementPopupOpen()">Modyfikuj</button>
+            <div style="display: flex; justify-content: center; margin-top: 10px;">
+                <button type="button" class="btn btn-light btn-circle btn-sm" (click)="trainingManagementPopupOpen()">+</button> 
+            </div>
         </div>
         <div *ngIf="isTrainingDone(progress[i])">
             <div style="min-height: 40px; line-height: 40px; position: static; background-color: lightsteelblue; font-weight: bold; text-align: center; ">Wykonane!</div>
