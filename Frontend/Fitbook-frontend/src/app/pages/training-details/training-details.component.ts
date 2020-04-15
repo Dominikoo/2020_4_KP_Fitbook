@@ -3,6 +3,7 @@ import { TrainingSessionService } from './../../services/training.session.servic
 import { TrainingSessionExcerciseService } from './../../services/training.session.exercise.service';
 import { UserProgressService } from './../../services/user.progress.service';
 import { AddExercisePopupComponent } from './../../@popups/add-exercise-popup/add-exercise-popup.component'
+import { AddTrainingSessionPopupComponent } from './../../@popups/add-training-session-popup/add-training-session-popup.component'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { isNgTemplate } from '@angular/compiler';
 
@@ -12,6 +13,8 @@ import { isNgTemplate } from '@angular/compiler';
   styleUrls: ['./training-details.component.scss']
 })
 export class TrainingDetailsComponent implements OnInit {
+
+  editMode = false; 
 
   training;
   trainingSessions;
@@ -103,5 +106,21 @@ export class TrainingDetailsComponent implements OnInit {
 
   cancel(): void {
 
+  }
+
+  addTrainingSessionPopupOpen() : void{
+    this.bsModalRef = this.modalService.show(AddTrainingSessionPopupComponent)
+  }
+
+  enableEditMode(): void{
+    this.editMode = true;
+  }
+
+  cancel() : void{
+    this.editMode = false;
+  }
+
+  save() : void{
+    this.editMode = false;
   }
 }

@@ -8,17 +8,32 @@
 }
 
 .btn-circle.btn-sm { 
-    width: 30px; 
-    height: 30px; 
+    width: 24px; 
+    height: 24px; 
     padding: 0px 0px; 
-    border-radius: 15px; 
-    font-size: 18px; 
+    border-radius: 12px; 
+    font-size: 22px; 
     font-weight: bolder;
     text-align: center; 
-    background-color: orange;
+    background-color: lightgray;
     border-color: black;
 } 
 
 .btn-circle.btn-sm:hover { 
-    background-color: chocolate;
+    background-color: orange;
 } 
+
+.btn-circle.btn-xl { 
+    width: 70px; 
+    height: 70px; 
+    border-radius: 35px; 
+    font-size: 42px; 
+    border-width: 2px;
+    background-color: lightgray;
+    border-color: black;
+    text-align: center; 
+} 
+
+.btn-circle.btn-xl:hover{
+    background-color: orange;
+}
