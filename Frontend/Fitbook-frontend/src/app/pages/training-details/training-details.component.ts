@@ -13,6 +13,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class TrainingDetailsComponent implements OnInit {
 
+  editMode = false; 
+
   training;
   trainingSessions;
   progress: any[] = [];
@@ -59,5 +61,17 @@ export class TrainingDetailsComponent implements OnInit {
 
   addTrainingSessionPopupOpen() : void{
     this.bsModalRef = this.modalService.show(AddTrainingSessionPopupComponent)
+  }
+
+  enableEditMode(): void{
+    this.editMode = true;
+  }
+
+  cancel() : void{
+    this.editMode = false;
+  }
+
+  save() : void{
+    this.editMode = false;
   }
 }

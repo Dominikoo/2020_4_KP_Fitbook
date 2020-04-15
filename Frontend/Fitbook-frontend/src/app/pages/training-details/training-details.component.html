@@ -1,4 +1,11 @@
-<b style="font-size: 24px; margin-left: 18px;">SZCZEGÓŁY TRENINGU</b>
+<div style="display: grid; grid-auto-flow: column; justify-content: space-between;"> 
+    <b style="font-size: 24px; margin-left: 18px;">SZCZEGÓŁY TRENINGU</b>
+    <button *ngIf="!editMode" type="button" class="btn btn-dark" style="margin-right: 20px;" (click)="enableEditMode()">Edytuj</button>
+    <div *ngIf="editMode">
+        <button type="button" class="btn btn-danger" style="margin-right: 20px;" (click)="cancel()">Anuluj</button>
+        <button type="button" class="btn btn-success" style="margin-right: 20px;" (click)="save()">Zapisz</button>
+    </div>
+</div>
 
 <div class="trainig-list-container">
     <div class="trainig-item-container" style="margin: 22px; background-color: #cccccc; position: relative; border-style: solid;border-width: 1px;">
@@ -24,7 +31,7 @@
                     <input type="checkbox" [checked]="isChecked(pr)" style="grid-column: 2; align-self: center; margin-right: 8px; transform: scale(1.2)" />
                 </li>
             </ul>
-            <div style="display: flex; justify-content: center; margin-top: 10px;">
+            <div *ngIf="editMode" style="display: flex; justify-content: center; margin-top: 10px;">
                 <button type="button" class="btn btn-light btn-circle btn-sm" (click)="trainingManagementPopupOpen()">
                     <b style="position: relative; top: -7px;">+</b> 
                 </button> 
@@ -35,7 +42,7 @@
         </div>
     </div>
 
-    <div class="add-training-session" style="min-width: 340px; max-width: 340px; height: 400px; margin: 10px; border-style: 
+    <div *ngIf="editMode" class="add-training-session" style="min-width: 340px; max-width: 340px; height: 400px; margin: 10px; border-style: 
         solid; border-width: 1px; display: grid; align-content: center; justify-content: center; background-color: grey;">
         <button type="button" class="btn btn-light btn-circle btn-xl" (click)="addTrainingSessionPopupOpen()">
             <b style="position: relative; top: -8px;">+</b>
