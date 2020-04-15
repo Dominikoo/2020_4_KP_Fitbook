@@ -97,17 +97,7 @@ export class TrainingDetailsComponent implements OnInit {
   delExercise(itemID): void {
 
   }
-
-
-  save(): void {
-
-  }
-
-
-  cancel(): void {
-
-  }
-
+  
   addTrainingSessionPopupOpen() : void{
     this.bsModalRef = this.modalService.show(AddTrainingSessionPopupComponent)
   }
