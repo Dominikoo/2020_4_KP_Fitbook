@@ -4,6 +4,7 @@ import { TrainingSessionExcerciseService } from './../../services/training.sessi
 import { UserProgressService } from './../../services/user.progress.service';
 import { AddExercisePopupComponent } from './../../@popups/add-exercise-popup/add-exercise-popup.component'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-training-details',
@@ -16,6 +17,10 @@ export class TrainingDetailsComponent implements OnInit {
   trainingSessions;
   progress: any[] = [];
   bsModalRef: BsModalRef;
+
+  progress_new: any[] = [];     //  Tymczasowa tablica dodająca ćwiczenia
+  progress_mod: any[] = [];     //  Tymczasowa tablica modyfikujaca ćwiczenia
+  progress_del: any[] = [];     //  Tymczasowa tablica usuwajaca ćwiczenia
 
   constructor(
     private trainingSessionService: TrainingSessionService,
@@ -52,7 +57,51 @@ export class TrainingDetailsComponent implements OnInit {
     this.userProgressService.updateUserProgress(userProgress).subscribe(response => console.log(response));
   }
 
-  addExercise(): void {
-    this.bsModalRef = this.modalService.show(AddExercisePopupComponent)
+
+  //  Powinno: dodać item do progress i progress_new
+  addExercise(itemID): void {
+    const initialState = { sessionId: itemID }
+    this.bsModalRef = this.modalService.show(AddExercisePopupComponent);
+    this.bsModalRef.content.onClose.subscribe(response => {
+      console.log(this.bsModalRef.content.newExercise);
+
+      console.log(this.training);
+      console.log(this.trainingSessions);
+      console.log(this.progress);
+
+      this.progress.push()
+    })
+  }
+
+
+  //  If item IN progress_new
+  //    mod progress AND mod progress_new
+  //  else (czyli tylko progress)
+  //    add progress -> progress_mod AND mod progress_mod AND mod progress
+  //  endif
+  modExercise(itemID): void {
+
+  }
+
+
+  //  If item IN progress_new
+  //    del progress AND del progress_new
+  //  else (czyli tylko progress)
+  //    add progress -> progress_del AND del progress
+  //    if item IN progress_mod
+  //      del progress_mod
+  //  endif
+  delExercise(itemID): void {
+
+  }
+
+
+  save(): void {
+
+  }
+
+
+  cancel(): void {
+
   }
 }

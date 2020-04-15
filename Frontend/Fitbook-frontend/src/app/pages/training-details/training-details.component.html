@@ -25,7 +25,7 @@
                 </li>
             </ul>
             <div style="display: flex; justify-content: center; margin-top: 10px;">
-                <button type="button" class="btn btn-light btn-circle btn-sm" (click)="addExercise()">+</button>
+                <button type="button" class="btn btn-light btn-circle btn-sm" (click)="addExercise(item.id)">+</button>
             </div>
         </div>
         <div *ngIf="isTrainingDone(progress[i])">
