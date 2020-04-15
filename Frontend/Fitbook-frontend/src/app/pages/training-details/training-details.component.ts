@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TrainingSessionService } from './../../services/training.session.service';
 import { TrainingSessionExcerciseService } from './../../services/training.session.exercise.service';
 import { UserProgressService } from './../../services/user.progress.service';
-import { TrainingManagementPopupComponent } from './../../@popups/training-management-popup/training-management-popup.component'
+import { AddExercisePopupComponent } from './../../@popups/add-exercise-popup/add-exercise-popup.component'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -52,7 +52,7 @@ export class TrainingDetailsComponent implements OnInit {
     this.userProgressService.updateUserProgress(userProgress).subscribe(response => console.log(response));
   }
 
-  trainingManagementPopupOpen(): void {
-    this.bsModalRef = this.modalService.show(TrainingManagementPopupComponent)
+  addExercise(): void {
+    this.bsModalRef = this.modalService.show(AddExercisePopupComponent)
   }
 }
