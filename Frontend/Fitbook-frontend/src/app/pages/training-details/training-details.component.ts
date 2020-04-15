@@ -3,6 +3,7 @@ import { TrainingSessionService } from './../../services/training.session.servic
 import { TrainingSessionExcerciseService } from './../../services/training.session.exercise.service';
 import { UserProgressService } from './../../services/user.progress.service';
 import { TrainingManagementPopupComponent } from './../../@popups/training-management-popup/training-management-popup.component'
+import { AddTrainingSessionPopupComponent } from './../../@popups/add-training-session-popup/add-training-session-popup.component'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -54,5 +55,9 @@ export class TrainingDetailsComponent implements OnInit {
 
   trainingManagementPopupOpen(): void {
     this.bsModalRef = this.modalService.show(TrainingManagementPopupComponent)
+  }
+
+  addTrainingSessionPopupOpen() : void{
+    this.bsModalRef = this.modalService.show(AddTrainingSessionPopupComponent)
   }
 }

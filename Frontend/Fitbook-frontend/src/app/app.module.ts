@@ -14,12 +14,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TrainingManagementPopupComponent } from './@popups/training-management-popup/training-management-popup.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AddTrainingSessionPopupComponent } from './@popups/add-training-session-popup/add-training-session-popup.component';
 defineLocale('pl', plLocale);
 
 @NgModule({
   declarations: [
     AppComponent,
-    TrainingManagementPopupComponent
+    TrainingManagementPopupComponent,
+    AddTrainingSessionPopupComponent
   ],
   imports: [
     BrowserModule,
