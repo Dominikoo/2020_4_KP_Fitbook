@@ -30,6 +30,7 @@ export class TrainingDetailsComponent implements OnInit {
     private trainingSessionService: TrainingSessionService,
     private trainingSessionExcerciseService: TrainingSessionExcerciseService,
     private userProgressService: UserProgressService,
+    private trainingSessionExerciseService: TrainingSessionExcerciseService,
     private modalService: BsModalService) { 
     this.initialize()
   }
@@ -70,7 +71,7 @@ export class TrainingDetailsComponent implements OnInit {
         let sessionLatestId = 1
         let exerciseLatestId = 1;
         let orderNumberLatest = 1;
-        
+
         for (let list of this.progress) {
           for (let prog of list){
             if (sessionLatestId <= prog['trainingSessionExercise']['id']) {
@@ -84,9 +85,9 @@ export class TrainingDetailsComponent implements OnInit {
             orderNumberLatest = list.length + 1;
           }
         }
-      
+
         // utworzenie nowego obiektu
-      
+
         let new_progress = {
           user: {
             login: localStorage.getItem('userLogin')
@@ -98,15 +99,15 @@ export class TrainingDetailsComponent implements OnInit {
             orderNumber: orderNumberLatest
           },
           progress: 0
-        
+
         };
-      
+
         // Dodanie referencji na nowo utworzony obiekt do progress i progress_new
-      
+
         this.progress[sessionObject.id - 1].push(new_progress);
-      
+
         this.progress_new.push(new_progress);
-      
+
         console.log(this.progress);
         console.log(this.progress_new);
       }
@@ -191,9 +192,20 @@ export class TrainingDetailsComponent implements OnInit {
 
   cancel() : void{
     this.editMode = false;
+    // pobieranie danych z bazy
   }
 
   save() : void{
     this.editMode = false;
+    this.trainingSessionExerciseService.addTrainingSessionExercises(this.progress_new).subscribe(response => {
+      console.log(response);
+    });
+    this.trainingSessionExerciseService.updateTrainingSessionExercises(this.progress_mod).subscribe(response => {
+      console.log(response);
+    });
+    this.trainingSessionExerciseService.deleteTrainingSessionExercises(this.progress_del).subscribe(response => {
+      console.log(response);
+    });
+
   }
 }
