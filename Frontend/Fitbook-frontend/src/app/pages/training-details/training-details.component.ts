@@ -66,48 +66,50 @@ export class TrainingDetailsComponent implements OnInit {
     this.bsModalRef = this.modalService.show(AddExercisePopupComponent);
     this.bsModalRef.content.onClose.subscribe(response => {
 
-      let sessionLatestId = 1
-      let exerciseLatestId = 1;
-      let orderNumberLatest = 1;
-
-      for (let list of this.progress) {
-        for (let prog of list){
-          if (sessionLatestId <= prog['trainingSessionExercise']['id']) {
-            sessionLatestId = prog['trainingSessionExercise']['id'] + 1;
+      if(response){
+        let sessionLatestId = 1
+        let exerciseLatestId = 1;
+        let orderNumberLatest = 1;
+        
+        for (let list of this.progress) {
+          for (let prog of list){
+            if (sessionLatestId <= prog['trainingSessionExercise']['id']) {
+              sessionLatestId = prog['trainingSessionExercise']['id'] + 1;
+            }
+            if (exerciseLatestId <= prog['trainingSessionExercise']['exercise']['id']) {
+              exerciseLatestId = prog['trainingSessionExercise']['exercise']['id'] + 1;
+            }
           }
-          if (exerciseLatestId <= prog['trainingSessionExercise']['exercise']['id']) {
-            exerciseLatestId = prog['trainingSessionExercise']['exercise']['id'] + 1;
+          if (list[0]['trainingSessionExercise']['trainingSession']['id'] == sessionObject.id) {
+            orderNumberLatest = list.length + 1;
           }
         }
-        if (list[0]['trainingSessionExercise']['trainingSession']['id'] == sessionObject.id) {
-          orderNumberLatest = list.length + 1;
-        }
+      
+        // utworzenie nowego obiektu
+      
+        let new_progress = {
+          user: {
+            login: localStorage.getItem('userLogin')
+          },
+          trainingSessionExercise: {
+            id: sessionLatestId,
+            exercise: this.bsModalRef.content.newExercise,
+            trainingSession: sessionObject,
+            orderNumber: orderNumberLatest
+          },
+          progress: 0
+        
+        };
+      
+        // Dodanie referencji na nowo utworzony obiekt do progress i progress_new
+      
+        this.progress[sessionObject.id - 1].push(new_progress);
+      
+        this.progress_new.push(new_progress);
+      
+        console.log(this.progress);
+        console.log(this.progress_new);
       }
-
-      // utworzenie nowego obiektu
-
-      let new_progress = {
-        user: {
-          login: localStorage.getItem('userLogin')
-        },
-        trainingSessionExercise: {
-          id: sessionLatestId,
-          exercise: this.bsModalRef.content.newExercise,
-          trainingSession: sessionObject,
-          orderNumber: orderNumberLatest
-        },
-        progress: 0
-
-      };
-
-      // Dodanie referencji na nowo utworzony obiekt do progress i progress_new
-
-      this.progress[sessionObject.id - 1].push(new_progress);
-
-      this.progress_new.push(new_progress);
-
-      console.log(this.progress);
-      console.log(this.progress_new);
     });
   }
 
