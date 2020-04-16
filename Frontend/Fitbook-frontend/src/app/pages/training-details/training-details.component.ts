@@ -102,7 +102,7 @@ export class TrainingDetailsComponent implements OnInit {
 
       // Dodanie referencji na nowo utworzony obiekt do progress i progress_new
 
-      this.progress[sessionObject.id].push(new_progress);
+      this.progress[sessionObject.id - 1].push(new_progress);
 
       this.progress_new.push(new_progress);
 
@@ -155,9 +155,9 @@ export class TrainingDetailsComponent implements OnInit {
         console.log('Usuwanie w progress_new: ', this.progress_new);
       }
 
-      const index2 = this.progress[sessionObject.id].indexOf(item, 0);
+      const index2 = this.progress[sessionObject.id - 1].indexOf(item, 0);
       if (index2 > -1) {
-        this.progress[sessionObject.id].splice(index2, 1);
+        this.progress[sessionObject.id - 1].splice(index2, 1);
         console.log('Usuwanie w progress_new: ', this.progress);
       }
     } else {
@@ -166,9 +166,9 @@ export class TrainingDetailsComponent implements OnInit {
 
       this.progress_del.push(item);
 
-      const index1 = this.progress[sessionObject.id].indexOf(item, 0);
+      const index1 = this.progress[sessionObject.id - 1].indexOf(item, 0);
       if (index1 > -1) {
-        this.progress[sessionObject.id].splice(index1, 1);
+        this.progress[sessionObject.id - 1].splice(index1, 1);
       }
 
       const index2 = this.progress_mod.indexOf(item, 0);
