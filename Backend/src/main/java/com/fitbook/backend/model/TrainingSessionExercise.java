@@ -27,6 +27,14 @@ public class TrainingSessionExercise {
     @Column(columnDefinition = "int")
     private Integer orderNumber;
 
+    public TrainingSessionExercise(){};
+
+    public TrainingSessionExercise(Exercise exercise, TrainingSession trainingSession, Integer orderNumber) {
+        this.exercise = exercise;
+        this.trainingSession = trainingSession;
+        this.orderNumber = orderNumber;
+    }
+
     public Long getId() {
         return id;
     }

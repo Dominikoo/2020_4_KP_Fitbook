@@ -20,6 +20,14 @@ public class UserProgress implements Serializable {
     @Column(columnDefinition = "int")
     private Integer progress;
 
+    public UserProgress(){};
+
+    public UserProgress(User user, TrainingSessionExercise trainingSessionExercise, Integer progress) {
+        this.user = user;
+        this.trainingSessionExercise = trainingSessionExercise;
+        this.progress = progress;
+    }
+
     public User getUser() {
         return user;
     }

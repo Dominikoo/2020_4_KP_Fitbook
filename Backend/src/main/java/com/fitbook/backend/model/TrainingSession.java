@@ -28,6 +28,14 @@ public class TrainingSession {
     @Column(columnDefinition = "int", unique = false)
     private Integer orderNumber;
 
+    public TrainingSession(){};
+
+    public TrainingSession(TrainingPlan trainingPlan, String name, Integer orderNumber) {
+        this.trainingPlan = trainingPlan;
+        this.name = name;
+        this.orderNumber = orderNumber;
+    }
+
     public String getName() {
         return name;
     }

@@ -10,7 +10,8 @@ import {
 import { FiltersService } from 'src/app/services/filters.service';
 import { Router } from '@angular/router';
 import { TrainingSessionService } from 'src/app/services/training.session.service';
-
+import { AddTrainingPlanPopupComponent } from './../../@popups/add-training-plan-popup/add-training-plan-popup.component'
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-user-training-management',
@@ -36,13 +37,16 @@ export class UserTrainingManagementComponent implements OnInit {
   trainingIntensities: Array<any> = undefined;
   trainingTypes: Array<any> = undefined;
 
+  bsModalRef: BsModalRef;
+
   constructor(private trainingPlanService: TrainingPlanService,
               private trainingFiltersService: FiltersService,
               private formBuilder: FormBuilder,
               private router: Router,
               private trainingSessionService: 
               TrainingSessionService, 
-              private userProgressService: UserProgressService) {
+              private userProgressService: UserProgressService,
+              private modalService: BsModalService) {
     this.form = this.formBuilder.group({
     diffFilters: new FormArray([]),
     lengthFilters: new FormArray([]),
@@ -133,6 +137,7 @@ export class UserTrainingManagementComponent implements OnInit {
     var trainingSessions;
     let progress: Array<any> = [];
     var responses = 0;
+    console.log(training);
     this.trainingSessionService.getTrainingSessions(training.id).subscribe(response =>{ 
       trainingSessions = response;
       for(var i=0;i<trainingSessions.length;i++){
@@ -146,6 +151,28 @@ export class UserTrainingManagementComponent implements OnInit {
           }
         )
       }
+    })
+  }
+
+  trainingPlan ={
+    id: null,
+    name: '',
+    description: '',
+    trainingType: null,
+    trainingLength: null,
+    trainingIntensity: null,
+    trainingDifficulty: null
+  }
+
+  addTrainingPlanPopupOpen() : void{
+    const initialState = {trainingDiffs: this.trainingDiffs,
+                          trainingLengths: this.trainingLengths,
+                          trainingIntensities: this.trainingIntensities,
+                          trainingTypes: this.trainingTypes,
+                          trainingPlan: this.trainingPlan}
+    this.bsModalRef = this.modalService.show(AddTrainingPlanPopupComponent, {initialState})
+    this.bsModalRef.content.onClose.subscribe(response => {
+      this.sendTraininigInfo(this.trainingPlan)
     })
   }
 }

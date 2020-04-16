@@ -1,59 +1,48 @@
 <b style="font-size: 24px; margin-left: 18px;">MOJE PLANY TRENINGOWE</b>
 <div class="container-fluid training-management-container">
-    <a routerLink="/pages/wall">przejdź na ścianę</a><br>
-    <a routerLink="/pages/training-details">przejdź do treningu</a>
     <form [formGroup]="form">
-      <table>
-        <tr>
-          <th><b>Typ treningu</b></th>
-          <th><b>Poziom trudności</b></th>
-          <th><b>Długość treningu</b></th>
-          <th><b>Intensywność</b></th>
-        </tr>
-        <tr>
-          <th>
-            <span>
-              <div class="filter-element" style="display: grid; width: 240px;">
-                <label formArrayName="typeFilters" *ngFor="let filter of form.controls.typeFilters['controls'] ; let i = index">
-                    <input type="checkbox" [formControlName]="i"/>
-                    {{trainingTypes[i].displayName}}
-                </label>
-              </div>
-            </span>
-          </th>
-          <th>
-            <span>
-              <div class="filter-element" style="display: grid; width: 240px;">
-                <label formArrayName="diffFilters" *ngFor="let filter of form.controls.diffFilters['controls'] ; let i = index">
-                  <input type="checkbox" [formControlName]="i" />
-                  {{trainingDiffs[i].displayName}}<br>
-                </label>
-              </div>
-            </span>
-          </th>
-          <th>
-            <span>
-              <div class="filter-element" style="display: grid; width: 240px;">
-                <label formArrayName="lengthFilters" *ngFor="let filter of form.controls.lengthFilters['controls'] ; let i = index">
-                    <input type="checkbox" [formControlName]="i" />
-                    {{trainingLengths[i].displayName}} &nbsp;
-                </label>
-              </div>
-            </span>
-          </th>
-          <th>
-        <span>
-          <div class="filter-element" style="display: grid; width: 240px;">
-            <label formArrayName="intensityFilters" *ngFor="let filter of form.controls.intensityFilters['controls'] ; let i = index">
+      <div style="display: grid; grid-template-columns: 220px 220px 220px 220px;"> 
+        <b>Typ treningu</b>
+        <b>Poziom trudności</b>
+        <b>Długość treningu</b>
+        <b>Intensywność</b>
+          <span>
+            <div class="filter-element" style="display: grid; width: 240px;">
+              <label formArrayName="typeFilters" *ngFor="let filter of form.controls.typeFilters['controls'] ; let i = index">
+                  <input type="checkbox" [formControlName]="i"/>
+                  {{trainingTypes[i].displayName}}
+              </label>
+            </div>
+          </span>
+          <span>
+            <div class="filter-element" style="display: grid; width: 240px;">
+              <label formArrayName="diffFilters" *ngFor="let filter of form.controls.diffFilters['controls'] ; let i = index">
                 <input type="checkbox" [formControlName]="i" />
-                {{trainingIntensities[i].displayName}}
-            </label>
-          </div>
-        </span>
-      </th>
-      </table>
-
+                {{trainingDiffs[i].displayName}}<br>
+              </label>
+            </div>
+          </span>
+          <span>
+            <div class="filter-element" style="display: grid; width: 240px;">
+              <label formArrayName="lengthFilters" *ngFor="let filter of form.controls.lengthFilters['controls'] ; let i = index">
+                  <input type="checkbox" [formControlName]="i" />
+                  {{trainingLengths[i].displayName}} &nbsp;
+              </label>
+            </div>
+          </span>
+        <span>
+        <div class="filter-element" style="display: grid; width: 240px;">
+          <label formArrayName="intensityFilters" *ngFor="let filter of form.controls.intensityFilters['controls'] ; let i = index">
+              <input type="checkbox" [formControlName]="i" />
+              {{trainingIntensities[i].displayName}}
+          </label>
+        </div>
+      </span>
+      </div>
+      <div style="display: grid; grid-auto-flow: column; justify-content: space-between;">
         <button (click)="submit()" type="button" class="btn btn-light">Szukaj</button>
+        <button (click)="addTrainingPlanPopupOpen()" type="button" class="btn btn-success" style="margin-right: 20px;">Stwórz własny trening</button>
+      </div>
     </form>
 </div>
 
