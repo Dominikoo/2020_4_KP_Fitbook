@@ -7,8 +7,20 @@
 <div class="modal-body" style="background-color: lightgray;">
     <div class="row">
         <div class="col-md-8 offset-md-2 form-group" style="display: grid;">
-            <input id="exercise-name" name="exercise-name" class="form-control" style="margin-top: 10px;" placeholder="nazwa planu" [(ngModel)]="trainingPlan.name"> 
-            <input id="exercise-sets" name="exercise-sets" class="form-control" style="margin-top: 10px;" placeholder="opis planu" [(ngModel)]="trainingPlan.description">
+            <input id="exercise-name" name="exercise-name" class="form-control" style="margin-top: 10px;" placeholder="nazwa planu" 
+                [(ngModel)]="trainingPlan.name" #TrainingName="ngModel" required > 
+            <div *ngIf="TrainingName.invalid && (TrainingName.dirty || TrainingName.touched)" class="alert alert-danger">
+                <div *ngIf="TrainingName.errors.required">
+                    Nazwa jest wymagana
+                </div>
+            </div>
+            <input id="exercise-sets" name="exercise-sets" class="form-control" style="margin-top: 10px;" placeholder="opis planu" 
+                [(ngModel)]="trainingPlan.description" #TrainingDescription="ngModel" required >
+            <div *ngIf="TrainingDescription.invalid && (TrainingDescription.dirty || TrainingDescription.touched)" class="alert alert-danger">
+                <div *ngIf="TrainingDescription.errors.required">
+                    Opis jest wymagany
+                </div>
+            </div>
             <b style="padding-top: 12px;">Typ treningu</b>
             <select id="inputState" class="form-control" style="margin-top: 10px;" [(ngModel)]="trainingPlan.trainingType">
                 <option *ngFor="let opt of this.trainingTypes; let i = index" [ngValue]="opt">{{opt.displayName}}</option>
@@ -25,7 +37,7 @@
             <select id="inputState" class="form-control" style="margin-top: 10px;" [(ngModel)]="trainingPlan.trainingIntensity">
                 <option *ngFor="let opt of this.trainingIntensities; let i = index" [ngValue]="opt">{{opt.displayName}}</option>
             </select>
-            <button type="button" class="btn btn-success" style="margin-top: 20px;" (click)="onConfirm()">Dodaj</button>
+            <button type="button" class="btn btn-success" style="margin-top: 20px;" (click)="onConfirm()" [disabled]="TrainingName.invalid || TrainingDescription.invalid">Dodaj</button>
             <button type="button" class="btn btn-danger btn-block" style="margin-top: 20px;" (click)="onCancel()">Anuluj</button>
         </div>
     </div>
