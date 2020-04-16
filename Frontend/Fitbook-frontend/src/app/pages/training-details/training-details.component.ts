@@ -6,6 +6,7 @@ import { AddExercisePopupComponent } from './../../@popups/add-exercise-popup/ad
 import { AddTrainingSessionPopupComponent } from './../../@popups/add-training-session-popup/add-training-session-popup.component'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { isNgTemplate } from '@angular/compiler';
+import { ModifyExercisePopupComponent } from 'src/app/@popups/modify-exercise-popup/modify-exercise-popup.component';
 
 @Component({
   selector: 'app-training-details',
@@ -61,19 +62,53 @@ export class TrainingDetailsComponent implements OnInit {
   }
 
 
-  //  Powinno: dodać item do progress i progress_new
-  addExercise(itemID): void {
-    const initialState = { sessionId: itemID }
+  addExercise(sessionObject): void {
     this.bsModalRef = this.modalService.show(AddExercisePopupComponent);
     this.bsModalRef.content.onClose.subscribe(response => {
-      console.log(this.bsModalRef.content.newExercise);
 
-      console.log(this.training);
-      console.log(this.trainingSessions);
+      let sessionLatestId = 1
+      let exerciseLatestId = 1;
+      let orderNumberLatest = 1;
+
+      for (let list of this.progress) {
+        for (let prog of list){
+          if (sessionLatestId <= prog['trainingSessionExercise']['id']) {
+            sessionLatestId = prog['trainingSessionExercise']['id'] + 1;
+          }
+          if (exerciseLatestId <= prog['trainingSessionExercise']['exercise']['id']) {
+            exerciseLatestId = prog['trainingSessionExercise']['exercise']['id'] + 1;
+          }
+        }
+        if (list[0]['trainingSessionExercise']['trainingSession']['id'] == sessionObject.id) {
+          orderNumberLatest = list.length + 1;
+        }
+      }
+
+      // utworzenie nowego obiektu
+
+      let new_progress = {
+        user: {
+          login: localStorage.getItem('userLogin')
+        },
+        trainingSessionExercise: {
+          id: sessionLatestId,
+          exercise: this.bsModalRef.content.newExercise,
+          trainingSession: sessionObject,
+          orderNumber: orderNumberLatest
+        },
+        progress: 0
+
+      };
+
+      // Dodanie referencji na nowo utworzony obiekt do progress i progress_new
+
+      this.progress[sessionObject.id].push(new_progress);
+
+      this.progress_new.push(new_progress);
+
       console.log(this.progress);
-
-      this.progress.push()
-    })
+      console.log(this.progress_new);
+    });
   }
 
 
@@ -82,8 +117,23 @@ export class TrainingDetailsComponent implements OnInit {
   //  else (czyli tylko progress)
   //    add progress -> progress_mod AND mod progress_mod AND mod progress
   //  endif
-  modExercise(itemID): void {
+  modExercise(item): void {
 
+    const initialState = { exercise: item['trainingSessionExercise']['exercise'] };
+
+    this.bsModalRef = this.modalService.show(ModifyExercisePopupComponent, { initialState });
+    this.bsModalRef.content.onClose.subscribe(response => {
+
+      console.log(item);
+
+      if ( this.progress_new.indexOf(item) < 0){
+        if (this.progress_mod.indexOf(item) < 0){
+          this.progress_mod.push(item);
+        }
+      }
+
+      console.log(this.progress_mod);
+    });
   }
 
 
@@ -94,18 +144,39 @@ export class TrainingDetailsComponent implements OnInit {
   //    if item IN progress_mod
   //      del progress_mod
   //  endif
-  delExercise(itemID): void {
+  delExercise(sessionObject, item): void {
+    if ( this.progress_new.indexOf( item ) > -1){
+      
+      console.log('delExercise if');
 
-  }
+      const index1 = this.progress_new.indexOf(item, 0);
+      if (index1 > -1) {
+        this.progress_new.splice(index1, 1);
+        console.log('Usuwanie w progress_new: ', this.progress_new);
+      }
 
+      const index2 = this.progress[sessionObject.id].indexOf(item, 0);
+      if (index2 > -1) {
+        this.progress[sessionObject.id].splice(index2, 1);
+        console.log('Usuwanie w progress_new: ', this.progress);
+      }
+    } else {
 
-  save(): void {
+      console.log('delExercise else');
 
-  }
+      this.progress_del.push(item);
 
+      const index1 = this.progress[sessionObject.id].indexOf(item, 0);
+      if (index1 > -1) {
+        this.progress[sessionObject.id].splice(index1, 1);
+      }
 
-  cancel(): void {
+      const index2 = this.progress_mod.indexOf(item, 0);
+      if (index2 > -1) {
+        this.progress_mod.splice(index2, 1);
+      }
 
+    }
   }
 
   addTrainingSessionPopupOpen() : void{

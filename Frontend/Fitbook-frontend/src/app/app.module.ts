@@ -15,13 +15,15 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TrainingManagementPopupComponent } from './@popups/training-management-popup/training-management-popup.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AddExercisePopupComponent } from './@popups/add-exercise-popup/add-exercise-popup.component';
+import { ModifyExercisePopupComponent } from './@popups/modify-exercise-popup/modify-exercise-popup.component';
 defineLocale('pl', plLocale);
 
 @NgModule({
   declarations: [
     AppComponent,
     TrainingManagementPopupComponent,
-    AddExercisePopupComponent
+    AddExercisePopupComponent,
+    ModifyExercisePopupComponent
   ],
   imports: [
     BrowserModule,
