@@ -29,12 +29,12 @@ export class AddTrainingPlanPopupComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.localeService.use('pl');
-    this.onClose = new Subject();
-    this.trainingPlan.trainingType = this.trainingTypes[0];
-    this.trainingPlan.trainingDifficulty = this.trainingDiffs[0];
-    this.trainingPlan.trainingLength = this.trainingLengths[0];
-    this.trainingPlan.trainingIntensity = this.trainingIntensities[0];
+    this.localeService.use('pl')
+    this.onClose = new Subject()
+    this.trainingPlan.trainingType = this.trainingTypes[0]
+    this.trainingPlan.trainingDifficulty = this.trainingDiffs[0]
+    this.trainingPlan.trainingLength = this.trainingLengths[0]
+    this.trainingPlan.trainingIntensity = this.trainingIntensities[0]
   }
 
   onConfirm() {
@@ -42,12 +42,14 @@ export class AddTrainingPlanPopupComponent implements OnInit {
       this.trainingPlan.id = response.id;
       this.onClose.next(true);
       this.bsModalRef.hide()
-    });
+    })
   }
 
   onCancel() {
-    this.onClose.next(false);
-    this.bsModalRef.hide();
+    this.onClose.next(false)
+    this.bsModalRef.hide()
+    this.trainingPlan.name = ''
+    this.trainingPlan.description = ''
   }
 
 }

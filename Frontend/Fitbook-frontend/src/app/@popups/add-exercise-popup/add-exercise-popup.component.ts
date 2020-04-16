@@ -4,6 +4,7 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { Router } from '@angular/router';
 import { TrainingSessionExcerciseService } from 'src/app/services/training.session.exercise.service';
 import { Subject } from 'rxjs';
+import { TrainingPlanService } from 'src/app/services/training.plan.service';
 
 @Component({
   selector: 'app-add-exercise-popup',
@@ -18,8 +19,8 @@ export class AddExercisePopupComponent implements OnInit {
 
   newExercise = {
     name: '',
-    reps: '',
-    sets: '',
+    reps: 1,
+    sets: 1,
   }
 
   id: string;

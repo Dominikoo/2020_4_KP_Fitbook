@@ -7,10 +7,28 @@
 <div class="modal-body" style="background-color: lightgray;">
     <div class="row">
         <div class="col-md-8 offset-md-2 form-group" style="display: grid;">
-            <input id="exercise-name" name="exercise-name" class="form-control" style="margin-top: 10px;" placeholder="nazwa ćwiczenia" [(ngModel)]="newExercise.name">
-            <input id="exercise-sets" name="exercise-sets" class="form-control" style="margin-top: 10px;" placeholder="ilość serii" [(ngModel)]="newExercise.sets">
-            <input id="exercise-reps" name="exercise-reps" class="form-control" style="margin-top: 10px;" placeholder="ilość powtórzeń" [(ngModel)]="newExercise.reps">
-            <button type="button" class="btn btn-success" style="margin-top: 20px;" (click)="onConfirm()">Dodaj</button>
+            <input id="exercise-name" name="exercise-name" class="form-control" style="margin-top: 10px;" placeholder="nazwa ćwiczenia" [(ngModel)]="newExercise.name"
+                #ExerciseName="ngModel" required >
+            <div *ngIf="ExerciseName.invalid && (ExerciseName.dirty || ExerciseName.touched)" class="alert alert-danger">
+                <div *ngIf="ExerciseName.errors.required">
+                    Nazwa jest wymagana
+                </div>
+            </div>
+            <input id="exercise-sets" name="exercise-sets" class="form-control" style="margin-top: 10px;" placeholder="ilość serii" [(ngModel)]="newExercise.sets"
+                #Sets="ngModel" required type="number" min=1>
+            <div *ngIf="Sets.invalid && (Sets.dirty || Sets.touched)" class="alert alert-danger">
+                <div *ngIf="Sets.errors.required">
+                    Podaj poprawną ilość serii
+                </div>
+            </div>
+            <input id="exercise-reps" name="exercise-reps" class="form-control" style="margin-top: 10px;" placeholder="ilość powtórzeń" [(ngModel)]="newExercise.reps"
+                #Reps="ngModel" required type="number" min=1>
+            <div *ngIf="Reps.invalid && (Reps.dirty || Reps.touched)" class="alert alert-danger">
+                <div *ngIf="Reps.errors.required">
+                    Podaj poprawną ilość powtórzeń
+                </div>
+            </div>
+            <button type="button" class="btn btn-success" style="margin-top: 20px;" (click)="onConfirm()" [disabled]="ExerciseName.invalid || Sets.invalid || Reps.invalid">Dodaj</button>
             <button type="button" class="btn btn-danger btn-block" style="margin-top: 20px;" (click)="onCancel()">Anuluj</button>
         </div>
     </div>
