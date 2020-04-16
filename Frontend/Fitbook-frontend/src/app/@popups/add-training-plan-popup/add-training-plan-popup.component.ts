@@ -19,14 +19,7 @@ export class AddTrainingPlanPopupComponent implements OnInit {
   trainingIntensities: Array<any> = undefined
   trainingTypes: Array<any> = undefined
 
-  trainingPlan ={
-    name: '',
-    description: '',
-    trainingType: null,
-    trainingLength: null,
-    trainingIntensity: null,
-    trainingDifficulty: null
-  }
+  trainingPlan: any;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -45,9 +38,11 @@ export class AddTrainingPlanPopupComponent implements OnInit {
   }
 
   onConfirm() {
-    this.trainingPlanService.postTrainingPlan(this.trainingPlan, localStorage.getItem('userLogin')).subscribe(response => console.log(response));
-    this.onClose.next(true);
-    this.bsModalRef.hide()
+    this.trainingPlanService.postTrainingPlan(this.trainingPlan, localStorage.getItem('userLogin')).subscribe(response => {  
+      this.trainingPlan.id = response.id;
+      this.onClose.next(true);
+      this.bsModalRef.hide()
+    });
   }
 
   onCancel() {

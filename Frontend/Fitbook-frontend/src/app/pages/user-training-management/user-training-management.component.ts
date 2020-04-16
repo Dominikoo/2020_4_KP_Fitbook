@@ -137,6 +137,7 @@ export class UserTrainingManagementComponent implements OnInit {
     var trainingSessions;
     let progress: Array<any> = [];
     var responses = 0;
+    console.log(training);
     this.trainingSessionService.getTrainingSessions(training.id).subscribe(response =>{ 
       trainingSessions = response;
       for(var i=0;i<trainingSessions.length;i++){
@@ -145,7 +146,7 @@ export class UserTrainingManagementComponent implements OnInit {
             responses++;
             progress.push(response)
             if(responses == trainingSessions.length){
-              this.router.navigate(['/pages/training-details'], {state: {training: training, sessions: trainingSessions, progress: progress.reverse()}});
+              this.router.navigate(['/pages/training-details'], {state: {training: training, sessions: trainingSessions, progress: progress}});
             }
           }
         )
@@ -153,11 +154,25 @@ export class UserTrainingManagementComponent implements OnInit {
     })
   }
 
+  trainingPlan ={
+    id: null,
+    name: '',
+    description: '',
+    trainingType: null,
+    trainingLength: null,
+    trainingIntensity: null,
+    trainingDifficulty: null
+  }
+
   addTrainingPlanPopupOpen() : void{
     const initialState = {trainingDiffs: this.trainingDiffs,
                           trainingLengths: this.trainingLengths,
                           trainingIntensities: this.trainingIntensities,
-                          trainingTypes: this.trainingTypes}
+                          trainingTypes: this.trainingTypes,
+                          trainingPlan: this.trainingPlan}
     this.bsModalRef = this.modalService.show(AddTrainingPlanPopupComponent, {initialState})
+    this.bsModalRef.content.onClose.subscribe(response => {
+      this.sendTraininigInfo(this.trainingPlan)
+    })
   }
 }
