@@ -28,11 +28,17 @@
                     <b style="font-size: 16px; margin-left: 8px; grid-column: 1;">{{pr.trainingSessionExercise.exercise.name}} 
                         <b style="font-size: 12px; margin-left: 8px; grid-column: 1; font-weight: lighter;">serie: {{pr.trainingSessionExercise.exercise.sets}}, powtórzenia: {{pr.trainingSessionExercise.exercise.reps}}</b>
                     </b>
-                    <input type="checkbox" [checked]="isChecked(pr)" style="grid-column: 2; align-self: center; margin-right: 8px; transform: scale(1.2)" />
+                    <input *ngIf="editMode == false" type="checkbox" [checked]="isChecked(pr)" style="grid-column: 2; align-self: center; margin-right: 8px; transform: scale(1.2)" />
+                    <button *ngIf="editMode" type="button" class="btn btn-light btn-circle btn-sm" (click)="modExercise(pr)">
+                        <b style="position: relative; top: -7px;">m</b> 
+                    </button>
+                    <button *ngIf="editMode" type="button" class="btn btn-light btn-circle btn-sm" (click)="delExercise(item, pr)">
+                        <b style="position: relative; top: -7px;">-</b> 
+                    </button>
                 </li>
             </ul>
             <div *ngIf="editMode" style="display: flex; justify-content: center; margin-top: 10px;">
-                <button type="button" class="btn btn-light btn-circle btn-sm" (click)="addExercise(item.id)">
+                <button type="button" class="btn btn-light btn-circle btn-sm" (click)="addExercise(item)">
                     <b style="position: relative; top: -7px;">+</b> 
                 </button>
             </div>
