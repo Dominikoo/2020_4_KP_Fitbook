@@ -154,6 +154,10 @@ export class UserTrainingManagementComponent implements OnInit {
   }
 
   addTrainingPlanPopupOpen() : void{
-    this.bsModalRef = this.modalService.show(AddTrainingPlanPopupComponent)
+    const initialState = {trainingDiffs: this.trainingDiffs,
+                          trainingLengths: this.trainingLengths,
+                          trainingIntensities: this.trainingIntensities,
+                          trainingTypes: this.trainingTypes}
+    this.bsModalRef = this.modalService.show(AddTrainingPlanPopupComponent, {initialState})
   }
 }

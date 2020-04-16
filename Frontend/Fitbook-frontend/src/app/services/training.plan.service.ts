@@ -15,4 +15,8 @@ export class TrainingPlanService {
   getFilteredTrainingPlansForUser(filter, userLogin, progress) {
     return this.httpClient.post(this.url + `/filtered/${userLogin}/${progress}`, filter)
   }
+
+  postTrainingPlan(trainingPlan, userLogin){
+    return this.httpClient.post(this.url + `/post/${userLogin}`, trainingPlan)
+  }
 }

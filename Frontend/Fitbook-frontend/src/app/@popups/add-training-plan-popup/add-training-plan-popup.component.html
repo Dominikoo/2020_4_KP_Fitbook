@@ -7,32 +7,23 @@
 <div class="modal-body" style="background-color: lightgray;">
     <div class="row">
         <div class="col-md-8 offset-md-2 form-group" style="display: grid;">
-            <input id="exercise-name" name="exercise-name" class="form-control" style="margin-top: 10px;" placeholder="nazwa planu">
-            <input id="exercise-sets" name="exercise-sets" class="form-control" style="margin-top: 10px;" placeholder="opis planu">
+            <input id="exercise-name" name="exercise-name" class="form-control" style="margin-top: 10px;" placeholder="nazwa planu" [(ngModel)]="trainingPlan.name"> 
+            <input id="exercise-sets" name="exercise-sets" class="form-control" style="margin-top: 10px;" placeholder="opis planu" [(ngModel)]="trainingPlan.description">
             <b style="padding-top: 12px;">Typ treningu</b>
-            <select id="inputState" class="form-control" style="margin-top: 10px;" >
-                <option selected>Siłowy</option>
-                <option>Wytrzymałościowy</option>
+            <select id="inputState" class="form-control" style="margin-top: 10px;" [(ngModel)]="trainingPlan.trainingType">
+                <option *ngFor="let opt of this.trainingTypes; let i = index" [ngValue]="opt">{{opt.displayName}}</option>
             </select>
             <b style="padding-top: 12px;">Poziom trudności</b>
-            <select id="inputState" class="form-control" style="margin-top: 10px;" >
-                <option selected>Łatwy</option>
-                <option>Przeciętny</option>
-                <option>Trudny</option>
+            <select id="inputState" class="form-control" style="margin-top: 10px;" [(ngModel)]="trainingPlan.trainingDifficulty">
+                <option *ngFor="let opt of this.trainingDiffs; let i = index" [ngValue]="opt">{{opt.displayName}}</option>
             </select>
             <b style="padding-top: 12px;">Długość treningu</b>
-            <select id="inputState" class="form-control" style="margin-top: 10px;" >
-                <option selected>Bardzo krótki</option>
-                <option>Krótki</option>
-                <option>Średni</option>
-                <option>Długi</option>
-                <option>Bardzo długi</option>
+            <select id="inputState" class="form-control" style="margin-top: 10px;" [(ngModel)]="trainingPlan.trainingLength">
+                <option *ngFor="let opt of this.trainingLengths; let i = index" [ngValue]="opt">{{opt.displayName}}</option>
             </select>
             <b style="padding-top: 12px;">Intensywność</b>
-            <select id="inputState" class="form-control" style="margin-top: 10px;" >
-                <option selected>Niska</option>
-                <option>Średnia</option>
-                <option>Wysoka</option>
+            <select id="inputState" class="form-control" style="margin-top: 10px;" [(ngModel)]="trainingPlan.trainingIntensity">
+                <option *ngFor="let opt of this.trainingIntensities; let i = index" [ngValue]="opt">{{opt.displayName}}</option>
             </select>
             <button type="button" class="btn btn-success" style="margin-top: 20px;" (click)="onConfirm()">Dodaj</button>
             <button type="button" class="btn btn-danger btn-block" style="margin-top: 20px;" (click)="onCancel()">Anuluj</button>

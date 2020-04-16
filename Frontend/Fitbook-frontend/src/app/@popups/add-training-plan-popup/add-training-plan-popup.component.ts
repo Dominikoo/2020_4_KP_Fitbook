@@ -3,6 +3,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { TrainingPlanService } from 'src/app/services/training.plan.service';
 
 @Component({
   selector: 'app-add-training-plan-popup',
@@ -13,22 +14,38 @@ export class AddTrainingPlanPopupComponent implements OnInit {
 
   public onClose: Subject<boolean>;
 
-  id: string;
-  date: Date = new Date();
-  comment = '';
+  trainingDiffs: Array<any> = undefined
+  trainingLengths: Array<any> = undefined
+  trainingIntensities: Array<any> = undefined
+  trainingTypes: Array<any> = undefined
+
+  trainingPlan ={
+    name: '',
+    description: '',
+    trainingType: null,
+    trainingLength: null,
+    trainingIntensity: null,
+    trainingDifficulty: null
+  }
 
   constructor(
     public bsModalRef: BsModalRef,
     private localeService: BsLocaleService,
-    private router: Router
+    private router: Router,
+    private trainingPlanService: TrainingPlanService
     ) { }
 
   ngOnInit() {
     this.localeService.use('pl');
     this.onClose = new Subject();
+    this.trainingPlan.trainingType = this.trainingTypes[0];
+    this.trainingPlan.trainingDifficulty = this.trainingDiffs[0];
+    this.trainingPlan.trainingLength = this.trainingLengths[0];
+    this.trainingPlan.trainingIntensity = this.trainingIntensities[0];
   }
 
   onConfirm() {
+    this.trainingPlanService.postTrainingPlan(this.trainingPlan, localStorage.getItem('userLogin')).subscribe(response => console.log(response));
     this.onClose.next(true);
     this.bsModalRef.hide()
   }
@@ -37,4 +54,5 @@ export class AddTrainingPlanPopupComponent implements OnInit {
     this.onClose.next(false);
     this.bsModalRef.hide();
   }
+
 }

@@ -2,9 +2,9 @@ package com.fitbook.backend.controller;
 
 import com.fitbook.backend.model.TrainingPlan;
 import com.fitbook.backend.model.TrainingSession;
+import com.fitbook.backend.model.TrainingSessionExercise;
 import com.fitbook.backend.model.UserProgress;
-import com.fitbook.backend.repository.TrainingPlanRepository;
-import com.fitbook.backend.repository.UserProgressRepository;
+import com.fitbook.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.util.Pair;
@@ -25,7 +25,15 @@ public class TrainingPlanController {
     @Autowired
     private TrainingPlanRepository trainingPlanRepository;
     @Autowired
+    private TrainingSessionRepository trainingSessionRepository;
+    @Autowired
+    private TrainingSessionExerciseRepository trainingSessionExerciseRepository;
+    @Autowired
     private UserProgressRepository userProgressRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private ExerciseRepository exerciseRepository;
 
     @GetMapping("/auth/trainingPlans/all")
     public List<TrainingPlan> getTrainingPlans(){
@@ -60,5 +68,26 @@ public class TrainingPlanController {
     private List<Long> getParameters(HashMap<String, String> filterParameters, String key){
         return Arrays.stream(filterParameters.get(key).toString().split(SEPARATOR))
                 .flatMapToLong(p -> LongStream.of(Long.parseLong(p))).boxed().collect(Collectors.toList());
+    }
+
+    @PostMapping("/auth/trainingPlans/post/{userLogin}")
+    public TrainingPlan postTrainingPlan(@RequestBody TrainingPlan trainingPlan, @PathVariable String userLogin){
+        try{
+            trainingPlanRepository.save(trainingPlan);
+            Optional<TrainingPlan> trainingPlanOptional = trainingPlanRepository.findById(trainingPlan.getId());
+            if(trainingPlanOptional.isPresent()){
+                TrainingSession trainingSession = new TrainingSession(trainingPlanOptional.get(), "Dzień 1", 1);
+                TrainingSessionExercise trainingSessionExercise = new TrainingSessionExercise(exerciseRepository.findAll().get(0), trainingSession, 1);
+                UserProgress userProgress = new UserProgress(userRepository.getUserByLogin(userLogin), trainingSessionExercise, 0);
+                trainingSessionRepository.save(trainingSession);
+                trainingSessionExerciseRepository.save(trainingSessionExercise);
+                userProgressRepository.save(userProgress);
+                return trainingPlanOptional.get();
+            }
+            return null;
+        }
+        catch (Exception e){
+            return null;
+        }
     }
 }
