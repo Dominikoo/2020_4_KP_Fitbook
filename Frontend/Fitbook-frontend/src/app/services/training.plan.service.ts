@@ -16,7 +16,7 @@ export class TrainingPlanService {
     return this.httpClient.post(this.url + `/filtered/${userLogin}/${progress}`, filter)
   }
 
-  postTrainingPlan(trainingPlan, userLogin){
+  postTrainingPlan(trainingPlan, userLogin): any{
     return this.httpClient.post(this.url + `/post/${userLogin}`, trainingPlan)
   }
 }
