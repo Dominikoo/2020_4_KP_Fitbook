@@ -15,11 +15,44 @@
     font-size: 22px; 
     font-weight: bolder;
     text-align: center; 
-    background-color: lightgray;
+    background-color: navajowhite;
     border-color: black;
 } 
 
-.btn-circle.btn-sm:hover { 
+.btn-circle.btn-sm-remove { 
+    width: 24px; 
+    height: 24px; 
+    padding: 0px 0px; 
+    border-radius: 12px; 
+    font-size: 22px; 
+    font-weight: bolder;
+    text-align: center; 
+    background-color: red;
+    color: white;
+    border-color: black;
+} 
+
+.btn-circle.btn-sm-remove:hover{
+    background-color: darkred;
+}
+
+.btn-circle.btn-sm-add { 
+    width: 24px; 
+    height: 24px; 
+    padding: 0px 0px; 
+    border-radius: 12px; 
+    font-size: 22px; 
+    font-weight: bolder;
+    text-align: center; 
+    background-color: green;
+    color: white;
+    border-color: black;
+} 
+
+.btn-circle.btn-sm-add:hover { 
+    background-color: darkslategray;
+}
+    .btn-circle.btn-sm:hover { 
     background-color: orange;
 } 
 
@@ -29,11 +62,12 @@
     border-radius: 35px; 
     font-size: 42px; 
     border-width: 2px;
-    background-color: lightgray;
+    background-color: green;
+    color: white;
     border-color: black;
     text-align: center; 
 } 
 
 .btn-circle.btn-xl:hover{
-    background-color: orange;
+    background-color: darkslategray;
 }

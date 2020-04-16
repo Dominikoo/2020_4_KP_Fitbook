@@ -25,20 +25,22 @@
             <b style="font-size: 20px; margin-left: 18px;">{{item.name}}</b>
             <ul class="list-group" style="margin-top: 10px;">
                 <li class="list-group-item" *ngFor="let pr of progress[i]; index as j" (click)="changeProgress(pr)" class="exercise-item">
-                    <b style="font-size: 16px; margin-left: 8px; grid-column: 1;">{{pr.trainingSessionExercise.exercise.name}} 
+                    <b style="font-size: 16px; margin-left: 8px; grid-column: 1; max-width: 264px; word-wrap: break-word">{{pr.trainingSessionExercise.exercise.name}} 
                         <b style="font-size: 12px; margin-left: 8px; grid-column: 1; font-weight: lighter;">serie: {{pr.trainingSessionExercise.exercise.sets}}, powtórzenia: {{pr.trainingSessionExercise.exercise.reps}}</b>
                     </b>
                     <input *ngIf="editMode == false" type="checkbox" [checked]="isChecked(pr)" style="grid-column: 2; align-self: center; margin-right: 8px; transform: scale(1.2)" />
-                    <button *ngIf="editMode" type="button" class="btn btn-light btn-circle btn-sm" (click)="modExercise(pr)">
-                        <b style="position: relative; top: -7px;">m</b> 
-                    </button>
-                    <button *ngIf="editMode" type="button" class="btn btn-light btn-circle btn-sm" (click)="delExercise(item, pr)">
-                        <b style="position: relative; top: -7px;">-</b> 
-                    </button>
+                    <div style="grid-column: 2;">
+                        <button *ngIf="editMode" type="button" class="btn btn-light btn-circle btn-sm" (click)="modExercise(pr)" style="margin-right: 6px;">
+                            <b style="position: relative; top: -7px;">m</b> 
+                        </button>
+                        <button *ngIf="editMode" type="button" class="btn btn-light btn-circle btn-sm-remove" (click)="delExercise(item, pr)" style="margin-right: 6px;">
+                            <b style="position: relative; top: -7px;">-</b> 
+                        </button>
+                    </div>
                 </li>
             </ul>
             <div *ngIf="editMode" style="display: flex; justify-content: center; margin-top: 10px;">
-                <button type="button" class="btn btn-light btn-circle btn-sm" (click)="addExercise(item)">
+                <button type="button" class="btn btn-light btn-circle btn-sm-add" (click)="addExercise(item)">
                     <b style="position: relative; top: -7px;">+</b> 
                 </button>
             </div>
