@@ -141,7 +141,7 @@ export class UserTrainingManagementComponent implements OnInit {
             responses++;
             progress.push(response)
             if(responses == trainingSessions.length){
-              this.router.navigate(['/pages/training-details'], {state: {training: training, sessions: trainingSessions, progress: progress.reverse()}});
+              this.router.navigate(['/pages/training-details'], {state: {training: training, sessions: trainingSessions, progress: progress}});
             }
           }
         )
