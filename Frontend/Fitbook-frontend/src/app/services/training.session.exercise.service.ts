@@ -26,6 +26,6 @@ export class TrainingSessionExcerciseService {
 
   deleteTrainingSessionExercises(progress_del) {
     console.log(this.url + `/delete`);
-    return this.httpClient.delete(this.url + `/delete`, progress_del);
+    return this.httpClient.put(this.url + `/delete`, progress_del);
   }
 }

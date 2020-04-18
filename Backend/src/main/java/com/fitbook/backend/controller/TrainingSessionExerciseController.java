@@ -50,13 +50,12 @@ public class TrainingSessionExerciseController {
         }
     }
 
-    @DeleteMapping("/auth/trainingSessionExercises/delete")
-    public void deleteTrainingSessionExercises(@RequestBody String progress_del) {
-        System.out.println('x');
-//        for(UserProgress item: progress_del){
-//            userProgressRepository.delete(item);
-//            trainingSessionExerciseRepository.delete(item.getTrainingSessionExercise());
-//            exerciseRepository.delete(item.getTrainingSessionExercise().getExercise());
-//        }
+    @PutMapping("/auth/trainingSessionExercises/delete")
+    public void deleteTrainingSessionExercises(@RequestBody ArrayList<UserProgress> progress_del) {
+        for(UserProgress item: progress_del){
+            userProgressRepository.delete(item);
+            trainingSessionExerciseRepository.delete(item.getTrainingSessionExercise());
+            exerciseRepository.delete(item.getTrainingSessionExercise().getExercise());
+        }
     }
 }
