@@ -146,6 +146,15 @@ export class UserTrainingManagementComponent implements OnInit {
             responses++;
             progress.push(response)
             if(responses == trainingSessions.length){
+              progress = progress.sort((p1, p2) => {
+                if(p1[0].trainingSessionExercise.trainingSession.orderNumber > p2[0].trainingSessionExercise.trainingSession.orderNumber){
+                  return 1;
+                }
+                if(p1[0].trainingSessionExercise.trainingSession.orderNumber < p2[0].trainingSessionExercise.trainingSession.orderNumber){
+                  return -1;
+                }
+                return 0;
+              });
               this.router.navigate(['/pages/training-details'], {state: {training: training, sessions: trainingSessions, progress: progress}});
             }
           }
