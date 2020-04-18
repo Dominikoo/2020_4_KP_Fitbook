@@ -38,7 +38,7 @@ public class TrainingSessionExerciseController {
         for(UserProgress item: progress_new){
             item.setUser(userRepository.getUserByLogin(item.getUser().getLogin()));
             item.getTrainingSessionExercise().setExercise(exerciseRepository.save(item.getTrainingSessionExercise().getExercise()));
-            trainingSessionExerciseRepository.save(item.getTrainingSessionExercise());
+            item.setTrainingSessionExercise(trainingSessionExerciseRepository.save(item.getTrainingSessionExercise()));
             userProgressRepository.save(item);
         }
     }
