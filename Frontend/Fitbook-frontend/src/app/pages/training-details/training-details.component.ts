@@ -25,6 +25,7 @@ export class TrainingDetailsComponent implements OnInit {
   progress_new: any[] = [];     //  Tymczasowa tablica dodająca ćwiczenia
   progress_mod: any[] = [];     //  Tymczasowa tablica modyfikujaca ćwiczenia
   progress_del: any[] = [];     //  Tymczasowa tablica usuwajaca ćwiczenia
+  sessions_del: any[] = [];     //  Tymczasowa tablica usuwająca sesje
 
   constructor(
     private trainingSessionService: TrainingSessionService,
@@ -182,6 +183,14 @@ export class TrainingDetailsComponent implements OnInit {
     }
   }
 
+  delSession(sessionObject): void {
+    const index = this.trainingSessions.indexOf(sessionObject, 0);
+    if (index > -1) {
+      this.trainingSessions.splice(index, 1);
+    }
+    this.sessions_del.push(sessionObject);
+  }
+
   addTrainingSessionPopupOpen() : void{
     this.bsModalRef = this.modalService.show(AddTrainingSessionPopupComponent)
   }
@@ -206,6 +215,8 @@ export class TrainingDetailsComponent implements OnInit {
     this.trainingSessionExerciseService.deleteTrainingSessionExercises(this.progress_del).subscribe(response => {
       console.log(response);
     });
-
+    this.trainingSessionService.deleteTrainingSessions(this.sessions_del).subscribe(response => {
+      console.log(response);
+    })
   }
 }

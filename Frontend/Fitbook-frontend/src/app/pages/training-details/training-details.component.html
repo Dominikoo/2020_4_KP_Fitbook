@@ -23,6 +23,9 @@
         solid; border-width: 1px; display: grid; align-content: space-between">
         <div>
             <b style="font-size: 20px; margin-left: 18px;">{{item.name}}</b>
+            <button *ngIf="editMode" type="button" class="btn btn-light btn-circle btn-sm-remove" (click)="delSession(item)" style="margin-right: 6px; margin-left: 10px; position: relative; top: -3px">
+                <b style="position: relative; top: -7px;">-</b> 
+            </button>
             <ul class="list-group" style="margin-top: 10px;">
                 <li class="list-group-item" *ngFor="let pr of progress[i]; index as j" (click)="changeProgress(pr)" class="exercise-item">
                     <b style="font-size: 16px; margin-left: 8px; grid-column: 1; max-width: 264px; word-wrap: break-word">{{pr.trainingSessionExercise.exercise.name}} 

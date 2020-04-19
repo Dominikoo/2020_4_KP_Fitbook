@@ -1,9 +1,6 @@
 package com.fitbook.backend.controller;
 
-import com.fitbook.backend.model.TrainingPlan;
-import com.fitbook.backend.model.TrainingSession;
-import com.fitbook.backend.model.TrainingSessionExercise;
-import com.fitbook.backend.model.UserProgress;
+import com.fitbook.backend.model.*;
 import com.fitbook.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -77,7 +74,9 @@ public class TrainingPlanController {
             Optional<TrainingPlan> trainingPlanOptional = trainingPlanRepository.findById(trainingPlan.getId());
             if(trainingPlanOptional.isPresent()){
                 TrainingSession trainingSession = new TrainingSession(trainingPlanOptional.get(), "Dzień 1", 1);
-                TrainingSessionExercise trainingSessionExercise = new TrainingSessionExercise(exerciseRepository.findAll().get(0), trainingSession, 1);
+                Exercise exercise = new Exercise("ćwiczenie 1", "ćwiczenie 1", 5, 10, 60);
+                exercise = exerciseRepository.save(exercise);
+                TrainingSessionExercise trainingSessionExercise = new TrainingSessionExercise(exercise, trainingSession, 1);
                 UserProgress userProgress = new UserProgress(userRepository.getUserByLogin(userLogin), trainingSessionExercise, 0);
                 trainingSessionRepository.save(trainingSession);
                 trainingSessionExerciseRepository.save(trainingSessionExercise);

@@ -34,6 +34,17 @@ public class Exercise {
     @Column(columnDefinition = "int")
     private int lengthInSecondsPerSet;
 
+    public Exercise() {
+    }
+
+    public Exercise(@NotEmpty String name, String description, int sets, int reps, int lengthInSecondsPerSet) {
+        this.name = name;
+        this.description = description;
+        this.sets = sets;
+        this.reps = reps;
+        this.lengthInSecondsPerSet = lengthInSecondsPerSet;
+    }
+
     public Long getId() {
         return id;
     }

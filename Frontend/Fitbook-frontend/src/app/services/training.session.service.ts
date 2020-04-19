@@ -13,4 +13,8 @@ export class TrainingSessionService {
     console.log(this.url + `/all/${TrainingPlanId}`);
     return this.httpClient.get(this.url + `/all/${TrainingPlanId}`)
   }
+
+  deleteTrainingSessions(trainingSessions){
+    return this.httpClient.put(this.url + `/delete`, trainingSessions)
+  }
 }
