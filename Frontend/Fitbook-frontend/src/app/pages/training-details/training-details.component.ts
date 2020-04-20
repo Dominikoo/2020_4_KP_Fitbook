@@ -58,9 +58,11 @@ export class TrainingDetailsComponent implements OnInit {
   }
 
   changeProgress(userProgress): void{
-    if(userProgress.progress == 1) userProgress.progress = 0
-    else userProgress.progress = 1
-    this.userProgressService.updateUserProgress(userProgress).subscribe(response => console.log(response));
+    if(this.editMode == false){
+      if(userProgress.progress == 1) userProgress.progress = 0
+      else userProgress.progress = 1
+      this.userProgressService.updateUserProgress(userProgress).subscribe(response => console.log(response));
+    }
   }
 
 
