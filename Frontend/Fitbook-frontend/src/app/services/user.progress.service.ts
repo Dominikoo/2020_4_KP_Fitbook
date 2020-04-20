@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserProgressService {
-  //private url = 'https://backend-fitbook.herokuapp.com/auth/userProgress';
-  private url = 'http://localhost:8080/auth/userProgress';
+  private url = 'https://backend-fitbook.herokuapp.com/auth/userProgress';
+  // private url = 'http://localhost:8080/auth/userProgress';
   constructor(private httpClient: HttpClient) { }
 
   getTrainingSessionProgress(trainingSessionId) {
