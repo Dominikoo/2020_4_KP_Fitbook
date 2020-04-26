@@ -25,6 +25,7 @@ export class TrainingDetailsComponent implements OnInit {
   progress_new: any[] = [];     //  Tymczasowa tablica dodająca ćwiczenia
   progress_mod: any[] = [];     //  Tymczasowa tablica modyfikujaca ćwiczenia
   progress_del: any[] = [];     //  Tymczasowa tablica usuwajaca ćwiczenia
+  sessions_new: any[] = [];     //  Tymczasowa tablica dodająca sesje
   sessions_del: any[] = [];     //  Tymczasowa tablica usuwająca sesje
 
   constructor(
@@ -84,6 +85,7 @@ export class TrainingDetailsComponent implements OnInit {
               exerciseLatestId = prog['trainingSessionExercise']['exercise']['id'] + 1;
             }
           }
+          console.log(list[0]);
           if (list[0]['trainingSessionExercise']['trainingSession']['id'] == sessionObject.id) {
             orderNumberLatest = list.length + 1;
           }
@@ -107,10 +109,11 @@ export class TrainingDetailsComponent implements OnInit {
 
         // Dodanie referencji na nowo utworzony obiekt do progress i progress_new
 
-        this.progress[sessionObject.id - 1].push(new_progress);
+        this.progress[sessionObject.orderNumber - 1].push(new_progress);
 
         this.progress_new.push(new_progress);
 
+        console.log(this.trainingSessions);
         console.log(this.progress);
         console.log(this.progress_new);
       }
@@ -151,6 +154,9 @@ export class TrainingDetailsComponent implements OnInit {
   //      del progress_mod
   //  endif
   delExercise(sessionObject, item): void {
+    console.log('item', item);
+    console.log(this.progress_new);
+
     if ( this.progress_new.indexOf( item ) > -1){
       
       console.log('delExercise if');
@@ -161,10 +167,10 @@ export class TrainingDetailsComponent implements OnInit {
         console.log('Usuwanie w progress_new: ', this.progress_new);
       }
 
-      const index2 = this.progress[sessionObject.id - 1].indexOf(item, 0);
+      const index2 = this.progress[sessionObject.orderNumber - 1].indexOf(item, 0);
       if (index2 > -1) {
-        this.progress[sessionObject.id - 1].splice(index2, 1);
-        console.log('Usuwanie w progress_new: ', this.progress);
+        this.progress[sessionObject.orderNumber - 1].splice(index2, 1);
+        console.log('Usuwanie w progress: ', this.progress);
       }
     } else {
 
@@ -172,9 +178,9 @@ export class TrainingDetailsComponent implements OnInit {
 
       this.progress_del.push(item);
 
-      const index1 = this.progress[sessionObject.id - 1].indexOf(item, 0);
+      const index1 = this.progress[sessionObject.orderNumber - 1].indexOf(item, 0);
       if (index1 > -1) {
-        this.progress[sessionObject.id - 1].splice(index1, 1);
+        this.progress[sessionObject.orderNumber - 1].splice(index1, 1);
       }
 
       const index2 = this.progress_mod.indexOf(item, 0);
@@ -186,15 +192,113 @@ export class TrainingDetailsComponent implements OnInit {
   }
 
   delSession(sessionObject): void {
-    const index = this.trainingSessions.indexOf(sessionObject, 0);
-    if (index > -1) {
-      this.trainingSessions.splice(index, 1);
+
+    if ( this.sessions_new.indexOf( sessionObject ) > -1){
+      
+      const index = this.sessions_new.indexOf(sessionObject, 0);
+      if (index > -1) {
+        this.sessions_new.splice(index, 1);
+      }
+
+      const index1 = this.trainingSessions.indexOf(sessionObject, 0);
+      if (index1 > -1) {
+        this.trainingSessions.splice(index1, 1);
+      }
+
+      for(let item of this.progress[sessionObject.orderNumber - 1]){
+        console.log(item);
+        this.delExercise(sessionObject, item);
+      }
+
+      const index2 = sessionObject.orderNumber - 1;
+      if (index2 > -1) {
+        this.progress.splice(index2, 1);
+      }
+
+    } else {
+
+      const index = this.trainingSessions.indexOf(sessionObject, 0);
+      if (index > -1) {
+        this.trainingSessions.splice(index, 1);
+      }
+      this.sessions_del.push(sessionObject);
+
+      for(let item of this.progress[sessionObject.orderNumber - 1]){
+        console.log(item);
+        this.delExercise(sessionObject, item);
+      }
+
+      const index2 = sessionObject.orderNumber - 1;
+      if (index2 > -1) {
+        this.progress.splice(index2, 1);
+      }
+
     }
-    this.sessions_del.push(sessionObject);
   }
 
   addTrainingSessionPopupOpen() : void{
-    this.bsModalRef = this.modalService.show(AddTrainingSessionPopupComponent)
+    this.bsModalRef = this.modalService.show(AddTrainingSessionPopupComponent);
+    this.bsModalRef.content.onClose.subscribe(response => {
+      if(response){
+        this.bsModalRef.content.nazwa
+
+        let newSession = {
+          trainingPlan: this.training,
+          name: this.bsModalRef.content.nazwa,
+          orderNumber: this.trainingSessions.length + 1
+        }
+
+        this.trainingSessions.push(newSession);
+        this.sessions_new.push(newSession);
+
+        this.progress.push([]);
+
+        let sessionExerciseLatestId = 1
+        let exerciseLatestId = 1;
+
+        for (let list of this.progress) {
+          for (let prog of list){
+            if (sessionExerciseLatestId <= prog['trainingSessionExercise']['id']) {
+              sessionExerciseLatestId = prog['trainingSessionExercise']['id'] + 1;
+            }
+            if (exerciseLatestId <= prog['trainingSessionExercise']['exercise']['id']) {
+              exerciseLatestId = prog['trainingSessionExercise']['exercise']['id'] + 1;
+            }
+          }
+        }
+
+        // utworzenie nowego obiektu
+
+        let new_progress = {
+          user: {
+            login: localStorage.getItem('userLogin')
+          },
+          trainingSessionExercise: {
+            id: sessionExerciseLatestId,
+            exercise: {
+              name: 'przykład',
+              sets: 1,
+              reps: 1
+            },
+            trainingSession: this.trainingSessions[this.trainingSessions.length - 1],
+            orderNumber: 1
+          },
+          progress: 0
+
+        };
+
+        // Dodanie referencji na nowo utworzony obiekt do progress i progress_new
+
+        this.progress[this.trainingSessions[this.trainingSessions.length - 1]['orderNumber'] - 1].push(new_progress);
+
+        this.progress_new.push(new_progress);
+
+        console.log(this.trainingSessions);
+        console.log(this.progress);
+        console.log(this.progress_new);
+      }
+    });
+    
   }
 
   enableEditMode(): void{
@@ -218,6 +322,9 @@ export class TrainingDetailsComponent implements OnInit {
       console.log(response);
     });
     this.trainingSessionService.deleteTrainingSessions(this.sessions_del).subscribe(response => {
+      console.log(response);
+    })
+    this.trainingSessionService.addTrainingSessions(this.sessions_new).subscribe(response => {
       console.log(response);
     })
   }

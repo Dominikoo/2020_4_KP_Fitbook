@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -10,9 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-training-session-popup.component.scss']
 })
 export class AddTrainingSessionPopupComponent implements OnInit {
-  id: string;
-  date: Date = new Date();
-  comment = '';
+  public onClose: Subject<boolean>;
+
+  nazwa: string;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -22,9 +23,16 @@ export class AddTrainingSessionPopupComponent implements OnInit {
 
   ngOnInit() {
     this.localeService.use('pl');
+    this.onClose = new Subject();
   }
 
-  reserve() {
-    
+  onConfirm() {
+    this.onClose.next(true);
+    this.bsModalRef.hide();
+  }
+
+  onCancel() {
+    this.onClose.next(false);
+    this.bsModalRef.hide();
   }
 }

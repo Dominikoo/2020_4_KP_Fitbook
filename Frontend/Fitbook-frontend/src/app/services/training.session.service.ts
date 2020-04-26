@@ -17,4 +17,8 @@ export class TrainingSessionService {
   deleteTrainingSessions(trainingSessions){
     return this.httpClient.put(this.url + `/delete`, trainingSessions)
   }
+
+  addTrainingSessions(trainingSessions) {
+    return this.httpClient.post(this.url + `/post`, trainingSessions)
+  }
 }

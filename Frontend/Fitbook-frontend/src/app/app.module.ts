@@ -17,6 +17,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AddExercisePopupComponent } from './@popups/add-exercise-popup/add-exercise-popup.component';
 import { AddTrainingPlanPopupComponent } from './@popups/add-training-plan-popup/add-training-plan-popup.component';
 import { ModifyExercisePopupComponent } from './@popups/modify-exercise-popup/modify-exercise-popup.component';
+import { AddTrainingSessionPopupComponent } from './@popups/add-training-session-popup/add-training-session-popup.component';
 defineLocale('pl', plLocale);
 
 @NgModule({
@@ -25,7 +26,8 @@ defineLocale('pl', plLocale);
     TrainingManagementPopupComponent,
     AddExercisePopupComponent,
     AddTrainingPlanPopupComponent,
-    ModifyExercisePopupComponent
+    ModifyExercisePopupComponent,
+    AddTrainingSessionPopupComponent
   ],
   imports: [
     BrowserModule,
