@@ -17,9 +17,12 @@ export class RegisterComponent implements OnInit {
   isLoginUsed = false;
   isEmailUsed = false;
 
+  processing = false;
+
   constructor(private router: Router, private userService: UserService) { }
 
   signUp(): void {
+    this.processing = true;
       this.userService.isLoginUsed(this.newUser.login).subscribe(
         response =>{
           this.isLoginUsed = response;
@@ -33,11 +36,15 @@ export class RegisterComponent implements OnInit {
                       if(response != null){
                         this.router.navigate(['/pages']);
                       }
+                      else this.processing = false;  
                     }
                   )
                 }
+                else this.processing = false;  
               }
-            )}
+            )
+          }
+          else this.processing = false;  
         }
       )
   }
