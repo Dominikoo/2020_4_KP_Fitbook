@@ -15,6 +15,8 @@ export class LoginSidebarComponent implements OnInit {
     password: ''
   }
 
+  processing = false;
+
   invalidLoginData = false;
 
   constructor(private router: Router, private userService: UserService, private authService: AuthService) { }
@@ -24,8 +26,10 @@ export class LoginSidebarComponent implements OnInit {
 
   signIn(): void {
     if(this.loginData.login != '' && this.loginData.password != ''){
+      this.processing = true;
       this.authService.logInUser(this.loginData).subscribe(
         response => {
+          this.processing = false;
           if(response != ''){
             localStorage.setItem('token', response)
             localStorage.setItem('userLogin', this.loginData.login)
