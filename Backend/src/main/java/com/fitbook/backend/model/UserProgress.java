@@ -51,4 +51,16 @@ public class UserProgress implements Serializable {
     public void setProgress(Integer progress) {
         this.progress = progress;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        UserProgress other = (UserProgress) obj;
+        return user.getLogin().equals(other.getUser().getLogin()) && trainingSessionExercise.getId().equals(other.getTrainingSessionExercise().getId());
+    }
 }
