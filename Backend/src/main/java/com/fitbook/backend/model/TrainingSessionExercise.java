@@ -80,7 +80,7 @@ public class TrainingSessionExercise {
         if (getClass() != obj.getClass())
             return false;
         TrainingSessionExercise other = (TrainingSessionExercise) obj;
-        if (id != other.id)
+        if (! id.equals(other.id))
             return false;
         return true;
     }
