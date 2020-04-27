@@ -116,3 +116,48 @@ Przy każdej kolejnej aktualizacji wystarczy w folderze herokowego projektu wyko
 ```
 
 A serwer sam sobie wszystko zbuduje od nowa.
+
+# Przegląd witryny:
+
+## ekran główny:
+
+![not_found](readme_res/ekran_startowy.PNG)
+
+## rejestracja:
+
+![not_found](readme_res/ekran_rejestracji.PNG)
+
+## wyszukiwanie treningów:
+
+![not_found](readme_res/wyszukiwanie_treningow_1.PNG)
+
+### ciąg dalszy...:
+
+![not_found](readme_res/wyszukiwanie_treningow_2.PNG)
+
+## zarządzanie kontem użytkownika:
+
+![not_found](readme_res/zarzadzanie_kontem_1.PNG)
+
+### ciąg dalszy...:
+
+![not_found](readme_res/zarzadzanie_kontem_2.PNG)
+
+## szczegóły treningów użytkownika:
+
+![not_found](readme_res/szczegoly_treningu.PNG)
+
+
+## szczegóły treningów użytkownika bez trybu edycji:
+
+![not_found](readme_res/szczegoly_bez_edycji.PNG)
+
+
+## szczegóły treningów użytkownika w trybie edycji:
+
+![not_found](readme_res/szczegoly_edycja.PNG)
+
+## szczegóły treningów użytkownika w trybie edycji (przykład działania):
+
+![not_found](readme_res/tryb_edycji_dzialanie.PNG)
+
