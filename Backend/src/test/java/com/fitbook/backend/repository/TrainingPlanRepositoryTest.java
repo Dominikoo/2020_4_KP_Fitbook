@@ -1,6 +1,9 @@
 package com.fitbook.backend.repository;
 
+import com.fitbook.backend.controller.TrainingPlanController;
 import com.fitbook.backend.model.*;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,29 +30,50 @@ public class TrainingPlanRepositoryTest {
     private TrainingDifficultyRepository trainingDifficultyRepository;
     @Autowired
     private TrainingIntensityRepository trainingIntensityRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    @Test
-    public void getFilteredTrainingPlans() {
+    private TrainingPlan testTrainingPlan;
+    private ArrayList<Long> typeIds;
+    private ArrayList<Long> lengthIds;
+    private ArrayList<Long> intensityIds;
+    private ArrayList<Long> difficultyIds;
+    private User user;
+
+
+    @Before
+    public void init(){
         TrainingType trainingType = trainingTypeRepository.findAll().get(0);
         TrainingLength trainingLength = trainingLengthRepository.findAll().get(0);
         TrainingIntensity trainingIntensity = trainingIntensityRepository.findAll().get(0);
         TrainingDifficulty trainingDifficulty = trainingDifficultyRepository.findAll().get(0);
-        TrainingPlan testTrainingPlan = new TrainingPlan("test_1", "opis_testowy_1", trainingType,
-                trainingLength, trainingIntensity, trainingDifficulty);
-        testTrainingPlan = trainingPlanRepository.save(testTrainingPlan);
-        ArrayList<Long> typeIds = new ArrayList<>();
+        typeIds = new ArrayList<>();
         typeIds.add(trainingType.getId());
-        ArrayList<Long> lengthIds = new ArrayList<>();
+        lengthIds = new ArrayList<>();
         lengthIds.add(trainingLength.getId());
-        ArrayList<Long> intensityIds = new ArrayList<>();
+        intensityIds = new ArrayList<>();
         intensityIds.add(trainingIntensity.getId());
-        ArrayList<Long> difficultyIds = new ArrayList<>();
+        difficultyIds = new ArrayList<>();
         difficultyIds.add(trainingDifficulty.getId());
-        System.out.println(trainingPlanRepository.getFilteredTrainingPlans(difficultyIds, intensityIds, lengthIds, typeIds).contains(testTrainingPlan));
+        testTrainingPlan = trainingPlanRepository.save(new TrainingPlan("test_1", "opis_testowy_1", trainingType,
+                trainingLength, trainingIntensity, trainingDifficulty));
+        TrainingPlanController trainingPlanController = new TrainingPlanController();
+        user = userRepository.findAll().get(0);
+        trainingPlanController.postTrainingPlan(testTrainingPlan, user.getLogin());
+    }
+
+    @After
+    public void clear() {
+        trainingPlanRepository.delete(testTrainingPlan);
+    }
+
+    @Test
+    public void getFilteredTrainingPlans() {
         assertTrue(trainingPlanRepository.getFilteredTrainingPlans(difficultyIds, intensityIds, lengthIds, typeIds).contains(testTrainingPlan));
     }
 
     @Test
     public void getFilteredTrainingPlansForUser() {
+        assertTrue(trainingPlanRepository.getFilteredTrainingPlansForUser(difficultyIds, intensityIds, lengthIds, typeIds, user.getLogin()).contains(testTrainingPlan));
     }
 }
