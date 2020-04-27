@@ -39,6 +39,11 @@ public class TrainingSessionController {
         return trainingSessionRepository.getTrainingPlanSession(trainingPlanId);
     }
 
+    @PostMapping("/auth/trainingSessions/post")
+    public void postTrainingSessionExercises(@RequestBody ArrayList<TrainingSession> sessionsToAdd) {
+        // TODO: implement this
+    }
+
     @PutMapping("/auth/trainingSessions/delete")
     public void deleteTrainingSessionExercises(@RequestBody ArrayList<TrainingSession> sessionsToDelete) {
         for(TrainingSession session: sessionsToDelete){
@@ -50,4 +55,5 @@ public class TrainingSessionController {
             }
         }
     }
+
 }
