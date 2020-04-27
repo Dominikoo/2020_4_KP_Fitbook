@@ -38,6 +38,18 @@ public class TrainingPlan {
     @ManyToOne
     private TrainingDifficulty trainingDifficulty;
 
+    public TrainingPlan() {
+    }
+
+    public TrainingPlan(String name, String description, TrainingType trainingType, TrainingLength trainingLength, TrainingIntensity trainingIntensity, TrainingDifficulty trainingDifficulty) {
+        this.name = name;
+        this.description = description;
+        this.trainingType = trainingType;
+        this.trainingLength = trainingLength;
+        this.trainingIntensity = trainingIntensity;
+        this.trainingDifficulty = trainingDifficulty;
+    }
+
     public Long getId() {
         return id;
     }
@@ -92,5 +104,13 @@ public class TrainingPlan {
 
     public void setTrainingDifficulty(TrainingDifficulty trainingDifficulty) {
         this.trainingDifficulty = trainingDifficulty;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        TrainingPlan trainingPlan = (TrainingPlan) obj;
+        return this.name.equals(trainingPlan.getName()) && this.description.equals(trainingPlan.getDescription())
+                && trainingPlan.getTrainingDifficulty().getId().equals(this.trainingDifficulty.getId()) && trainingPlan.getTrainingIntensity().getId().equals(this.getTrainingIntensity().getId())
+                && trainingPlan.getTrainingLength().getId().equals(this.getTrainingLength().getId()) && trainingPlan.getTrainingType().getId().equals(this.getTrainingType().getId());
     }
 }
