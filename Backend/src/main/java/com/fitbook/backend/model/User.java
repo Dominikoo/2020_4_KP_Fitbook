@@ -47,6 +47,20 @@ public class User{
     @Column(columnDefinition = "text")
     private String nickname;
 
+    public User() {
+    }
+
+    public User(@Size(min = 6, max = 30) @NotEmpty String login, @Size(max = 50) @NotEmpty String email,
+                @Size(min = 6, max = 50) @NotEmpty String password, @Size(max = 50) String firstName,
+                @Size(max = 50) String lastName, @Size(max = 50) String nickname) {
+        this.login = login;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nickname = nickname;
+    }
+
     public Long getId() {
         return id;
     }
