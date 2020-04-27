@@ -68,12 +68,12 @@ public class TrainingPlanRepositoryTest {
     }
 
     @Test
-    public void getFilteredTrainingPlans() {
+    public void getFilteredTrainingPlansTest() {
         assertTrue(trainingPlanRepository.getFilteredTrainingPlans(difficultyIds, intensityIds, lengthIds, typeIds).contains(testTrainingPlan));
     }
 
     @Test
-    public void getFilteredTrainingPlansForUser() {
+    public void getFilteredTrainingPlansForUserTest() {
         assertTrue(trainingPlanRepository.getFilteredTrainingPlansForUser(difficultyIds, intensityIds, lengthIds, typeIds, user.getLogin()).contains(testTrainingPlan));
     }
 }
