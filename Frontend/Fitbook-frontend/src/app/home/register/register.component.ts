@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
 
   isLoginUsed = false;
   isEmailUsed = false;
-  isValid = true;
 
   processing = false;
 
