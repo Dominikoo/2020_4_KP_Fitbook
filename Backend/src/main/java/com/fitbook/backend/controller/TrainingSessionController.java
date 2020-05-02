@@ -40,12 +40,12 @@ public class TrainingSessionController {
     }
 
     @PostMapping("/auth/trainingSessions/post")
-    public void postTrainingSessionExercises(@RequestBody ArrayList<TrainingSession> sessionsToAdd) {
+    public void postTrainingSessions(@RequestBody ArrayList<TrainingSession> sessionsToAdd) {
         // TODO: implement this
     }
 
     @PutMapping("/auth/trainingSessions/delete")
-    public void deleteTrainingSessionExercises(@RequestBody ArrayList<TrainingSession> sessionsToDelete) {
+    public void deleteTrainingSessions(@RequestBody ArrayList<TrainingSession> sessionsToDelete) {
         for(TrainingSession session: sessionsToDelete){
             List<UserProgress> userProgresses = userProgressRepository.getProgressByTrainingSessionId(session.getId());
             for(UserProgress progress : userProgresses){
