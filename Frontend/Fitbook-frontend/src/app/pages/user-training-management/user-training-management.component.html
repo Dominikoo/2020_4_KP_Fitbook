@@ -45,7 +45,12 @@
       </div>
     </form>
 </div>
-
+<hr>
+<button *ngIf="!chartVisible" (click)="showChart()" type="button" class="btn btn-light">Pokaż postępy</button>
+<button *ngIf="chartVisible" (click)="hideChart()" type="button" class="btn btn-danger">Ukryj postępy</button>
+<div *ngIf="chartVisible">
+  <app-progress-line-chart [userProgressSummary]="userProgressSummary"></app-progress-line-chart>
+</div>
 <hr>
 
 <b style="font-size: 24px; margin-left: 18px;">AKTYWNE</b>
@@ -63,9 +68,12 @@
         </div>
     </div>
 </div>
+
 <hr>
 
 <b style="font-size: 24px; margin-left: 18px;">UKOŃCZONE</b>
+
+<hr>
 
 <div class="trainig-list-container">
   <div *ngFor="let item of trainingPlansFinished; index as i">

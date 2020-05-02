@@ -3,6 +3,8 @@ package com.fitbook.backend.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @IdClass(UserProgressID.class)
@@ -19,6 +21,9 @@ public class UserProgress implements Serializable {
 
     @Column(columnDefinition = "int")
     private Integer progress;
+
+    @Column(columnDefinition = "date")
+    private LocalDate lastModification;
 
     public UserProgress(){};
 
@@ -50,6 +55,14 @@ public class UserProgress implements Serializable {
 
     public void setProgress(Integer progress) {
         this.progress = progress;
+    }
+
+    public LocalDate getLastModification() {
+        return lastModification;
+    }
+
+    public void setLastModification(LocalDate lastModification) {
+        this.lastModification = lastModification;
     }
 
     @Override

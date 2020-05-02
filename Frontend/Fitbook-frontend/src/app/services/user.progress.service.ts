@@ -18,4 +18,8 @@ export class UserProgressService {
     console.log(this.url + `/put`)
     return this.httpClient.put(this.url + `/put`, userProgress)
   }
+
+  getUserProgressSummary(userLogin){
+    return this.httpClient.get(this.url + `/get/summary/${userLogin}`);
+  }
 }
