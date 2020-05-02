@@ -1,6 +1,9 @@
 import { UserService } from './../../services/user.service';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgModel, NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+
+const V = Validators;
 
 @Component({
   selector: 'app-register',
@@ -8,45 +11,46 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  newUser = {
-    email: '',
-    login: '',
-    password: ''
-  }
+
+  form = new FormGroup({
+    login: new FormControl('', [V.required, V.minLength(6), V.maxLength(30)]),
+    email: new FormControl('', [V.required, V.email]),
+    password: new FormControl('', [V.required, V.minLength(6)]),
+  });
 
   isLoginUsed = false;
   isEmailUsed = false;
 
   processing = false;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) {}
 
   signUp(): void {
     this.processing = true;
-      this.userService.isLoginUsed(this.newUser.login).subscribe(
-        response =>{
-          this.isLoginUsed = response;
-          if(! response){
-            this.userService.isEmailUsed(this.newUser.email).subscribe(
-              response =>{
-                this.isEmailUsed = response;
-                if(! response){
-                  this.userService.post(this.newUser).subscribe(
-                    response =>{
-                      if(response != null){
-                        this.router.navigate(['/pages']);
-                      }
-                      else this.processing = false;  
+    this.userService.isLoginUsed(this.form.controls.login.value).subscribe(
+      response => {
+        this.isLoginUsed = response;
+        if (!response) {
+          this.userService.isEmailUsed(this.form.controls.email.value).subscribe(
+            response => {
+              this.isEmailUsed = response;
+              if (!response) {
+                this.userService.post(this.form.value).subscribe(
+                  response => {
+                    if (response != null) {
+                      this.router.navigate(['/pages']);
                     }
-                  )
-                }
-                else this.processing = false;  
+                    else this.processing = false;
+                  }
+                )
               }
-            )
-          }
-          else this.processing = false;  
+              else this.processing = false;
+            }
+          )
         }
-      )
+        else this.processing = false;
+      }
+    )
   }
 
   ngOnInit(): void {
