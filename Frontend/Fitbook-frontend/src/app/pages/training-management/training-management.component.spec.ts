@@ -8,6 +8,7 @@ import {
   FormControl,
   ValidatorFn
 } from '@angular/forms';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('TrainingManagementComponent', () => {
   let component: TrainingManagementComponent;
@@ -15,7 +16,12 @@ describe('TrainingManagementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrainingManagementComponent ]
+      declarations: [ TrainingManagementComponent ],
+      providers: [
+        HttpClient,
+        HttpHandler,
+        FormBuilder
+      ]
     })
     .compileComponents();
   }));
