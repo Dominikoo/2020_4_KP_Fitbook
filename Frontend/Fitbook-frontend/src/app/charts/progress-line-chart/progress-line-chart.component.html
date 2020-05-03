@@ -1,0 +1,17 @@
+<div *ngIf="visible" style="background-color: #282828; height: 340px; width: 100%; margin-top: 20px;">
+    <div style="position: relative; top: 25px; left: 1%; right: 2%; height: 300px; width: 97%;">
+        <ngx-charts-bar-vertical 
+        [scheme]="colorScheme"
+        [results]="userProgressSummary"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-vertical>
+    </div>
+</div>

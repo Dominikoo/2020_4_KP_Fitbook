@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainingPlanService } from './../../services/training.plan.service';
 import { UserProgressService } from './../../services/user.progress.service';
+import { ProgressLineChartComponent } from './../../charts/progress-line-chart/progress-line-chart.component';
 import {
   FormBuilder,
   FormGroup,
@@ -22,6 +23,8 @@ export class UserTrainingManagementComponent implements OnInit {
 
   form: FormGroup;
   
+  chartVisible: boolean = true;
+
   trainingPlanFilter = {
     difficulty: '1,2,3',
     intensity: '1,2,3',
@@ -97,6 +100,7 @@ export class UserTrainingManagementComponent implements OnInit {
       });
     })
     this.filterPlans()
+
   }   
 
   ngOnInit(): void { }
@@ -183,5 +187,13 @@ export class UserTrainingManagementComponent implements OnInit {
     this.bsModalRef.content.onClose.subscribe(response => {
       this.sendTraininigInfo(this.trainingPlan)
     })
+  }
+
+  showChart() : void{
+    this.chartVisible = true;
+  }
+
+  hideChart() : void{
+    this.chartVisible = false;
   }
 }
