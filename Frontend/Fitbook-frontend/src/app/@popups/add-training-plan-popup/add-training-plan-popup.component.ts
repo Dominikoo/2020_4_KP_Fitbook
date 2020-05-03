@@ -4,6 +4,7 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { TrainingPlanService } from 'src/app/services/training.plan.service';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-add-training-plan-popup',
@@ -11,6 +12,16 @@ import { TrainingPlanService } from 'src/app/services/training.plan.service';
   styleUrls: ['./add-training-plan-popup.component.scss']
 })
 export class AddTrainingPlanPopupComponent implements OnInit {
+
+  form = new FormGroup({
+    id: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    trainingDifficulty: new FormControl(''),
+    trainingType: new FormControl(''),
+    trainingIntensity: new FormControl(''),
+    trainingLength: new FormControl('')
+  });
 
   public onClose: Subject<boolean>;
 
@@ -31,25 +42,24 @@ export class AddTrainingPlanPopupComponent implements OnInit {
   ngOnInit() {
     this.localeService.use('pl')
     this.onClose = new Subject()
-    this.trainingPlan.trainingType = this.trainingTypes[0]
-    this.trainingPlan.trainingDifficulty = this.trainingDiffs[0]
-    this.trainingPlan.trainingLength = this.trainingLengths[0]
-    this.trainingPlan.trainingIntensity = this.trainingIntensities[0]
+    this.form.controls.trainingType.setValue(this.trainingTypes[0]);
+    this.form.controls.trainingDifficulty.setValue(this.trainingDiffs[0]);
+    this.form.controls.trainingLength.setValue(this.trainingLengths[0]);
+    this.form.controls.trainingIntensity.setValue(this.trainingIntensities[0]);
   }
 
   onConfirm() {
+    this.trainingPlan = this.form.value;
     this.trainingPlanService.postTrainingPlan(this.trainingPlan, localStorage.getItem('userLogin')).subscribe(response => {  
       this.trainingPlan.id = response.id;
       this.onClose.next(true);
-      this.bsModalRef.hide()
+      this.bsModalRef.hide();
     })
   }
 
   onCancel() {
-    this.onClose.next(false)
-    this.bsModalRef.hide()
-    this.trainingPlan.name = ''
-    this.trainingPlan.description = ''
+    this.onClose.next(false);
+    this.bsModalRef.hide();
   }
 
 }

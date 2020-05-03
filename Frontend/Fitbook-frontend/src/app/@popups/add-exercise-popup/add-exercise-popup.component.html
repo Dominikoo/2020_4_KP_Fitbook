@@ -9,22 +9,22 @@
         <div class="col-md-8 offset-md-2 form-group" style="display: grid;">
             <form [formGroup]="form">
                 <label>
-                    <input id="exercise-name" name="exercise-name" formControlName="name" class="form-control" style="margin-top: 10px;" placeholder="nazwa ćwiczenia" >
-            <div *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)" class="alert alert-danger">
-              <div *ngIf="form.controls.name.errors.required">
-                Nazwa jest wymagana
-              </div>
-            </div>
-          </label>
+                  <input id="exercise-name" name="exercise-name" formControlName="name" class="form-control" style="margin-top: 10px;" placeholder="nazwa ćwiczenia" >
+                  <div *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)" class="alert alert-danger">
+                    <div *ngIf="form.controls.name.errors.required">
+                      Nazwa jest wymagana
+                    </div>
+                  </div>
+                </label>
                 <label>
                     <input id="exercise-sets" name="exercise-sets" formControlName="sets" class="form-control" style="margin-top: 10px;" placeholder="ilość serii" type="number">
-            <div *ngIf="form.controls.sets.invalid && (form.controls.sets.dirty || form.controls.sets.touched)" class="alert alert-danger">
-              <div *ngIf="form.controls.sets.errors.required">
-                Podaj poprawną ilość serii
-              </div>
-    
-            </div>
-          </label>
+                    <div *ngIf="form.controls.sets.invalid && (form.controls.sets.dirty || form.controls.sets.touched)" class="alert alert-danger">
+                      <div *ngIf="form.controls.sets.errors.required">
+                        Podaj poprawną ilość serii
+                      </div>
+                    
+                    </div>
+                  </label>
                 <label>
                     <input id="exercise-reps" name="exercise-reps" formControlName="reps" class="form-control" style="margin-top: 10px;" placeholder="ilość powtórzeń" type="number">
             <div *ngIf="form.controls.reps.invalid && (form.controls.reps.dirty || form.controls.reps.touched)" class="alert alert-danger">
