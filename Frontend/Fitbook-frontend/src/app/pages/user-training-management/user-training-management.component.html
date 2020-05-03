@@ -1,4 +1,6 @@
 <b style="font-size: 24px; margin-left: 18px;">MOJE PLANY TRENINGOWE</b>
+
+<b style="font-size: 24px; margin-left: 18px;">WYSZUKIWANIE</b>
 <div class="container-fluid training-management-container">
     <form [formGroup]="form">
       <div style="display: grid; grid-template-columns: 220px 220px 220px 220px;"> 
@@ -44,12 +46,6 @@
         <button (click)="addTrainingPlanPopupOpen()" type="button" class="btn btn-success" style="margin-right: 20px;">Stwórz własny trening</button>
       </div>
     </form>
-</div>
-<hr>
-<button *ngIf="!chartVisible" (click)="showChart()" type="button" class="btn btn-light">Pokaż postępy</button>
-<button *ngIf="chartVisible" (click)="hideChart()" type="button" class="btn btn-danger">Ukryj postępy</button>
-<div *ngIf="chartVisible">
-  <app-progress-line-chart [userProgressSummary]="userProgressSummary"></app-progress-line-chart>
 </div>
 <hr>
 

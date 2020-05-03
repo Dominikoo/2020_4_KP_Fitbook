@@ -7,7 +7,7 @@ import { SbLayoutComponent } from './sb-layout/sb-layout.component';
 import { WallComponent } from './sb-layout/wall/wall.component';
 import { TrainingDetailsComponent } from './training-details/training-details.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
-
+import { UserProgressHistoryComponent } from './user-progress-history/user-progress-history.component';
 
 const routes: Routes = [
   {
@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: 'training', component: TrainingManagementComponent },
       { path: 'user-training', component: UserTrainingManagementComponent },
       { path: 'training-details', component: TrainingDetailsComponent },
+      { path: 'user-progress-history', component: UserProgressHistoryComponent},
       { path: 'acc-manage', component: AccountManagementComponent },
       { path: 'wall', component: SbLayoutComponent, children: [{ path: '', component: WallComponent }] }
     ]

@@ -42,8 +42,6 @@ export class UserTrainingManagementComponent implements OnInit {
 
   bsModalRef: BsModalRef;
 
-  userProgressSummary: any;
-
   constructor(private trainingPlanService: TrainingPlanService,
               private trainingFiltersService: FiltersService,
               private formBuilder: FormBuilder,
@@ -103,8 +101,6 @@ export class UserTrainingManagementComponent implements OnInit {
     })
     this.filterPlans()
 
-    this.userProgressService.getUserProgressSummary(localStorage.getItem('userLogin')).subscribe(response =>
-      this.userProgressSummary = response);
   }   
 
   ngOnInit(): void { }

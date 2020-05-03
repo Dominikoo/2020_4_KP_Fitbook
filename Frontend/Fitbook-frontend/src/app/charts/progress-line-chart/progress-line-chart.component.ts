@@ -20,7 +20,7 @@ export class ProgressLineChartComponent implements OnInit {
   showXAxisLabel = true;
   xAxisLabel = 'Dzień';
   showYAxisLabel = true;
-  yAxisLabel = 'Wykonane ćwiczenia';
+  yAxisLabel = 'Ilość';
 
   colorScheme = {
     domain: ['orange']
