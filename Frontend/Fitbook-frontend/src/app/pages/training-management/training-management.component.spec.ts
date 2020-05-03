@@ -8,7 +8,8 @@ import {
   FormControl,
   ValidatorFn
 } from '@angular/forms';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TrainingManagementComponent', () => {
   let component: TrainingManagementComponent;
@@ -16,10 +17,12 @@ describe('TrainingManagementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
       declarations: [ TrainingManagementComponent ],
       providers: [
-        HttpClient,
-        HttpHandler,
         FormBuilder
       ]
     })

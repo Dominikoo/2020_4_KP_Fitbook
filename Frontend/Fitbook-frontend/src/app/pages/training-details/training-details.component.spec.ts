@@ -21,8 +21,8 @@ describe('TrainingDetailsComponent', () => {
         HttpClient,
         HttpHandler,
         BsModalService,
-        ComponentLoaderFactory
-        // PositioningService
+        ComponentLoaderFactory,
+        PositioningService
       ]
     })
     .compileComponents();
