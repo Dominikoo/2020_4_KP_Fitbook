@@ -58,10 +58,10 @@ describe('RegisterComponent', () => {
     component.form.controls.login.markAsTouched();
     component.form.controls.login.setValue('xxxxx');
     fixture.detectChanges();
-    expect(!!component.form.controls.login.invalid);
+    expect(!!component.form.controls.login.invalid).toBeTrue;
     component.form.controls.login.setValue('xxxxxx');
     fixture.detectChanges();
-    expect(!!component.form.controls.login.valid);
+    expect(!!component.form.controls.login.valid).toBeTrue;
   }));
 
   it('email control should be invalid', async(() => {
@@ -83,10 +83,10 @@ describe('RegisterComponent', () => {
     component.form.controls.password.markAsTouched();
     component.form.controls.password.setValue('xxxxx');
     fixture.detectChanges();
-    expect(!!component.form.controls.password.invalid);
+    expect(!!component.form.controls.password.invalid).toBeTrue;
     component.form.controls.login.setValue('xxxxxx');
     fixture.detectChanges();
-    expect(!!component.form.controls.password.valid);
+    expect(!!component.form.controls.password.valid).toBeTrue;
   }));
 
 });
