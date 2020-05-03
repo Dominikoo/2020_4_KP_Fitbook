@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AccountManagementComponent } from './account-management/account-management.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ProgressLineChartComponent } from './../charts/progress-line-chart/progress-line-chart.component';
+import { UserWeightLineChartComponent} from './../charts/user-weight-line-chart/user-weight-line-chart.component';
 import { UserProgressHistoryComponent } from './user-progress-history/user-progress-history.component';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { UserProgressHistoryComponent } from './user-progress-history/user-progr
     SbLayoutComponent, 
     AccountManagementComponent,
     ProgressLineChartComponent,
+    UserWeightLineChartComponent,
     UserProgressHistoryComponent],
   imports: [
     CommonModule,

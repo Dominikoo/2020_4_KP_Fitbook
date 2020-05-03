@@ -11,7 +11,8 @@ import java.util.List;
 
 public interface UserWeightHistoryRepository extends JpaRepository<UserWeightHistory, Long> {
     @Query( "SELECT uwh FROM UserWeightHistory uwh " +
-            "WHERE uwh.user.login = :userLogin")
+            "WHERE uwh.user.login = :userLogin " +
+            "ORDER BY uwh.date ASC")
     List<UserWeightHistory> getUserWeightHistory(
             @Param("userLogin") String userLogin
     );

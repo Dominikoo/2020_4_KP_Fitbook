@@ -18,6 +18,7 @@ import { AddExercisePopupComponent } from './@popups/add-exercise-popup/add-exer
 import { AddTrainingPlanPopupComponent } from './@popups/add-training-plan-popup/add-training-plan-popup.component';
 import { ModifyExercisePopupComponent } from './@popups/modify-exercise-popup/modify-exercise-popup.component';
 import { AddTrainingSessionPopupComponent } from './@popups/add-training-session-popup/add-training-session-popup.component';
+import { AddWeightPopupComponent } from './@popups/add-weight-popup/add-weight-popup.component';
 defineLocale('pl', plLocale);
 
 @NgModule({
@@ -27,7 +28,8 @@ defineLocale('pl', plLocale);
     AddExercisePopupComponent,
     AddTrainingPlanPopupComponent,
     ModifyExercisePopupComponent,
-    AddTrainingSessionPopupComponent
+    AddTrainingSessionPopupComponent,
+    AddWeightPopupComponent
   ],
   imports: [
     BrowserModule,

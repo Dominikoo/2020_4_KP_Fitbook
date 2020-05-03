@@ -188,12 +188,4 @@ export class UserTrainingManagementComponent implements OnInit {
       this.sendTraininigInfo(this.trainingPlan)
     })
   }
-
-  showChart() : void{
-    this.chartVisible = true;
-  }
-
-  hideChart() : void{
-    this.chartVisible = false;
-  }
 }

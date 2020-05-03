@@ -15,7 +15,7 @@ public class UserWeightHistory {
     )
     private Long id;
 
-    @JoinColumn(name ="user")
+    @JoinColumn(name ="user_id")
     @ManyToOne
     private User user;
 
