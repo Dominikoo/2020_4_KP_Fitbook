@@ -8,6 +8,7 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { doesNotReject } from 'assert';
 
 describe('AddExercisePopupComponent', () => {
   let component: AddExercisePopupComponent;
@@ -41,10 +42,21 @@ describe('AddExercisePopupComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set submitted to true', async(() => {
+  it('should set onClose to true', (done) => {
+    component.onClose.subscribe(response => {
+      expect(response).toEqual(true);
+      done();
+    })
     component.onConfirm();
-    expect(component.onClose).toBeTruthy();
-  }));
+  });
+
+  it('should set onClose to false', (done) => {
+    component.onClose.subscribe(response => {
+      expect(response).toEqual(false);
+      done();
+    })
+    component.onCancel();
+  });
 
   it('shouldn\'t call the onConfirm method while disabled', async(() => {
     fixture.detectChanges();

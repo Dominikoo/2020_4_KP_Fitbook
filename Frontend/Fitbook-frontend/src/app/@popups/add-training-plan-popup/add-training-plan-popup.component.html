@@ -1,6 +1,6 @@
 <div class="modal-header" style="background-color: orange;">
     <h4 class="modal-title pull-left">Dodawanie planu treningowego</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+    <button type="button" class="cancel-button close pull-right" aria-label="Close" (click)="onCancel()">
         <span aria-hidden="true">&times;</span>
       </button>
 </div>
@@ -45,8 +45,8 @@
                     </select>
                 </label>
             </form>
-            <button type="button" class="btn btn-success" style="margin-top: 20px;" (click)="onConfirm()" [disabled]="form.controls.name.invalid || form.controls.description.invalid">Dodaj</button>
-            <button type="button" class="btn btn-danger btn-block" style="margin-top: 20px;" (click)="onCancel()">Anuluj</button>
+            <button type="button" class="confirm-button btn btn-success" style="margin-top: 20px;" (click)="onConfirm()" [disabled]="form.controls.name.invalid || form.controls.description.invalid">Dodaj</button>
+            <button type="button" class="cancel-button btn btn-danger btn-block" style="margin-top: 20px;" (click)="onCancel()">Anuluj</button>
         </div>
     </div>
 </div>

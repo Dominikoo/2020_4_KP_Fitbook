@@ -17,7 +17,7 @@ export class AddExercisePopupComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
     reps: new FormControl(1, [Validators.required, Validators.min(1)]),
     sets: new FormControl(1, [Validators.required, Validators.min(1)])
-  })
+  });
 
   public onClose: Subject<boolean>;
 

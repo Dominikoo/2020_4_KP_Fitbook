@@ -14,7 +14,6 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 export class AddTrainingPlanPopupComponent implements OnInit {
 
   form = new FormGroup({
-    id: new FormControl(''),
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     trainingDifficulty: new FormControl(''),
@@ -49,7 +48,12 @@ export class AddTrainingPlanPopupComponent implements OnInit {
   }
 
   onConfirm() {
-    this.trainingPlan = this.form.value;
+    this.trainingPlan.name = this.form.controls.name.value;
+    this.trainingPlan.description = this.form.controls.description.value;
+    this.trainingPlan.trainingDifficulty = this.form.controls.trainingDifficulty.value;
+    this.trainingPlan.trainingType = this.form.controls.trainingType.value;
+    this.trainingPlan.trainingLength = this.form.controls.trainingLength.value;
+    this.trainingPlan.trainingIntensity = this.form.controls.trainingIntensity.value;
     this.trainingPlanService.postTrainingPlan(this.trainingPlan, localStorage.getItem('userLogin')).subscribe(response => {  
       this.trainingPlan.id = response.id;
       this.onClose.next(true);

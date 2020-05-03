@@ -4,6 +4,7 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { Router } from '@angular/router';
 import { TrainingSessionExcerciseService } from 'src/app/services/training.session.exercise.service';
 import { Subject } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-modify-exercise-popup',
@@ -11,6 +12,12 @@ import { Subject } from 'rxjs';
   styleUrls: ['./modify-exercise-popup.component.scss']
 })
 export class ModifyExercisePopupComponent implements OnInit {
+
+  form = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    reps: new FormControl(1, [Validators.required, Validators.min(1)]),
+    sets: new FormControl(1, [Validators.required, Validators.min(1)])
+  });
 
   public onClose: Subject<boolean>;
 
@@ -57,6 +64,9 @@ export class ModifyExercisePopupComponent implements OnInit {
   }
 
   onConfirm() {
+    this.exercise.name = this.form.controls.name.value;
+    this.exercise.reps = this.form.controls.reps.value;
+    this.exercise.sets = this.form.controls.sets.value;
     this.onClose.next(true);
     this.bsModalRef.hide()
   }

@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TrainingManagementPopupComponent } from './training-management-popup.component';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 
 describe('TrainingManagementPopupComponent', () => {
   let component: TrainingManagementPopupComponent;
@@ -8,7 +12,16 @@ describe('TrainingManagementPopupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrainingManagementPopupComponent ]
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
+      declarations: [ TrainingManagementPopupComponent ],
+      providers: [
+        BsModalService,
+        BsModalRef,
+        BsLocaleService
+      ]
     })
     .compileComponents();
   }));
