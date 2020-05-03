@@ -12,16 +12,27 @@ import { SharedModule } from '../@shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountManagementComponent } from './account-management/account-management.component';
-
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ProgressLineChartComponent } from './../charts/progress-line-chart/progress-line-chart.component';
+import { UserProgressHistoryComponent } from './user-progress-history/user-progress-history.component';
 
 @NgModule({
-  declarations: [PagesComponent, WallComponent, TrainingManagementComponent, UserTrainingManagementComponent, TrainingDetailsComponent, SbLayoutComponent, AccountManagementComponent],
+  declarations: [
+    PagesComponent, 
+    WallComponent, 
+    TrainingManagementComponent, 
+    UserTrainingManagementComponent, 
+    TrainingDetailsComponent, 
+    SbLayoutComponent, 
+    AccountManagementComponent,
+    ProgressLineChartComponent,
+    UserProgressHistoryComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,
     SharedModule,
     FormsModule,
+    NgxChartsModule,
     ReactiveFormsModule,
   ]
 })

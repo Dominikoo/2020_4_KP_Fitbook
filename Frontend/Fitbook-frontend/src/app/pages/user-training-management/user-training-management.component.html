@@ -1,4 +1,6 @@
 <b style="font-size: 24px; margin-left: 18px;">MOJE PLANY TRENINGOWE</b>
+
+<b style="font-size: 24px; margin-left: 18px;">WYSZUKIWANIE</b>
 <div class="container-fluid training-management-container">
     <form [formGroup]="form">
       <div style="display: grid; grid-template-columns: 220px 220px 220px 220px;"> 
@@ -45,7 +47,6 @@
       </div>
     </form>
 </div>
-
 <hr>
 
 <b style="font-size: 24px; margin-left: 18px;">AKTYWNE</b>
@@ -63,9 +64,12 @@
         </div>
     </div>
 </div>
+
 <hr>
 
 <b style="font-size: 24px; margin-left: 18px;">UKOŃCZONE</b>
+
+<hr>
 
 <div class="trainig-list-container">
   <div *ngFor="let item of trainingPlansFinished; index as i">
