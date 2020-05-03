@@ -1,7 +1,7 @@
 import { UserService } from './../../services/user.service';
-import { Component, OnInit, ViewChild, Input, TemplateRef } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { NgModel, NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 const V = Validators;
 

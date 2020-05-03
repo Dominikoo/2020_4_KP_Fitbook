@@ -4,7 +4,7 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { Router } from '@angular/router';
 import { TrainingSessionExcerciseService } from 'src/app/services/training.session.exercise.service';
 import { Subject } from 'rxjs';
-import { TrainingPlanService } from 'src/app/services/training.plan.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-exercise-popup',
@@ -12,6 +12,12 @@ import { TrainingPlanService } from 'src/app/services/training.plan.service';
   styleUrls: ['./add-exercise-popup.component.scss']
 })
 export class AddExercisePopupComponent implements OnInit {
+
+  form = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    reps: new FormControl(1, [Validators.required, Validators.min(1)]),
+    sets: new FormControl(1, [Validators.required, Validators.min(1)])
+  })
 
   public onClose: Subject<boolean>;
 
@@ -40,6 +46,7 @@ export class AddExercisePopupComponent implements OnInit {
   }
 
   onConfirm() {
+    this.newExercise = this.form.value;
     this.onClose.next(true);
     this.bsModalRef.hide()
     // this.service.addTrainingSessionExercise(this.newExercise, this.sessionId).subscribe(response => {
