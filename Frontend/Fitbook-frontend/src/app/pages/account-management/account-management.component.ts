@@ -44,4 +44,6 @@ export class AccountManagementComponent implements OnInit {
         }
       )
   }
+
+  savePassword(): void {}
 }

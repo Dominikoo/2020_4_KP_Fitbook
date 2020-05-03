@@ -73,7 +73,7 @@
                 <h5>Hasło:</h5>
             </span>
             <span class="col-6">
-                <button type="button" class="btn btn-light">Zmień hasło</button>
+                <button id="password-button" type="button" class="btn btn-light" (click)='savePassword()'>Zmień hasło</button>
             </span>
         </div>
 
@@ -128,7 +128,7 @@
 
     <div class="row py-1">
         <div class="col-md-3 offset-md-9 col-sm-3 offset-sm-7">
-            <button type="button" (click)="saveChanges()" class="btn btn-light">Zapisz zmiany</button>
+            <button id="save-button" type="button" (click)="saveChanges()" class="btn btn-light">Zapisz zmiany</button>
         </div>
     </div>
 
