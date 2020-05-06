@@ -120,4 +120,8 @@ export class TrainingManagementComponent implements OnInit {
     this.trainingPlanService.getFilteredTrainingPlans(this.trainingPlanFilter).subscribe(
     response => this.trainingPlans = response)
   }
+
+  addTraining(): void{
+    
+  }
 }

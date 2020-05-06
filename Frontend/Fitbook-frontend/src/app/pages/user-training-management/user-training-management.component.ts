@@ -174,7 +174,8 @@ export class UserTrainingManagementComponent implements OnInit {
     trainingType: null,
     trainingLength: null,
     trainingIntensity: null,
-    trainingDifficulty: null
+    trainingDifficulty: null,
+    isPrivate: true
   }
 
   addTrainingPlanPopupOpen() : void{
