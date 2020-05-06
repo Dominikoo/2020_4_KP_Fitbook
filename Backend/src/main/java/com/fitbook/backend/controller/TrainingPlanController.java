@@ -3,6 +3,7 @@ package com.fitbook.backend.controller;
 import com.fitbook.backend.model.*;
 import com.fitbook.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -83,6 +84,30 @@ public class TrainingPlanController {
             return null;
         }
         catch (Exception e){
+            return null;
+        }
+    }
+
+    @DeleteMapping("auth/trainingPlans/delete/{trainingPlanId}")
+    public TrainingPlan deleteTrainingPlan(@PathVariable Long trainingPlanId){
+        Optional<TrainingPlan> trainingPlan = trainingPlanRepository.findById(trainingPlanId);
+        if(trainingPlan.isPresent()){
+            List<TrainingSession> trainingSessions = trainingSessionRepository.getTrainingPlanSession(trainingPlanId);
+
+            List<UserProgress> userProgresses = new ArrayList<>();
+            trainingSessions.forEach(ts -> userProgresses.addAll(userProgressRepository.getProgressByTrainingSessionId(ts.getId())));
+            userProgresses.forEach(up -> userProgressRepository.delete(up));
+            List<TrainingSessionExercise> trainingSessionExercises = new ArrayList<>();
+            trainingSessions.forEach(ts -> trainingSessionExercises.addAll(trainingSessionExerciseRepository.getTrainingSessionExercises(ts.getId())));
+            trainingSessionExercises.forEach(tse -> {
+                trainingSessionExerciseRepository.delete(tse);
+                exerciseRepository.delete(tse.getExercise());
+            });
+            trainingSessions.forEach(ts -> trainingSessionRepository.delete(ts));
+            trainingPlanRepository.delete(trainingPlan.get());
+            return trainingPlan.get();
+        }
+        else{
             return null;
         }
     }

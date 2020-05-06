@@ -184,11 +184,11 @@ export class AdminPanelComponent implements OnInit {
     })
   }
 
-  deleteTraining(training) {
+  deleteTraining(trainingPlanToDelete) {
     this.bsModalRef = this.modalService.show(ConfirmDeletePopupComponent)
     this.bsModalRef.content.onClose.subscribe(response => {
       if(response){
-        //this.trainingPlanService.delete()
+        this.trainingPlanService.deleteTrainingPlan(trainingPlanToDelete.id).subscribe(response => console.log(response))
       }
     })
   }
