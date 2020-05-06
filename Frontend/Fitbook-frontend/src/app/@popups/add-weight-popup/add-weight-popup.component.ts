@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { UserWeightHistoryService } from './../../services/user.weight.history.service';
 

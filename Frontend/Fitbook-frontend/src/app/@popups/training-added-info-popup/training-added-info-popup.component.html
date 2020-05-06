@@ -1,1 +1,14 @@
-<p>training-added-info-popup works!</p>
+<div class="modal-header" style="background-color: orange;">
+    <h4 class="modal-title pull-left">Trening został dodany do Twoich planów trenigowych</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+<div class="modal-body" style="background-color: lightgray;">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 form-group" style="display: grid;">
+            <button type="button" class="btn btn-light" style="margin-top: 20px;" (click)="onConfirm()">Przejdź do moich treningów</button>
+            <button type="button" class="btn btn-light" style="margin-top: 20px;" (click)="onCancel()">Przeglądaj dalej</button>
+        </div>
+    </div>
+</div>

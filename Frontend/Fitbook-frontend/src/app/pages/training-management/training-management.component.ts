@@ -5,10 +5,11 @@ import {
   FormGroup,
   FormArray,
   FormControl,
-  ValidatorFn
 } from '@angular/forms';
 import { FiltersService } from 'src/app/services/filters.service';
-
+import { TrainingAddedInfoPopupComponent } from './../../@popups/training-added-info-popup/training-added-info-popup.component'
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-training-management',
@@ -28,6 +29,8 @@ export class TrainingManagementComponent implements OnInit {
 
   trainingPlans;
 
+  bsModalRef: BsModalRef;
+
   trainingDiffs: Array<any> = undefined;
   trainingLengths: Array<any> = undefined;
   trainingIntensities: Array<any> = undefined;
@@ -35,7 +38,9 @@ export class TrainingManagementComponent implements OnInit {
 
   constructor(private trainingPlanService: TrainingPlanService,
               private trainingFiltersService: FiltersService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private modalService: BsModalService,
+              private router: Router) {
     this.form = this.formBuilder.group({
     diffFilters: new FormArray([]),
     lengthFilters: new FormArray([]),
@@ -122,6 +127,10 @@ export class TrainingManagementComponent implements OnInit {
   }
 
   addTraining(): void{
-    
+    this.bsModalRef = this.modalService.show(TrainingAddedInfoPopupComponent)
+    this.bsModalRef.content.onClose.subscribe(response => {
+      if(response){
+      }
+    })
   }
 }
