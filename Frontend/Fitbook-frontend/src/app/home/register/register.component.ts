@@ -31,13 +31,15 @@ export class RegisterComponent implements OnInit {
       response => {
         this.isLoginUsed = response;
         if (!response) {
-          this.userService.isEmailUsed(this.form.controls.email.value).subscribe(
+          this.userService.isEmailUsed(`"` + this.form.controls.email.value + `"`).subscribe(
             response => {
               this.isEmailUsed = response;
               if (!response) {
                 this.userService.post(this.form.value).subscribe(
                   response => {
                     if (response != null) {
+                      localStorage.setItem('token', response.login)
+                      localStorage.setItem('userLogin', response.login)
                       this.router.navigate(['/pages']);
                     }
                     else this.processing = false;

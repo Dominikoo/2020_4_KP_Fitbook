@@ -52,7 +52,7 @@ public class UserController {
 
     @GetMapping("/users/existsEmail/{userEmail}")
     public Boolean getExistUserEmail(@PathVariable String userEmail){
-        Optional<User> user = userRepository.findAll().stream().filter(u -> u.getEmail().equals(userEmail)).findFirst();
+        Optional<User> user = userRepository.findAll().stream().filter(u -> u.getEmail().equals(userEmail.replaceAll("\"", ""))).findFirst();
         return user.isPresent();
     }
     
