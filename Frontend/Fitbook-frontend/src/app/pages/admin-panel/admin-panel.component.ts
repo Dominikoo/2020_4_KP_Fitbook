@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 import { FiltersService } from 'src/app/services/filters.service';
 import { AddTrainingPlanPopupComponent } from './../../@popups/add-training-plan-popup/add-training-plan-popup.component'
+import { ConfirmDeletePopupComponent } from './../../@popups/confirm-delete-popup/confirm-delete-popup.component'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -183,4 +184,12 @@ export class AdminPanelComponent implements OnInit {
     })
   }
 
+  deleteTraining(training) {
+    this.bsModalRef = this.modalService.show(ConfirmDeletePopupComponent)
+    this.bsModalRef.content.onClose.subscribe(response => {
+      if(response){
+        //this.trainingPlanService.delete()
+      }
+    })
+  }
 }

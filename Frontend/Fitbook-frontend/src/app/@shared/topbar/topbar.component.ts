@@ -25,7 +25,6 @@ export class TopbarComponent implements OnInit {
   }
 
   isAdmin(): boolean{
-    console.log('X' + localStorage.getItem('isAdmin'))
     return localStorage.getItem('isAdmin') == 'true';
   }
 }
