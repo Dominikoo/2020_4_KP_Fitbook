@@ -32,7 +32,9 @@
           <div *ngIf="form.controls.email.errors.required">
             Email jest wymagany
           </div>
-
+          <div *ngIf="!form.controls.email.errors.required">
+            Niepoprawny email
+          </div>
         </div>
         <div *ngIf="this.isEmailUsed" class="alert alert-danger">
           <div *ngIf="this.isEmailUsed">
