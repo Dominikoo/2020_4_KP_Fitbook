@@ -33,7 +33,11 @@ export class LoginSidebarComponent implements OnInit {
           if(response != ''){
             localStorage.setItem('token', response)
             localStorage.setItem('userLogin', this.loginData.login)
-            this.router.navigate(['/pages']);
+            this.userService.isUserAdmin(this.loginData.login).subscribe(response =>{
+              localStorage.setItem('isAdmin', response)
+              console.log(localStorage.getItem('isAdmin'))
+              this.router.navigate(['/pages']);
+            })
           }
           else{
             this.invalidLoginData = true;

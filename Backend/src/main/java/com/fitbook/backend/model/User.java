@@ -47,6 +47,9 @@ public class User{
     @Column(columnDefinition = "text")
     private String nickname;
 
+    @Column(columnDefinition = "boolean")
+    private Boolean isAdmin;
+
     public User() {
     }
 
@@ -115,6 +118,14 @@ public class User{
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 
     @Override

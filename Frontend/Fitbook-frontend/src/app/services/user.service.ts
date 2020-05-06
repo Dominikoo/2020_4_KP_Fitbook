@@ -26,6 +26,9 @@ export class UserService {
   isEmailUsed(userEmail){
     return this.httpClient.get<any>(`${this.url}/existsEmail/${userEmail}`)
   }
+  isUserAdmin(userLogin){
+    return this.httpClient.get<any>(`${this.url}/isAdmin/${userLogin}`)
+  }
   saveUserInfo(){
     
   }

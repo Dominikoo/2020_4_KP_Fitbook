@@ -55,5 +55,12 @@ public class UserController {
         Optional<User> user = userRepository.findAll().stream().filter(u -> u.getEmail().equals(userEmail.replaceAll("\"", ""))).findFirst();
         return user.isPresent();
     }
+
+    @GetMapping("/users/isAdmin/{userLogin}")
+    public Boolean isUserAdmin(@PathVariable String userLogin){
+        User user = userRepository.getUserByLogin(userLogin);
+        if(user != null && user.getAdmin() != null) return user.getAdmin();
+        else return false;
+    }
     
 }
