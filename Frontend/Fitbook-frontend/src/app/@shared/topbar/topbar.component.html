@@ -31,18 +31,18 @@
             </li>
             <li class="nav-item dropdown" dropdown>
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href (click)="false" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dropdownToggle>
-            Treningi
-          </a>
+                Treningi
+                </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" *dropdownMenu>
                     <a class="dropdown-item" href="/pages/training">Szukaj treningów</a>
                     <a class="dropdown-item" href="/pages/user-training">Moje treningi</a>
                     <a class="dropdown-item" href="/pages/user-progress-history">Historia postępów</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
+            <li *ngIf="isAdmin()" class="nav-item active">
+                <a class="nav-link" href="/pages/administration">Administracja <span class="sr-only">(current)</span></a>
+            </li>
         </ul>
-
 
         <a class="form-inline my-2 my-lg-0 account-click" (click)="accountManagement()"><img src="assets/login-iconv2.PNG" class="img-fluid account" alt="Responsive image"></a>
     </div>

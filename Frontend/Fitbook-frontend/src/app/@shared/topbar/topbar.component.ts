@@ -23,4 +23,9 @@ export class TopbarComponent implements OnInit {
   isTokenSet(): boolean {
     return localStorage.getItem('token') !== '';
   }
+
+  isAdmin(): boolean{
+    console.log('X' + localStorage.getItem('isAdmin'))
+    return localStorage.getItem('isAdmin') == 'true';
+  }
 }
