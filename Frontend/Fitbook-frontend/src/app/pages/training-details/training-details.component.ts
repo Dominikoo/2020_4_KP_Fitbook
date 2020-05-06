@@ -7,6 +7,7 @@ import { AddTrainingSessionPopupComponent } from './../../@popups/add-training-s
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { isNgTemplate } from '@angular/compiler';
 import { ModifyExercisePopupComponent } from 'src/app/@popups/modify-exercise-popup/modify-exercise-popup.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-training-details',
@@ -16,6 +17,7 @@ import { ModifyExercisePopupComponent } from 'src/app/@popups/modify-exercise-po
 export class TrainingDetailsComponent implements OnInit {
 
   editMode = false; 
+  onlyEditMode = false;
 
   training;
   trainingSessions;
@@ -33,7 +35,8 @@ export class TrainingDetailsComponent implements OnInit {
     private trainingSessionExcerciseService: TrainingSessionExcerciseService,
     private userProgressService: UserProgressService,
     private trainingSessionExerciseService: TrainingSessionExcerciseService,
-    private modalService: BsModalService) { 
+    private modalService: BsModalService,
+    private router: Router) { 
     this.initialize()
   }
 
@@ -44,6 +47,8 @@ export class TrainingDetailsComponent implements OnInit {
     this.training = history.state.training
     this.trainingSessions = history.state.sessions
     this.progress = history.state.progress
+    this.onlyEditMode = history.state.onlyEditMode;
+    if(this.onlyEditMode) this.editMode = true;
   }
 
   isTrainingDone(exercises): boolean{
@@ -194,7 +199,7 @@ export class TrainingDetailsComponent implements OnInit {
   delSession(sessionObject): void {
 
     if ( this.sessions_new.indexOf( sessionObject ) > -1){
-      
+
       const index = this.sessions_new.indexOf(sessionObject, 0);
       if (index > -1) {
         this.sessions_new.splice(index, 1);
@@ -305,24 +310,21 @@ export class TrainingDetailsComponent implements OnInit {
   }
 
   cancel() : void{
-    this.editMode = false;
+    if(this.onlyEditMode) this.router.navigate(['/pages/administration'])
+    else this.editMode = false;
     // pobieranie danych z bazy
   }
 
   save() : void{
-    this.editMode = false;
+    if(!this.onlyEditMode) this.editMode = false;
     this.trainingSessionService.addTrainingSessions(this.sessions_new).subscribe(response => {
-      console.log(response);
       this.trainingSessionExerciseService.addTrainingSessionExercises(this.progress_new).subscribe(response => {
-        console.log(response);
       });
       this.trainingSessionExerciseService.updateTrainingSessionExercises(this.progress_mod).subscribe(response => {
-        console.log(response);
       });
       this.trainingSessionExerciseService.deleteTrainingSessionExercises(this.progress_del).subscribe(response => {
-        console.log(response);
         this.trainingSessionService.deleteTrainingSessions(this.sessions_del).subscribe(response => {
-          console.log(response);
+          if(this.onlyEditMode) this.router.navigate(['/pages/administration']);
         })
       });
     })

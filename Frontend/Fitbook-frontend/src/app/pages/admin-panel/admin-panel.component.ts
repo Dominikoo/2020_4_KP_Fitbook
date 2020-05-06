@@ -177,7 +177,7 @@ export class AdminPanelComponent implements OnInit {
                 }
                 return 0;
               });
-              this.router.navigate(['/pages/training-details'], {state: {training: training, sessions: trainingSessions, progress: progress}});
+              this.router.navigate(['/pages/training-details'], {state: {training: training, sessions: trainingSessions, progress: progress, onlyEditMode: true}});
             }
           }
         )
