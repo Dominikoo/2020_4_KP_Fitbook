@@ -16,6 +16,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ProgressLineChartComponent } from './../charts/progress-line-chart/progress-line-chart.component';
 import { UserWeightLineChartComponent} from './../charts/user-weight-line-chart/user-weight-line-chart.component';
 import { UserProgressHistoryComponent } from './user-progress-history/user-progress-history.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UserProgressHistoryComponent } from './user-progress-history/user-progr
     AccountManagementComponent,
     ProgressLineChartComponent,
     UserWeightLineChartComponent,
-    UserProgressHistoryComponent],
+    UserProgressHistoryComponent,
+    AdminPanelComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,
