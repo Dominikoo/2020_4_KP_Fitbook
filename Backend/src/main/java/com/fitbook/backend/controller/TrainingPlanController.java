@@ -3,7 +3,6 @@ package com.fitbook.backend.controller;
 import com.fitbook.backend.model.*;
 import com.fitbook.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;

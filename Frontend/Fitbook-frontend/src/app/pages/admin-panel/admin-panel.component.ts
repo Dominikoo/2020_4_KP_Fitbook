@@ -139,7 +139,8 @@ export class AdminPanelComponent implements OnInit {
     trainingType: null,
     trainingLength: null,
     trainingIntensity: null,
-    trainingDifficulty: null
+    trainingDifficulty: null,
+    isPrivate: false
   }
 
   addTrainingPlanPopupOpen() : void{
