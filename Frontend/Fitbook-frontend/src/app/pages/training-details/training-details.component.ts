@@ -86,9 +86,15 @@ export class TrainingDetailsComponent implements OnInit {
             }
           }
           console.log(list[0]);
-          if (list[0]['trainingSessionExercise']['trainingSession']['id'] == sessionObject.id) {
-            orderNumberLatest = list.length + 1;
+          if(list[0] != undefined){
+            if (list[0]['trainingSessionExercise']['trainingSession']['id'] == sessionObject.id) {
+              orderNumberLatest = list.length + 1;
+            }
           }
+          else{
+            orderNumberLatest = 1;
+          }
+
         }
 
         // utworzenie nowego obiektu
@@ -154,27 +160,21 @@ export class TrainingDetailsComponent implements OnInit {
   //      del progress_mod
   //  endif
   delExercise(sessionObject, item): void {
-    console.log('item', item);
-    console.log(this.progress_new);
 
     if ( this.progress_new.indexOf( item ) > -1){
       
-      console.log('delExercise if');
 
       const index1 = this.progress_new.indexOf(item, 0);
       if (index1 > -1) {
         this.progress_new.splice(index1, 1);
-        console.log('Usuwanie w progress_new: ', this.progress_new);
       }
 
       const index2 = this.progress[sessionObject.orderNumber - 1].indexOf(item, 0);
       if (index2 > -1) {
         this.progress[sessionObject.orderNumber - 1].splice(index2, 1);
-        console.log('Usuwanie w progress: ', this.progress);
       }
     } else {
 
-      console.log('delExercise else');
 
       this.progress_del.push(item);
 
@@ -223,9 +223,8 @@ export class TrainingDetailsComponent implements OnInit {
       }
       this.sessions_del.push(sessionObject);
 
-      for(let item of this.progress[sessionObject.orderNumber - 1]){
-        console.log(item);
-        this.delExercise(sessionObject, item);
+      while(this.progress[sessionObject.orderNumber - 1].length > 0){
+        this.delExercise(sessionObject, this.progress[sessionObject.orderNumber - 1][0]);
       }
 
       const index2 = sessionObject.orderNumber - 1;
@@ -322,10 +321,10 @@ export class TrainingDetailsComponent implements OnInit {
       });
       this.trainingSessionExerciseService.deleteTrainingSessionExercises(this.progress_del).subscribe(response => {
         console.log(response);
+        this.trainingSessionService.deleteTrainingSessions(this.sessions_del).subscribe(response => {
+          console.log(response);
+        })
       });
-    })
-    this.trainingSessionService.deleteTrainingSessions(this.sessions_del).subscribe(response => {
-      console.log(response);
     })
   }
 }

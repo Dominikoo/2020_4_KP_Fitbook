@@ -50,12 +50,7 @@ public class TrainingSessionController {
     @PutMapping("/auth/trainingSessions/delete")
     public void deleteTrainingSessions(@RequestBody ArrayList<TrainingSession> sessionsToDelete) {
         for(TrainingSession session: sessionsToDelete){
-            List<UserProgress> userProgresses = userProgressRepository.getProgressByTrainingSessionId(session.getId());
-            for(UserProgress progress : userProgresses){
-                userProgressRepository.delete(progress);
-                trainingSessionExerciseRepository.delete(progress.getTrainingSessionExercise());
-                exerciseRepository.delete(progress.getTrainingSessionExercise().getExercise());
-            }
+            trainingSessionRepository.delete(session);
         }
     }
 
