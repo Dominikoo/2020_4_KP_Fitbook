@@ -11,8 +11,8 @@ public interface TrainingPlanRepository extends JpaRepository<TrainingPlan, Long
 
     @Query("SELECT tp FROM TrainingPlan tp WHERE tp.trainingDifficulty.id IN :difficultyIds AND " +
             "tp.trainingIntensity.id IN :intensityIds AND tp.trainingLength.id IN :lengthIds AND " +
-            "tp.trainingType.id IN :typeIds")
-    List<TrainingPlan> getFilteredTrainingPlans(
+            "tp.trainingType.id IN :typeIds AND tp.isPrivate = FALSE")
+    List<TrainingPlan> getPublicFilteredTrainingPlans(
             @Param("difficultyIds") List<Long> difficultyIds,
             @Param("intensityIds") List<Long> intensityIds,
             @Param("lengthIds") List<Long> lengthIds,

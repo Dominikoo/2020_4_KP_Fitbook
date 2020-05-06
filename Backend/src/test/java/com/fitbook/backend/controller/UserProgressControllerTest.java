@@ -52,7 +52,7 @@ public class UserProgressControllerTest {
         TrainingIntensity trainingIntensity = trainingIntensityRepository.findAll().get(0);
         TrainingDifficulty trainingDifficulty = trainingDifficultyRepository.findAll().get(0);
         trainingPlan = trainingPlanRepository.save(new TrainingPlan("test_1", "opis_testowy_1", trainingType,
-                trainingLength, trainingIntensity, trainingDifficulty));
+                trainingLength, trainingIntensity, trainingDifficulty, false));
         TrainingPlanController trainingPlanController = new TrainingPlanController();
         user = userRepository.findAll().get(0);
         trainingPlanController.postTrainingPlan(trainingPlan, user.getLogin());

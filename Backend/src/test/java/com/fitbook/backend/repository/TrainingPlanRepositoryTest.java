@@ -7,11 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.swing.text.Style;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -56,7 +54,7 @@ public class TrainingPlanRepositoryTest {
         difficultyIds = new ArrayList<>();
         difficultyIds.add(trainingDifficulty.getId());
         testTrainingPlan = trainingPlanRepository.save(new TrainingPlan("test_1", "opis_testowy_1", trainingType,
-                trainingLength, trainingIntensity, trainingDifficulty));
+                trainingLength, trainingIntensity, trainingDifficulty, false));
         TrainingPlanController trainingPlanController = new TrainingPlanController();
         user = userRepository.findAll().get(0);
         trainingPlanController.postTrainingPlan(testTrainingPlan, user.getLogin());
@@ -69,7 +67,7 @@ public class TrainingPlanRepositoryTest {
 
     @Test
     public void getFilteredTrainingPlansTest() {
-        assertTrue(trainingPlanRepository.getFilteredTrainingPlans(difficultyIds, intensityIds, lengthIds, typeIds).contains(testTrainingPlan));
+        assertTrue(trainingPlanRepository.getPublicFilteredTrainingPlans(difficultyIds, intensityIds, lengthIds, typeIds).contains(testTrainingPlan));
     }
 
     @Test

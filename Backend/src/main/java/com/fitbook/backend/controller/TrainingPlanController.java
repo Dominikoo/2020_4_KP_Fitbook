@@ -3,11 +3,8 @@ package com.fitbook.backend.controller;
 import com.fitbook.backend.model.*;
 import com.fitbook.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.data.util.Pair;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -38,12 +35,12 @@ public class TrainingPlanController {
     }
 
     @PostMapping("/auth/trainingPlans/filtered")
-    public List<TrainingPlan> getFilteredTrainingPlans(@RequestBody HashMap<String, String> filterParameters){
+    public List<TrainingPlan> getPublicFilteredTrainingPlans(@RequestBody HashMap<String, String> filterParameters){
         List<Long> difficultyParamsList = getParameters(filterParameters, "difficulty");
         List<Long> intensityParamsList = getParameters(filterParameters, "intensity");
         List<Long> lengthParamsList = getParameters(filterParameters, "length");
         List<Long> typeParamsList = getParameters(filterParameters, "type");
-        return trainingPlanRepository.getFilteredTrainingPlans(difficultyParamsList, intensityParamsList, lengthParamsList, typeParamsList);
+        return trainingPlanRepository.getPublicFilteredTrainingPlans(difficultyParamsList, intensityParamsList, lengthParamsList, typeParamsList);
     }
 
     @PostMapping("/auth/trainingPlans/filtered/{userLogin}/{progress}")

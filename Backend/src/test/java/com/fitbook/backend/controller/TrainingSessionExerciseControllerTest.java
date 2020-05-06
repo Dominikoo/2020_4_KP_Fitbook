@@ -48,7 +48,7 @@ public class TrainingSessionExerciseControllerTest {
         TrainingIntensity trainingIntensity = trainingIntensityRepository.findAll().get(0);
         TrainingDifficulty trainingDifficulty = trainingDifficultyRepository.findAll().get(0);
         trainingPlan = trainingPlanRepository.save(new TrainingPlan("test_1", "opis_testowy_1", trainingType,
-                trainingLength, trainingIntensity, trainingDifficulty));
+                trainingLength, trainingIntensity, trainingDifficulty, false));
         trainingSession = trainingSessionRepository.save(new TrainingSession(trainingPlan, "test_session", 1));
         Exercise exercise = exerciseRepository.findAll().get(0);
         trainingSessionExercise = trainingSessionExerciseRepository.save(new TrainingSessionExercise(exercise, trainingSession, 1));

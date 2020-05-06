@@ -38,16 +38,21 @@ public class TrainingPlan {
     @ManyToOne
     private TrainingDifficulty trainingDifficulty;
 
+    @Column(columnDefinition = "boolean", unique = false)
+    private Boolean isPrivate;
+
     public TrainingPlan() {
     }
 
-    public TrainingPlan(String name, String description, TrainingType trainingType, TrainingLength trainingLength, TrainingIntensity trainingIntensity, TrainingDifficulty trainingDifficulty) {
+    public TrainingPlan(String name, String description, TrainingType trainingType, TrainingLength trainingLength,
+                        TrainingIntensity trainingIntensity, TrainingDifficulty trainingDifficulty, Boolean isPrivate) {
         this.name = name;
         this.description = description;
         this.trainingType = trainingType;
         this.trainingLength = trainingLength;
         this.trainingIntensity = trainingIntensity;
         this.trainingDifficulty = trainingDifficulty;
+        this.isPrivate = isPrivate;
     }
 
     public Long getId() {
@@ -104,6 +109,14 @@ public class TrainingPlan {
 
     public void setTrainingDifficulty(TrainingDifficulty trainingDifficulty) {
         this.trainingDifficulty = trainingDifficulty;
+    }
+
+    public Boolean getPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(Boolean aPrivate) {
+        isPrivate = aPrivate;
     }
 
     @Override

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class TrainingPlanControllerTest {
         filterParameters.put("type", trainingType.getId().toString());
         user = userRepository.findAll().get(0);
         testTrainingPlan = trainingPlanRepository.save(new TrainingPlan("test_1", "opis_testowy_1", trainingType,
-                trainingLength, trainingIntensity, trainingDifficulty));
+                trainingLength, trainingIntensity, trainingDifficulty, false));
         trainingPlanController.postTrainingPlan(testTrainingPlan, user.getLogin());
     }
 
@@ -77,7 +76,7 @@ public class TrainingPlanControllerTest {
 
     @Test
     public void getFilteredTrainingPlans() {
-        assertTrue(trainingPlanController.getFilteredTrainingPlans(filterParameters).contains(testTrainingPlan));
+        assertTrue(trainingPlanController.getPublicFilteredTrainingPlans(filterParameters).contains(testTrainingPlan));
     }
 
     @Test
@@ -89,7 +88,7 @@ public class TrainingPlanControllerTest {
     public void postTrainingPlan() {
         TrainingPlan postedTrainingPlan = trainingPlanController.postTrainingPlan(new TrainingPlan("t1", "o1",
                 testTrainingPlan.getTrainingType(), testTrainingPlan.getTrainingLength(), testTrainingPlan.getTrainingIntensity(),
-                testTrainingPlan.getTrainingDifficulty()), user.getLogin());
+                testTrainingPlan.getTrainingDifficulty(), false), user.getLogin());
         assertNotNull(trainingPlanRepository.findById(postedTrainingPlan.getId()));
     }
 }
