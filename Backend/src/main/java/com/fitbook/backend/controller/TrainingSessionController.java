@@ -3,10 +3,7 @@ package com.fitbook.backend.controller;
 import com.fitbook.backend.model.TrainingPlan;
 import com.fitbook.backend.model.TrainingSession;
 import com.fitbook.backend.model.UserProgress;
-import com.fitbook.backend.repository.ExerciseRepository;
-import com.fitbook.backend.repository.TrainingSessionExerciseRepository;
-import com.fitbook.backend.repository.TrainingSessionRepository;
-import com.fitbook.backend.repository.UserProgressRepository;
+import com.fitbook.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +16,9 @@ public class TrainingSessionController {
 
     @Autowired
     private TrainingSessionRepository trainingSessionRepository;
+
+    @Autowired
+    private TrainingPlanRepository trainingPlanRepository;
 
     @Autowired
     private TrainingSessionExerciseRepository trainingSessionExerciseRepository;
@@ -41,7 +41,10 @@ public class TrainingSessionController {
 
     @PostMapping("/auth/trainingSessions/post")
     public void postTrainingSessions(@RequestBody ArrayList<TrainingSession> sessionsToAdd) {
-        // TODO: implement this
+        for(TrainingSession trainingSession : sessionsToAdd){
+            trainingSession.setTrainingPlan(trainingPlanRepository.findById(trainingSession.getTrainingPlan().getId()).get());
+            trainingSessionRepository.save(trainingSession);
+        }
     }
 
     @PutMapping("/auth/trainingSessions/delete")

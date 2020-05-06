@@ -19,6 +19,9 @@ public class TrainingSessionExerciseController {
     private TrainingSessionExerciseRepository trainingSessionExerciseRepository;
 
     @Autowired
+    private TrainingSessionRepository trainingSessionRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -32,11 +35,14 @@ public class TrainingSessionExerciseController {
         return trainingSessionExerciseRepository.getTrainingSessionExercises(trainingSessionId);
     }
 
-
     @PostMapping("/auth/trainingSessionExercises/post")
     public void addTrainingSessionExercises(@RequestBody ArrayList<UserProgress> progress_new) {
         for(UserProgress item: progress_new){
             item.setUser(userRepository.getUserByLogin(item.getUser().getLogin()));
+            item.getTrainingSessionExercise().setTrainingSession(trainingSessionRepository.getTrainingSession(
+                    item.getTrainingSessionExercise().getTrainingSession().getTrainingPlan().getId(),
+                    item.getTrainingSessionExercise().getTrainingSession().getOrderNumber(),
+                    item.getTrainingSessionExercise().getTrainingSession().getName()));
             item.getTrainingSessionExercise().setExercise(exerciseRepository.save(item.getTrainingSessionExercise().getExercise()));
             item.setTrainingSessionExercise(trainingSessionExerciseRepository.save(item.getTrainingSessionExercise()));
             userProgressRepository.save(item);

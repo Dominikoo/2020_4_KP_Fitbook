@@ -312,19 +312,19 @@ export class TrainingDetailsComponent implements OnInit {
 
   save() : void{
     this.editMode = false;
-    this.trainingSessionExerciseService.addTrainingSessionExercises(this.progress_new).subscribe(response => {
-      console.log(response);
-    });
-    this.trainingSessionExerciseService.updateTrainingSessionExercises(this.progress_mod).subscribe(response => {
-      console.log(response);
-    });
-    this.trainingSessionExerciseService.deleteTrainingSessionExercises(this.progress_del).subscribe(response => {
-      console.log(response);
-    });
-    this.trainingSessionService.deleteTrainingSessions(this.sessions_del).subscribe(response => {
-      console.log(response);
-    })
     this.trainingSessionService.addTrainingSessions(this.sessions_new).subscribe(response => {
+      console.log(response);
+      this.trainingSessionExerciseService.addTrainingSessionExercises(this.progress_new).subscribe(response => {
+        console.log(response);
+      });
+      this.trainingSessionExerciseService.updateTrainingSessionExercises(this.progress_mod).subscribe(response => {
+        console.log(response);
+      });
+      this.trainingSessionExerciseService.deleteTrainingSessionExercises(this.progress_del).subscribe(response => {
+        console.log(response);
+      });
+    })
+    this.trainingSessionService.deleteTrainingSessions(this.sessions_del).subscribe(response => {
       console.log(response);
     })
   }
