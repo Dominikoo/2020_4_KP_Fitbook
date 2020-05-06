@@ -61,6 +61,9 @@ export class ModifyExercisePopupComponent implements OnInit {
     this.backup_exercise.name = this.exercise.name;
     this.backup_exercise.reps = this.exercise.reps;
     this.backup_exercise.sets = this.exercise.sets;
+    this.form.controls.name.setValue(this.backup_exercise.name);
+    this.form.controls.reps.setValue(this.backup_exercise.reps);
+    this.form.controls.sets.setValue(this.backup_exercise.sets);
   }
 
   onConfirm() {
