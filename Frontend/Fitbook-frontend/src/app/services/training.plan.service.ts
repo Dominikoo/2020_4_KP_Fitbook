@@ -20,4 +20,8 @@ export class TrainingPlanService {
   postTrainingPlan(trainingPlan, userLogin): any{
     return this.httpClient.post(this.url + `/post/${userLogin}`, trainingPlan)
   }
+
+  deleteTrainingPlan(trainingPlanId): any{
+    return this.httpClient.delete(this.url + `/delete/${trainingPlanId}`)
+  }
 }
