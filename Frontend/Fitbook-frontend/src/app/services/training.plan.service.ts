@@ -24,4 +24,8 @@ export class TrainingPlanService {
   deleteTrainingPlan(trainingPlanId): any{
     return this.httpClient.delete(this.url + `/delete/${trainingPlanId}`)
   }
+
+  addTrainigPlanToUser(trainingPlanId, userLogin) {
+    return this.httpClient.get(this.url + `/add/${userLogin}/${trainingPlanId}`)
+  }
 }

@@ -110,4 +110,30 @@ public class TrainingPlanController {
             return null;
         }
     }
+
+    @GetMapping("/auth/trainingPlans/add/{userLogin}/{trainingPlanId}")
+    public TrainingPlan addTrainingPlanToUser(@PathVariable Long trainingPlanId, @PathVariable String userLogin){
+        Optional<TrainingPlan> oldTrainingPlanOptional = trainingPlanRepository.findById(trainingPlanId);
+        User user = userRepository.getUserByLogin(userLogin);
+        if(oldTrainingPlanOptional.isPresent()){
+            TrainingPlan oldTrainingPlan = oldTrainingPlanOptional.get();
+            TrainingPlan newTrainingPlan = trainingPlanRepository.save(new TrainingPlan(oldTrainingPlan.getName(), oldTrainingPlan.getDescription(), oldTrainingPlan.getTrainingType(),
+                    oldTrainingPlan.getTrainingLength(), oldTrainingPlan.getTrainingIntensity(), oldTrainingPlan.getTrainingDifficulty(), true));
+            List<TrainingSession> oldTrainingSessions = trainingSessionRepository.getTrainingPlanSession(oldTrainingPlan.getId());
+            for(TrainingSession ots : oldTrainingSessions){
+                TrainingSession newTrainingSession = trainingSessionRepository.save(new TrainingSession(newTrainingPlan, ots.getName(), ots.getOrderNumber()));
+                List<UserProgress> oldUserProgresses = userProgressRepository.getProgressByTrainingSessionId(ots.getId());
+                for(UserProgress oup : oldUserProgresses){
+                    Exercise oldExercise = oup.getTrainingSessionExercise().getExercise();
+                    Exercise newExercise = exerciseRepository.save(new Exercise(oldExercise.getName(), oldExercise.getDescription(), oldExercise.getSets(), oldExercise.getReps(), oldExercise.getLengthInSecondsPerSet()));
+                    TrainingSessionExercise newTrainingSessionExercise = trainingSessionExerciseRepository.save(new TrainingSessionExercise(newExercise, newTrainingSession, oup.getTrainingSessionExercise().getOrderNumber()));
+                    userProgressRepository.save(new UserProgress(user, newTrainingSessionExercise, 0));
+                }
+            }
+            return  newTrainingPlan;
+        }
+        else{
+            return null;
+        }
+    }
 }

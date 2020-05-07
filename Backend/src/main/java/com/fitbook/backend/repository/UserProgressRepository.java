@@ -18,6 +18,12 @@ public interface UserProgressRepository extends JpaRepository<UserProgress, Long
     );
 
     @Query( "SELECT up FROM UserProgress up " +
+            "WHERE up.trainingSessionExercise.trainingSession.trainingPlan.id = :trainingPlanId")
+    List<UserProgress> getProgressByTrainingPlanId(
+            @Param("trainingPlanId") Long trainingPlanId
+    );
+
+    @Query( "SELECT up FROM UserProgress up " +
             "WHERE up.trainingSessionExercise.trainingSession.id = :trainingSessionId")
     List<UserProgress> getProgressByTrainingSessionId(
             @Param("trainingSessionId") Long trainingSessionId

@@ -126,10 +126,12 @@ export class TrainingManagementComponent implements OnInit {
     response => this.trainingPlans = response)
   }
 
-  addTraining(): void{
+  addTraining(item): void{
     this.bsModalRef = this.modalService.show(TrainingAddedInfoPopupComponent)
+    this.trainingPlanService.addTrainigPlanToUser(item.id, localStorage.getItem('userLogin')).subscribe()
     this.bsModalRef.content.onClose.subscribe(response => {
       if(response){
+        this.router.navigate(['/pages/user-training'])
       }
     })
   }
