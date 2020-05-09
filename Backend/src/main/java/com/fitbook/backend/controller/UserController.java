@@ -26,6 +26,38 @@ public class UserController {
         }
     }
 
+    @PutMapping("/users")
+    User putUser(@RequestBody User changedUser) {
+        try{
+            User temp = getUserById(changedUser.getId());
+            if(changedUser.getLogin() != null){
+                temp.setLogin(changedUser.getLogin());
+            }
+            if(changedUser.getEmail() != null){
+                temp.setEmail(changedUser.getEmail());
+            }
+            if(changedUser.getPassword() != null){
+                temp.setPassword(changedUser.getPassword());
+            }
+            if(changedUser.getAdmin() != null){
+                temp.setAdmin(changedUser.getAdmin());
+            }
+            if(changedUser.getFirstName() != null){
+                temp.setFirstName(changedUser.getFirstName());
+            }
+            if(changedUser.getLastName() != null){
+                temp.setLastName(changedUser.getLastName());
+            }
+            if(changedUser.getNickname() != null){
+                temp.setNickname(changedUser.getNickname());
+            }
+            return userRepository.save(temp);
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
+
     @GetMapping("/users/id/{userId}")
     public User getUserById(@PathVariable Long userId){
         Optional<User> user = userRepository.findById(userId);
