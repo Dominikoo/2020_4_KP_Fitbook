@@ -12,11 +12,11 @@
 
 <nav class="navbar navbar-expand-md sticky-top">
     <a class="navbar-brand" href="#"><img src="assets/logo.png" class="img-responsive img-fluid logo" alt="Responsive image" /></a>
-    <button *ngIf="this.isTokenSet()" class="navbar-toggler bg-light" type="button" (click)="isCollapsed=!isCollapsed" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button *ngIf="this.isTokenSet()" class="details navbar-toggler bg-light" type="button" (click)="isCollapsed=!isCollapsed" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon bg-light"></span>
     </button>
 
-    <div *ngIf="this.isTokenSet()" class="collapse navbar-collapse" id="navbarSupportedContent" [collapse]="isCollapsed" [isAnimated]="false">
+    <div *ngIf="this.isTokenSet()" class="details collapse navbar-collapse" id="navbarSupportedContent" [collapse]="isCollapsed" [isAnimated]="false">
         <!-- bo sie psuje z [isAnimated]="true" ticket: https://github.com/valor-software/ngx-bootstrap/issues/5369-->
 
 
@@ -39,11 +39,11 @@
                     <a class="dropdown-item" href="/pages/user-progress-history">Historia postępów</a>
                 </div>
             </li>
-            <li *ngIf="isAdmin()" class="nav-item active">
+            <li id="admin-dropdown" *ngIf="isAdmin()" class="nav-item active">
                 <a class="nav-link" href="/pages/administration">Administracja <span class="sr-only">(current)</span></a>
             </li>
         </ul>
 
-        <a class="form-inline my-2 my-lg-0 account-click" (click)="accountManagement()"><img src="assets/login-iconv2.PNG" class="img-fluid account" alt="Responsive image"></a>
+        <a id="account-management" *ngIf="this.isTokenSet()" class="details form-inline my-2 my-lg-0 account-click" (click)="accountManagement()"><img src="assets/login-iconv2.PNG" class="img-fluid account" alt="Responsive image"></a>
     </div>
 </nav>
