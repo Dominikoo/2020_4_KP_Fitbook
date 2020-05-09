@@ -20,44 +20,32 @@
 
     <div class="reg-container my-4 px-2">
 
-        <div class="row py-1">
-            <span class="col-2">
+        <form [formGroup]="form">
+            <div class="row py-1">
+                <span class="col-2">
                     <h5>Imię:</h5>
                 </span>
-            <span class="col-6">
-                <form #todoForm="ngForm">
-                    <input id="firstName" name="firstname" class="form-control" maxlength="30" [(ngModel)]="userInfo.firstName" #loginModel="ngModel">
-                </form>
-    
-            </span>
-        </div>
-
-        <div class="row py-1">
-            <span class="col-2">
+                <span class="col-6">
+                    <input type="text" formControlName="firstName" class="form-control">
+                </span>
+            </div>
+            <div class="row py-1">
+                <span class="col-2">
                     <h5>Nazwisko:</h5>
                 </span>
-            <span class="col-6">
-                <form #todoForm="ngForm">
-                    <input id="lastName" name="lastname" class="form-control" maxlength="30" [(ngModel)]="userInfo.lastName" #loginModel="ngModel">
-                </form>
-    
-            </span>
-        </div>
-
-
-        <div class="row py-1">
-            <span class="col-2">
+                <span class="col-6">
+                    <input type="text" formControlName="lastName" class="form-control">
+                </span>
+            </div>
+            <div class="row py-1">
+                <span class="col-2">
                     <h5>Email:</h5>
                 </span>
-            <span class="col-6">
-                    <form #todoForm="ngForm">
-                        <input id="email" name="email" class="form-control" required maxlength="50" [(ngModel)]="userInfo.email" #emailModel="ngModel" readonly>
-        
-                    </form>
-    
+                <span class="col-6">
+                    <input type="text" formControlName="email" class="form-control">
                 </span>
-        </div>
-
+            </div>
+        </form>
     </div>
 
 
@@ -73,21 +61,20 @@
                 <h5>Hasło:</h5>
             </span>
             <span class="col-6">
-                <button id="password-button" type="button" class="btn btn-light" (click)='savePassword()'>Zmień hasło</button>
+                <button id="password-button" type="button" class="btn btn-light" (click)='openPasswordPopup()'>Zmień hasło</button>
             </span>
         </div>
 
-        <div class="row py-1">
-            <span class="col-2">
-                <h5>Nickname:</h5>
-            </span>
-            <span class="col-6">
-                <form #todoForm="ngForm">
-                    <input id="nickname" name="nickname" class="form-control" maxlength="50" [(ngModel)]="userInfo.nickname" #emailModel="ngModel">
-                </form>
-            </span>
-        </div>
-
+        <form [formGroup]="form">
+            <div class="row py-1">
+                <span class="col-2">
+                    <h5>Nickname:</h5>
+                </span>
+                <span class="col-6">
+                    <input type="text" formControlName="nickname" class="form-control">
+                </span>
+            </div>
+        </form>
     </div>
 
     <div class="row py-1">

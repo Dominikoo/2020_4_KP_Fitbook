@@ -21,6 +21,7 @@ import { AddTrainingSessionPopupComponent } from './@popups/add-training-session
 import { AddWeightPopupComponent } from './@popups/add-weight-popup/add-weight-popup.component';
 import { ConfirmDeletePopupComponent } from './@Popups/confirm-delete-popup/confirm-delete-popup.component';
 import { TrainingAddedInfoPopupComponent } from './@Popups/training-added-info-popup/training-added-info-popup.component';
+import { ChangePasswordPopupComponent } from './@popups/change-password-popup/change-password-popup.component';
 defineLocale('pl', plLocale);
 
 @NgModule({
@@ -33,7 +34,8 @@ defineLocale('pl', plLocale);
     AddTrainingSessionPopupComponent,
     AddWeightPopupComponent,
     ConfirmDeletePopupComponent,
-    TrainingAddedInfoPopupComponent
+    TrainingAddedInfoPopupComponent,
+    ChangePasswordPopupComponent
   ],
   imports: [
     BrowserModule,
