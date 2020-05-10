@@ -37,10 +37,10 @@ export class TrainingDetailsComponent implements OnInit {
     private trainingSessionExerciseService: TrainingSessionExcerciseService,
     private modalService: BsModalService,
     private router: Router) { 
-    this.initialize()
   }
 
   ngOnInit(): void {
+    this.initialize()
   }
 
   private initialize(): void {

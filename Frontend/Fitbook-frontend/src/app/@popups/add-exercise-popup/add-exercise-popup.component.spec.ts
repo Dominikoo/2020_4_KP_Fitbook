@@ -63,7 +63,7 @@ describe('AddExercisePopupComponent', () => {
 
     spyOn(component, 'onConfirm');
 
-    let el = fixture.debugElement.query(By.css('#confirm-button')).nativeElement;
+    let el = fixture.debugElement.query(By.css('.confirm-button')).nativeElement;
     el.click();
 
     expect(component.onConfirm).toHaveBeenCalledTimes(0);
@@ -78,7 +78,7 @@ describe('AddExercisePopupComponent', () => {
     fixture.detectChanges();
     spyOn(component, 'onConfirm');
 
-    let el = fixture.debugElement.query(By.css('#confirm-button')).nativeElement;
+    let el = fixture.debugElement.query(By.css('.confirm-button')).nativeElement;
     el.click();
 
     expect(component.onConfirm).toHaveBeenCalledTimes(1);

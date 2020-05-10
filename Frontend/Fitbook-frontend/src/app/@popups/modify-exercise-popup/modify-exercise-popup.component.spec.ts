@@ -60,7 +60,7 @@ describe('ModifyExercisePopupComponent', () => {
 
     spyOn(component, 'onConfirm');
 
-    let el = fixture.debugElement.query(By.css('#confirm-button')).nativeElement;
+    let el = fixture.debugElement.query(By.css('.confirm-button')).nativeElement;
     el.click();
 
     expect(component.onConfirm).toHaveBeenCalledTimes(0);

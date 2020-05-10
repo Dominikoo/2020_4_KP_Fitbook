@@ -35,7 +35,7 @@
               </label>
             </form>
 
-            <button id="confirm-button" type="button" class="btn btn-success" style="margin-top: 20px;" (click)="onConfirm()" [disabled]="form.invalid || form.controls.sets.invalid || form.controls.reps.invalid">Dodaj</button>
+            <button type="button" class="confirm-button btn btn-success" style="margin-top: 20px;" (click)="onConfirm()" [disabled]="form.invalid || form.controls.sets.invalid || form.controls.reps.invalid">Dodaj</button>
             <button type="button" class="cancel-button btn btn-danger btn-block" style="margin-top: 20px;" (click)="onCancel()">Anuluj</button>
         </div>
     </div>

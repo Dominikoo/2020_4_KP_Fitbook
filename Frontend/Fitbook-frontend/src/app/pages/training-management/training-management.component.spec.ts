@@ -10,6 +10,9 @@ import {
 } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 
 describe('TrainingManagementComponent', () => {
   let component: TrainingManagementComponent;
@@ -23,7 +26,11 @@ describe('TrainingManagementComponent', () => {
       ],
       declarations: [ TrainingManagementComponent ],
       providers: [
-        FormBuilder
+        FormBuilder,
+        BsModalService,
+        BsModalRef,
+        ComponentLoaderFactory,
+        PositioningService
       ]
     })
     .compileComponents();
