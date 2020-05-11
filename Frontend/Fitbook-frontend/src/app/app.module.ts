@@ -12,7 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TrainingManagementPopupComponent } from './@popups/training-management-popup/training-management-popup.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AddExercisePopupComponent } from './@popups/add-exercise-popup/add-exercise-popup.component';
 import { AddTrainingPlanPopupComponent } from './@popups/add-training-plan-popup/add-training-plan-popup.component';
@@ -21,19 +20,20 @@ import { AddTrainingSessionPopupComponent } from './@popups/add-training-session
 import { AddWeightPopupComponent } from './@popups/add-weight-popup/add-weight-popup.component';
 import { ConfirmDeletePopupComponent } from './@Popups/confirm-delete-popup/confirm-delete-popup.component';
 import { TrainingAddedInfoPopupComponent } from './@Popups/training-added-info-popup/training-added-info-popup.component';
+import { ChangePasswordPopupComponent } from './@popups/change-password-popup/change-password-popup.component';
 defineLocale('pl', plLocale);
 
 @NgModule({
   declarations: [
     AppComponent,
-    TrainingManagementPopupComponent,
     AddExercisePopupComponent,
     AddTrainingPlanPopupComponent,
     ModifyExercisePopupComponent,
     AddTrainingSessionPopupComponent,
     AddWeightPopupComponent,
     ConfirmDeletePopupComponent,
-    TrainingAddedInfoPopupComponent
+    TrainingAddedInfoPopupComponent,
+    ChangePasswordPopupComponent
   ],
   imports: [
     BrowserModule,

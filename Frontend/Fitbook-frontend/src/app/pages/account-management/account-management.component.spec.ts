@@ -2,8 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccountManagementComponent } from './account-management.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 
 describe('AccountManagementComponent', () => {
   let component: AccountManagementComponent;
@@ -13,11 +17,16 @@ describe('AccountManagementComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        FormsModule
+        FormsModule,
+        RouterTestingModule,
+        ReactiveFormsModule
       ],
       declarations: [ AccountManagementComponent ],
       providers: [
-
+        BsModalService,
+        BsModalRef,
+        ComponentLoaderFactory,
+        PositioningService
       ]
     })
     .compileComponents();
@@ -35,11 +44,11 @@ describe('AccountManagementComponent', () => {
 
   it('should call savePassword method', () => {
     fixture.detectChanges();
-    spyOn(component, 'savePassword');
+    spyOn(component, 'openPasswordPopup');
 
     let el = fixture.debugElement.query(By.css('#password-button')).nativeElement;
     el.click();
-    expect(component.savePassword).toHaveBeenCalledTimes(1);
+    expect(component.openPasswordPopup).toHaveBeenCalledTimes(1);
   });
 
   it('should call saveChanges method', () => {

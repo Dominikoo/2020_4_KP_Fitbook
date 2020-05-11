@@ -39,8 +39,8 @@ export class AddTrainingPlanPopupComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.localeService.use('pl')
-    this.onClose = new Subject()
+    this.localeService.use('pl');
+    this.onClose = new Subject();
     this.form.controls.trainingType.setValue(this.trainingTypes[0]);
     this.form.controls.trainingDifficulty.setValue(this.trainingDiffs[0]);
     this.form.controls.trainingLength.setValue(this.trainingLengths[0]);
@@ -58,7 +58,7 @@ export class AddTrainingPlanPopupComponent implements OnInit {
       this.trainingPlan.id = response.id;
       this.onClose.next(true);
       this.bsModalRef.hide();
-    })
+    });
   }
 
   onCancel() {

@@ -2,6 +2,7 @@ import { UserService } from './../../../services/user.service';
 import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-sidebar',
@@ -10,10 +11,10 @@ import { Router } from '@angular/router';
 })
 export class LoginSidebarComponent implements OnInit {
 
-  loginData = {
-    login: '',
-    password: ''
-  }
+  form = new FormGroup({
+    login: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
+  })
 
   processing = false;
 
@@ -25,15 +26,15 @@ export class LoginSidebarComponent implements OnInit {
   }
 
   signIn(): void {
-    if(this.loginData.login != '' && this.loginData.password != ''){
+    if(this.form.controls.login.value != '' && this.form.controls.password.value != ''){
       this.processing = true;
-      this.authService.logInUser(this.loginData).subscribe(
+      this.authService.logInUser(this.form.getRawValue()).subscribe(
         response => {
           this.processing = false;
           if(response != ''){
             localStorage.setItem('token', response)
-            localStorage.setItem('userLogin', this.loginData.login)
-            this.userService.isUserAdmin(this.loginData.login).subscribe(response =>{
+            localStorage.setItem('userLogin', this.form.controls.login.value)
+            this.userService.isUserAdmin(this.form.controls.login.value).subscribe(response =>{
               localStorage.setItem('isAdmin', response)
               console.log(localStorage.getItem('isAdmin'))
               this.router.navigate(['/pages']);

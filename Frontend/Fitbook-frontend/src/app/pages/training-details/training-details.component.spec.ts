@@ -31,9 +31,12 @@ describe('TrainingDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TrainingDetailsComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
 
-    // window.history.pushState({ training: '0' }, '', '');
+    history.pushState({id: 'xxx', name: 'xxx'}, 'training');
+    history.pushState([{id: 'xxx'}], 'sessions');
+    history.pushState([{id: 'xxx'}], 'progress');
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {

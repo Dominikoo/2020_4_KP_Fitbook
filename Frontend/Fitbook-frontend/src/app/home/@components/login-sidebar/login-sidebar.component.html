@@ -9,28 +9,26 @@
         <img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image">
         <h4 style="color: white; margin-left: 6px;" class="float-left">Zaloguj się</h4>
     </div>
-    <form #todoForm="ngForm">
-        <input id="login" name="login" class="form-control" required maxlength="30" [(ngModel)]="loginData.login" #loginModel="ngModel" placeholder="Login">
-
-        <div *ngIf="loginModel.invalid && (loginModel.dirty || loginModel.touched)" class="alert alert-danger">
-
-            <div *ngIf="loginModel.errors.required">
-                Login jest wymagany
+    <form [formGroup]="form">
+        <label>
+            <input id="login" name="login" formControlName="login" class="form-control" placeholder="Login" >
+            <div *ngIf="form.controls.login.invalid && (form.controls.login.dirty || form.controls.login.touched)" class="alert alert-danger">
+                <div *ngIf="form.controls.login.errors.required">
+                    Login jest wymagany
+                </div>
             </div>
-        </div>
-    </form>
-    <form #todoForm="ngForm">
-        <input id="passwd" name="passwd" type="password" class="form-control" required maxlength="30" [(ngModel)]="loginData.password" #passwdModel="ngModel" placeholder="Hasło">
-
-        <div *ngIf="passwdModel.invalid && (passwdModel.dirty || passwdModel.touched)" class="alert alert-danger">
-
-            <div *ngIf="passwdModel.errors.required">
-                Hasło jest wymagane
+        </label>
+        <label>
+            <input type="password" id="passwd" name="passwd" formControlName="password" class="form-control" placeholder="Hasło">
+            <div *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)" class="alert alert-danger">
+                <div *ngIf="form.controls.password.errors.required">
+                    Hasło jest wymagane
+                </div>
             </div>
-        </div>
+        </label>
     </form>
     <div>
-        <p  *ngIf="this.invalidLoginData" style="color: red; margin-left: 8px; margin-right: 150px; font-weight: bold;" class="float-left">Niepoprawny login i/lub hasło</p>
+        <p *ngIf="this.invalidLoginData" style="color: red; margin-left: 8px; margin-right: 150px; font-weight: bold;" class="float-left">Niepoprawny login i/lub hasło</p>
     </div>
     <button (click)="signIn()" type="button" class="btn btn-light">Zaloguj</button>
     <div class="header"></div>
