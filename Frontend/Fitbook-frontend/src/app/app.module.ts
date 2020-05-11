@@ -18,9 +18,9 @@ import { AddTrainingPlanPopupComponent } from './@popups/add-training-plan-popup
 import { ModifyExercisePopupComponent } from './@popups/modify-exercise-popup/modify-exercise-popup.component';
 import { AddTrainingSessionPopupComponent } from './@popups/add-training-session-popup/add-training-session-popup.component';
 import { AddWeightPopupComponent } from './@popups/add-weight-popup/add-weight-popup.component';
-import { ConfirmDeletePopupComponent } from './@Popups/confirm-delete-popup/confirm-delete-popup.component';
-import { TrainingAddedInfoPopupComponent } from './@Popups/training-added-info-popup/training-added-info-popup.component';
 import { ChangePasswordPopupComponent } from './@popups/change-password-popup/change-password-popup.component';
+import { ConfirmDeletePopupComponent } from './@popups/confirm-delete-popup/confirm-delete-popup.component';
+import { TrainingAddedInfoPopupComponent } from './@popups/training-added-info-popup/training-added-info-popup.component';
 defineLocale('pl', plLocale);
 
 @NgModule({
