@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TrainingSessionExcerciseService {
-  private url = 'https://backend-fitbook.herokuapp.com/auth/trainingSessions';
-  // private url = 'http://localhost:8080/auth/trainingSessionExercises';
+  //private url = 'https://backend-fitbook.herokuapp.com/auth/trainingSessions';
+  private url = 'http://localhost:8080/auth/trainingSessionExercises';
   constructor(private httpClient: HttpClient) { }
 
   getTrainingSessionExercises(trainingSessionId) {

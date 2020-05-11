@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class FiltersService {
-  private url = 'https://backend-fitbook.herokuapp.com/auth';
-  // private url = 'http://localhost:8080/auth';
+  //private url = 'https://backend-fitbook.herokuapp.com/auth';
+  private url = 'http://localhost:8080/auth';
   constructor(private httpClient: HttpClient) { }
 
   getTrainingDiffs() {

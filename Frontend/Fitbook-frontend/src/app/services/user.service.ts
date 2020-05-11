@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  private url = 'https://backend-fitbook.herokuapp.com/users';
-  // private url = 'http://localhost:8080/users';
+  //private url = 'https://backend-fitbook.herokuapp.com/users';
+  private url = 'http://localhost:8080/users';
   constructor(private httpClient: HttpClient) { }
   getById(userId) {
     return this.httpClient.get<any>(`${this.url}/id/${userId}`)

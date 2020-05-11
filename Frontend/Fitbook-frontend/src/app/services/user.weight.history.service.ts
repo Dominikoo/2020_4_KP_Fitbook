@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserWeightHistoryService {
-  private url = 'https://backend-fitbook.herokuapp.com/auth/userWeightHistory';
-  //private url = 'http://localhost:8080/auth/userWeightHistory';
+  //private url = 'https://backend-fitbook.herokuapp.com/auth/userWeightHistory';
+  private url = 'http://localhost:8080/auth/userWeightHistory';
   constructor(private httpClient: HttpClient) { }
 
   post(userWeightHistory, userLogin): any{
