@@ -161,3 +161,15 @@ A serwer sam sobie wszystko zbuduje od nowa.
 
 ![not_found](readme_res/tryb_edycji_dzialanie.PNG)
 
+## panel administracyjny:
+
+![not_found](readme_res/panel_administracyjny1.PNG)
+
+## panel administracyjny (edycja treningu):
+
+![not_found](readme_res/panel_administracyjny2.PNG)
+
+## wykresy historii postępów:
+
+![not_found](readme_res/historia_postepow.PNG)
+
