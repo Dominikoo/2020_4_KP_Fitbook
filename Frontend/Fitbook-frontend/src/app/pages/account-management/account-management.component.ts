@@ -55,8 +55,6 @@ export class AccountManagementComponent implements OnInit {
       )
   }
 
-  savePassword(): void {}
-
   openPasswordPopup(): void {
     const initialState = { id: this.form.controls.id.value,
                            password: this.form.controls.password.value };

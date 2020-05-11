@@ -80,6 +80,4 @@ describe('TopbarComponent', () => {
     expect(component.accountManagement).toHaveBeenCalled();
   });
 
-
-
 });
