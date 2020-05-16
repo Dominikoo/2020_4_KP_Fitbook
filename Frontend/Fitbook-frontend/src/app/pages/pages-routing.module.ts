@@ -9,6 +9,7 @@ import { TrainingDetailsComponent } from './training-details/training-details.co
 import { AccountManagementComponent } from './account-management/account-management.component';
 import { UserProgressHistoryComponent } from './user-progress-history/user-progress-history.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'user-progress-history', component: UserProgressHistoryComponent},
       { path: 'acc-manage', component: AccountManagementComponent },
       { path: 'administration', component: AdminPanelComponent},
+      { path: 'search-results', component: SearchResultsComponent},
       { path: 'wall', component: SbLayoutComponent, children: [{ path: '', component: WallComponent }] }
     ]
   }];

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { TopbarComponent } from './topbar/topbar.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const IE_MODULES = [ TopbarComponent ];
 
@@ -12,7 +14,9 @@ const IE_MODULES = [ TopbarComponent ];
   imports: [
     CommonModule,
     CollapseModule,
-    BsDropdownModule
+    BsDropdownModule,
+    FormsModule,   
+    ReactiveFormsModule 
   ],
   exports: [...IE_MODULES]
 })

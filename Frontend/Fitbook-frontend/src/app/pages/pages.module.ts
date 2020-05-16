@@ -17,6 +17,7 @@ import { ProgressLineChartComponent } from './../charts/progress-line-chart/prog
 import { UserWeightLineChartComponent} from './../charts/user-weight-line-chart/user-weight-line-chart.component';
 import { UserProgressHistoryComponent } from './user-progress-history/user-progress-history.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     ProgressLineChartComponent,
     UserWeightLineChartComponent,
     UserProgressHistoryComponent,
-    AdminPanelComponent],
+    AdminPanelComponent,
+    SearchResultsComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,
