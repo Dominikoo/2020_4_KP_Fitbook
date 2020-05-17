@@ -5,16 +5,19 @@ import com.fitbook.backend.model.User;
 import com.fitbook.backend.model.UserConnection;
 import com.fitbook.backend.repository.UserConnectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.*;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class UserConnectionController {
     @Autowired
     private UserConnectionRepository userConnectionRepository;
+
+    @GetMapping("/auth/userConnections/friends/byUserLogin/{userLogin}")
+    List<User> getFriendsByUserLogin(@PathVariable String userLogin){
+        return userConnectionRepository.getFriendsByUserLogin(userLogin);
+    }
 
     @PutMapping("/auth/userConnections")
     UserConnection putUserConnection(@RequestBody UserConnection modifiedUserConnection) {
