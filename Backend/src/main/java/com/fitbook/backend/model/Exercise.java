@@ -24,7 +24,6 @@ public class Exercise {
     @Column(columnDefinition = "text", unique = false)
     private String description;
 
-
     @Column(columnDefinition = "int")
     private int sets;
 
