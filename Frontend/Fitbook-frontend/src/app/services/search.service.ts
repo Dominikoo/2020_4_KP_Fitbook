@@ -9,7 +9,7 @@ export class SearchService {
   private url = 'http://localhost:8080/auth/search';
   constructor(private httpClient: HttpClient) { }
 
-  searchUsers(phrase) {
-    return this.httpClient.get(this.url+`/users/${phrase}`)
+  searchUserConnections(phrase, userLogin) {
+    return this.httpClient.get(this.url+`/userConnections/${phrase}/${userLogin}`)
   }
 }
