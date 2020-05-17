@@ -1,0 +1,9 @@
+.user-item:nth-child(odd){
+    display: grid; grid-template-columns: 350px 184px;
+    background-color: #c2bcb6;
+}
+
+.user-item:nth-child(even){
+    display: grid; grid-template-columns: 350px 184px;
+    background-color: #e8d7c8;
+}
