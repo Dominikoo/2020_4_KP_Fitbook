@@ -39,4 +39,8 @@ export class TopbarComponent implements OnInit {
     if(this.router.url == '/pages/search-results') window.location.reload();
     this.router.navigate(['/pages/search-results']);
   }
+
+  logout(){
+    this.router.navigate(['']);
+  }
 }
