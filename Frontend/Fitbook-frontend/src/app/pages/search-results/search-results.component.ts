@@ -13,7 +13,7 @@ export class SearchResultsComponent implements OnInit {
   constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {
-    this.searchService.searchUsers(history.state.phrase).subscribe(response =>{ 
+    this.searchService.searchUsers(localStorage.getItem("phrase")).subscribe(response =>{ 
       this.searchedUsers = response
       console.log(this.searchedUsers)
     });

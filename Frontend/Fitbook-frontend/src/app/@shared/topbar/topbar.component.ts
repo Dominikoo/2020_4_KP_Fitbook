@@ -35,6 +35,8 @@ export class TopbarComponent implements OnInit {
   }
 
   search(): void{
-    this.router.navigate(['/pages/search-results'],  {state: {phrase: this.form.controls.searchText.value}});
+    localStorage.setItem('phrase', this.form.controls.searchText.value)
+    if(this.router.url == '/pages/search-results') window.location.reload();
+    this.router.navigate(['/pages/search-results']);
   }
 }
