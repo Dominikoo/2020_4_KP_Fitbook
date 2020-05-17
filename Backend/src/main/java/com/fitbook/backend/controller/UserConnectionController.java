@@ -18,6 +18,28 @@ public class UserConnectionController {
 
     @PutMapping("/auth/userConnections")
     UserConnection putUserConnection(@RequestBody UserConnection modifiedUserConnection) {
-        return userConnectionRepository.save(modifiedUserConnection);
+        modifiedUserConnection = userConnectionRepository.save(modifiedUserConnection);
+        UserConnection secondConnection = userConnectionRepository.getConnectionByLogins(
+                modifiedUserConnection.getSecondUser().getLogin(), modifiedUserConnection.getFirstUser().getLogin());
+        switch (modifiedUserConnection.getStatus()){
+            case 0:
+                if(secondConnection != null) secondConnection.setStatus(0);
+                else secondConnection = new UserConnection(modifiedUserConnection.getSecondUser(), modifiedUserConnection.getFirstUser(), 0);
+                break;
+            case 1:
+                if(secondConnection != null) secondConnection.setStatus(1);
+                else secondConnection = new UserConnection(modifiedUserConnection.getSecondUser(), modifiedUserConnection.getFirstUser(), 1);
+                break;
+            case 2:
+                if(secondConnection != null) secondConnection.setStatus(3);
+                else secondConnection = new UserConnection(modifiedUserConnection.getSecondUser(), modifiedUserConnection.getFirstUser(), 3);
+                break;
+            case 3:
+                if(secondConnection != null) secondConnection.setStatus(2);
+                else secondConnection = new UserConnection(modifiedUserConnection.getSecondUser(), modifiedUserConnection.getFirstUser(), 2);
+                break;
+        }
+        userConnectionRepository.save(secondConnection);
+        return modifiedUserConnection;
     }
 }
