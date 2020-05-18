@@ -1,8 +1,9 @@
 <div class="wall-container">
-    <div>
-        <app-post-creator></app-post-creator>
-    </div>
     <ul class="list-group">
+        <li class="list-group-item">
+            <app-post-creator></app-post-creator>
+        </li>
+        <br/>
         <li *ngFor="let post of posts; index as i" class="list-group-item">
             <app-text-post [data]="post"></app-text-post>
         </li>
