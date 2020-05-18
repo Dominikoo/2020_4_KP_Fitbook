@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PostLikeService {
-  //private url = 'https://backend-fitbook.herokuapp.com/auth/postLike';
-  private url = 'http://localhost:8080/auth/postLike';
+  private url = 'https://backend-fitbook.herokuapp.com/auth/postLike';
+//   private url = 'http://localhost:8080/auth/postLike';
   constructor(private httpClient: HttpClient) { }
 
 //   put(modifiedConnection) {

@@ -3,6 +3,7 @@ import { PostService } from 'src/app/services/post.service';
 import { PostLikeService } from 'src/app/services/post.like.service';
 import { UserService } from 'src/app/services/user.service';
 import { PostCommentService } from 'src/app/services/post.comment.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -19,6 +20,9 @@ export class TextPostComponent implements OnInit {
   likesNumber: number = 0;
 
   commentsList: Array<any> = undefined;
+  form = new FormGroup({
+    commentContent: new FormControl('', [Validators.required])
+  })
 
   constructor(private postLikeService: PostLikeService,
               private userService: UserService,
@@ -72,8 +76,8 @@ export class TextPostComponent implements OnInit {
   }
 
   commentOnPost() {
-    this.postCommentService.postComment(this.prepareInfo()).subscribe(response => {
-      console.log(response);
+    this.postCommentService.postComment(this.prepareComment()).subscribe(response => {
+      window.location.reload();
     });
   }
 
@@ -81,6 +85,14 @@ export class TextPostComponent implements OnInit {
     return {
       user: this.user,
       post: this.data
+    };
+  }
+
+  private prepareComment() {
+    return {
+      user: this.user,
+      post: this.data,
+      commentContent: this.form.controls.commentContent.value
     };
   }
 
