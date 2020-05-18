@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PostService } from 'src/app/services/post.service';
 import { PostLikeService } from 'src/app/services/post.like.service';
 import { UserService } from 'src/app/services/user.service';
+import { PostCommentService } from 'src/app/services/post.comment.service';
 
 
 @Component({
@@ -12,11 +13,16 @@ import { UserService } from 'src/app/services/user.service';
 export class TextPostComponent implements OnInit {
 
   @Input() data;
+  alreadyLiked: boolean = false;
+  showComments: boolean = false;
   user;
   likesNumber: number = 0;
 
+  commentsList: Array<any> = undefined;
+
   constructor(private postLikeService: PostLikeService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private postCommentService: PostCommentService) { }
 
   ngOnInit(): void {
     this.userService.getByLogin(localStorage.getItem('userLogin')).subscribe(response => {
@@ -25,20 +31,40 @@ export class TextPostComponent implements OnInit {
 
     this.postLikeService.getLikesByPostId(this.data.id).subscribe(response => {
       if(response != null){
-        this.likesNumber = response;
+        response.forEach(element => {
+          if(element.user.login == localStorage.getItem('userLogin')){
+            this.alreadyLiked = true;
+          }
+        });
+        this.likesNumber = response.length;
       }
     });
+
+    this.postCommentService.getCommentsById(this.data.id).subscribe(response => {
+      if(response != null){
+        this.commentsList = response;
+      }
+    })
   }
 
   likePost() {
-    this.postLikeService.postPostLike(this.prepareLike()).subscribe(response => {
-      if(response != null){
-        this.likesNumber = this.likesNumber + 1;
-      }
+    if(!this.alreadyLiked){
+      this.postLikeService.postPostLike(this.prepareInfo()).subscribe(response => {
+        console.log(response);
+        if(response != null){
+          this.likesNumber = this.likesNumber + 1;
+        }
+      });
+    }
+  }
+
+  commentOnPost() {
+    this.postCommentService.postComment(this.prepareInfo()).subscribe(response => {
+      console.log(response);
     });
   }
 
-  private prepareLike() {
+  private prepareInfo() {
     return {
       user: this.user,
       post: this.data

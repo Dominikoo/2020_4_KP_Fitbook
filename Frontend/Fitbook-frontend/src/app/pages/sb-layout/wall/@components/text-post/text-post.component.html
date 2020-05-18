@@ -18,11 +18,33 @@
     <hr>
     <div class="row">
         <div class="col">
-            <span class="like-icon float-left"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
-            <span class="comment-icon float-left"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
+            <span *ngIf="!alreadyLiked" class="like-icon float-left" (click)="likePost()"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
+            <span class="comment-icon float-left" (click)="showComments = !showComments"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
             <span class="share-icon float-left"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
+            <span class="likes float-left">{{ likesNumber }}</span>
             <span class="float-end"></span>
         </div>
     </div>
+    <div *ngIf="showComments">
+        <hr>
+        <div class="comment" *ngFor="let comment of commentsList">
+            <div class="header-comment row">
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <span class="float-left"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
+                    <span class="float-left" style="padding-top: 4px;">{{comment.user.firstName}} {{comment.user.lastName}} ({{comment.user.login}})</span>
+                    <span class="float-end"></span>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    {{comment.publicationDate}}
+                </div>
+            </div>
+            <div class="comment-body row">
+                <div class="col py-3">
+                    {{comment.commentContent}}
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div>
