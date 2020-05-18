@@ -24,7 +24,7 @@ export class SearchResultsComponent implements OnInit {
   }
 
   addFriend(item): void{
-    item.status = 2
+    item.status = 3
     this.userConnectionService.put(item).subscribe(response => item = response)
   }
 
