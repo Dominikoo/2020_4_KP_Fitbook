@@ -53,6 +53,7 @@ export class TextPostComponent implements OnInit {
         console.log(response);
         if(response != null){
           this.likesNumber = this.likesNumber + 1;
+          this.alreadyLiked = true;
         }
       });
     }

@@ -35,8 +35,9 @@ public class PostController {
     public List<Post> getFriendsPostsByUserLogin(@PathVariable String userLogin){
         List<Post> friendsPosts = new ArrayList<>();
         for(User friend : userConnectionController.getFriendsByUserLogin(userLogin)){
-            friendsPosts.addAll(getPostsByUserLogin(userLogin));
+            friendsPosts.addAll(getPostsByUserLogin(friend.getLogin()));
         }
+        friendsPosts.addAll(getPostsByUserLogin(userLogin));
         return friendsPosts;
     }
 
