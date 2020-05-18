@@ -18,6 +18,8 @@ import { UserWeightLineChartComponent} from './../charts/user-weight-line-chart/
 import { UserProgressHistoryComponent } from './user-progress-history/user-progress-history.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { TextPostComponent } from './sb-layout/wall/@components/text-post/text-post.component';
+import { PostCreatorComponent } from './sb-layout/wall/@components/post-creator/post-creator.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     UserWeightLineChartComponent,
     UserProgressHistoryComponent,
     AdminPanelComponent,
-    SearchResultsComponent],
+    SearchResultsComponent,
+    TextPostComponent,
+    PostCreatorComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,

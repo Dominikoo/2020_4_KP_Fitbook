@@ -1,6 +1,19 @@
-<span>
-  <router-outlet></router-outlet>
-</span>
-<span>
-  sidebar
-</span>
+<div id="grey-background">
+    <span id="content" class="float-left col-9">
+      <router-outlet></router-outlet>
+    </span>
+    <span id="sidebar" class="float-right col-3">
+      <div id="header1">
+        <img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image">
+        <h4 style="color: white; margin-left: 6px;" class="float-left">Znajomi</h4>
+      </div>
+      <div class="friends-list-container">
+        <div class="block" *ngFor="let data of friendsList; index as i">
+          {{data.firstName}} {{data.lastName}} ({{data.login}})
+        </div>
+
+      </div>
+
+    </span>
+    <span class="float-end"></span>
+</div>

@@ -1,4 +1,13 @@
-<p>wall works!</p>
+<div class="wall-container">
+    <div>
+        <app-post-creator></app-post-creator>
+    </div>
+    <ul class="list-group">
+        <li *ngFor="let post of posts; index as i" class="list-group-item">
+            <app-text-post [data]="post"></app-text-post>
+        </li>
+    </ul>
+</div>
 <a routerLink="/pages/training">przejdź na wyszukiwanie treningów</a>
 <br>
 <a routerLink="/pages/user-training">przejdź do treningów użytkownika</a>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserConnectionService } from 'src/app/services/user.connection.service';
 
 @Component({
   selector: 'app-sb-layout',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SbLayoutComponent implements OnInit {
 
-  constructor() { }
+  friendsList: Array<any> = undefined;
+
+  constructor(private userConnectionService: UserConnectionService) { }
 
   ngOnInit(): void {
+    this.userConnectionService.getFriendsByLogin(localStorage.getItem('userLogin')).subscribe(response => {
+      this.friendsList = response;
+      console.log(this.friendsList);
+    });
   }
 
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from 'src/app/services/post.service';
+
+
 
 @Component({
   selector: 'app-wall',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WallComponent implements OnInit {
 
-  constructor() { }
+  posts: Array<any> = undefined;
+  user;
+
+  constructor(private postsService: PostService) { }
 
   ngOnInit(): void {
+    this.postsService.getFriendsPostsByLogin(localStorage.getItem('userLogin')).subscribe(response => {
+      this.posts = response;
+    });
   }
 
 }

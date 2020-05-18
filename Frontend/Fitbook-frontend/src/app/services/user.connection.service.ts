@@ -12,4 +12,8 @@ export class UserConnectionService {
   put(modifiedConnection) {
     return this.httpClient.put(this.url, modifiedConnection)
   }
+
+  getFriendsByLogin(userLogin) {
+    return this.httpClient.get<any>(this.url+`/friends/byUserLogin/${userLogin}`);
+  }
 }
