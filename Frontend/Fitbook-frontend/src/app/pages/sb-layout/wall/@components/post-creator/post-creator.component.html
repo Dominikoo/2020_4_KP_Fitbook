@@ -2,7 +2,7 @@
     <div class="header-row row">
         <div class="col">
             <span class="float-left"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
-            <span class="float-left" style="padding-top: 4px;"><strong>{{user.firstName}} {{user.lastName}} ({{user.login}})</strong></span>
+            <span class="float-left" style="padding-top: 7px;"><strong>{{user.firstName}} {{user.lastName}} ({{user.login}})</strong></span>
             <span class="float-end"></span>
         </div>
     </div>
@@ -16,6 +16,6 @@
     <div class="row">
         <div class="col-lg-10 col-md-9 col-sm-8"></div>
         <div class="col-lg-2 col-md-9 col-sm-4">
-            <button class="btn pull-right">Opublikuj</button>
+            <button class="btn pull-right" (click)="postPost()" [disabled]="form.controls.content.invalid">opublikuj</button>
         </div>
     </div>

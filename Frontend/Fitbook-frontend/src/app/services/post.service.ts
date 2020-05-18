@@ -13,7 +13,12 @@ export class PostService {
 //     return this.httpClient.put(this.url, modifiedConnection)
 //   }
 
-  getFriendsPostsByLogin(userLogin) {
-      return this.httpClient.get<any>(this.url+`/friends/byUserLogin/${userLogin}`);
-  }
+    postPost(newPost) {
+        console.log("tutaj2");
+        return this.httpClient.post<any>(this.url, newPost);
+    }
+
+    getFriendsPostsByLogin(userLogin) {
+        return this.httpClient.get<any>(this.url+`/friends/byUserLogin/${userLogin}`);
+    }
 }
