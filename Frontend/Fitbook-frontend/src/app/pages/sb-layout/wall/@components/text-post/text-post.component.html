@@ -52,11 +52,11 @@
         </div>
     </div>
     <div class="comment-input row">
-        <form [formGroup]="form" class="col-lg-10 col-md-9 col-sm-8">
+        <form [formGroup]="form" class="col-lg-9 col-md-8 col-sm-7">
             <input type="text" class="form-control" formControlName="commentContent" placeholder="Napisz co o tym myślisz...">
         </form>
-        <div class="buttoncol col-lg-2 col-md-3 col-sm-4">
-            <button class="btn pull-right" (click)="commentOnPost()" [disabled]="form.controls.commentContent.invalid">skomentuj</button>
+        <div class="col-lg-3 col-md-4 col-sm-5">
+            <button class="btn pull-right col" (click)="commentOnPost()" [disabled]="form.controls.commentContent.invalid">skomentuj</button>
         </div>
     </div>
 
