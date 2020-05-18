@@ -30,6 +30,9 @@
     </div>
     <div *ngIf="showComments">
         <hr>
+        <div *ngIf="commentsList.length == 0">
+            <b style="margin-left: 15px;">Brak komentarzy</b>
+        </div>
         <div class="comment" *ngFor="let comment of commentsList">
             <div class="header-comment row">
                 <div class="col-lg-10 col-md-9 col-sm-8">
