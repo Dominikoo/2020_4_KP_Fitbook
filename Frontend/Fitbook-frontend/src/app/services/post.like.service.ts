@@ -20,4 +20,8 @@ export class PostLikeService {
     getLikesByPostId(postId) {
         return this.httpClient.get<any>(this.url+`/${postId}`);
     }
+
+    deletePostLike(userLogin, postId){
+      return this.httpClient.delete<any>(this.url+`/${userLogin}/${postId}`)
+    }
 }

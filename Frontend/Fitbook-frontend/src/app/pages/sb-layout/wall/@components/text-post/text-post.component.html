@@ -18,10 +18,11 @@
     <hr>
     <div class="row">
         <div class="col">
-            <span *ngIf="!alreadyLiked" class="like-icon float-left" (click)="likePost()"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
+            <span *ngIf="!alreadyLiked" class="like-icon float-left" (click)="likePost()"><img src="assets/heart-icon-empty.png" class="img-fluid float-left" alt="Responsive image"></span>
+            <span *ngIf="alreadyLiked" class="like-icon float-left" (click)="dislikePost()"><img src="assets/heart-icon.png" class="img-fluid float-left" alt="Responsive image"></span>
+            <span class="likes float-left" style="margin-right: 10px; margin-left: 2px;"><b>{{ likesNumber }}</b></span>
             <span class="comment-icon float-left" (click)="showComments = !showComments"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
             <span class="share-icon float-left"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
-            <span class="likes float-left">{{ likesNumber }}</span>
             <span class="float-end"></span>
         </div>
     </div>

@@ -59,6 +59,18 @@ export class TextPostComponent implements OnInit {
     }
   }
 
+  dislikePost() {
+    if(this.alreadyLiked){
+      this.postLikeService.deletePostLike(this.user.login, this.data.id).subscribe(response => {
+        console.log(response);
+        if(response != null){
+          this.likesNumber = this.likesNumber - 1;
+          this.alreadyLiked = false;
+        }
+      });
+    }
+  }
+
   commentOnPost() {
     this.postCommentService.postComment(this.prepareInfo()).subscribe(response => {
       console.log(response);
