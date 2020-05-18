@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SearchService {
-  //private url = 'https://backend-fitbook.herokuapp.com/auth/search';
-  private url = 'http://localhost:8080/auth/search';
+  private url = 'https://backend-fitbook.herokuapp.com/auth/search';
+  // private url = 'http://localhost:8080/auth/search';
   constructor(private httpClient: HttpClient) { }
 
   searchUserConnections(phrase, userLogin) {

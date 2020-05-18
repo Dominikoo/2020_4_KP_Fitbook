@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PostService {
-  //private url = 'https://backend-fitbook.herokuapp.com/auth/post';
-  private url = 'http://localhost:8080/auth/post';
+  private url = 'https://backend-fitbook.herokuapp.com/auth/post';
+//   private url = 'http://localhost:8080/auth/post';
   constructor(private httpClient: HttpClient) { }
 
 //   put(modifiedConnection) {
@@ -14,7 +14,6 @@ export class PostService {
 //   }
 
     postPost(newPost) {
-        console.log("tutaj2");
         return this.httpClient.post<any>(this.url, newPost);
     }
 
