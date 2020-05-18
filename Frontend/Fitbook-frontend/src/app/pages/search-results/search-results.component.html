@@ -8,8 +8,8 @@
         <div style="padding: 4px; display: grid;">
             <button *ngIf="item.status==0" type="button" class="btn btn-dark" (click)="addFriend(item)">Dodaj znajomego</button>
             <button *ngIf="item.status==1" type="button" class="btn btn-danger" (click)="removeFriend(item)">Usuń znajomego</button>
-            <button *ngIf="item.status==2" type="button" class="btn btn-warning" (click)="cancelInvitation(item)">Anuluj zaproszenie</button>
-            <button *ngIf="item.status==3" type="button" class="btn btn-success" (click)="acceptInvitation(item)">Akceptuj zaproszenie</button>
+            <button *ngIf="item.status==2" type="button" class="btn btn-success" (click)="acceptInvitation(item)">Akceptuj zaproszenie</button>
+            <button *ngIf="item.status==3" type="button" class="btn btn-warning" (click)="cancelInvitation(item)">Anuluj zaproszenie</button>
         </div>
     </li>
 </div>

@@ -25,4 +25,12 @@ public interface UserConnectionRepository extends JpaRepository<UserConnection, 
     List<User> getFriendsByUserLogin(
             @Param("userLogin") String userLogin
     );
+
+    @Query( "SELECT uc FROM UserConnection uc " +
+            "WHERE uc.firstUser.login LIKE :userLogin " +
+            "AND uc.status = 2"
+    )
+    List<UserConnection> getInvitationsByUserLogin(
+            @Param("userLogin") String userLogin
+    );
 }

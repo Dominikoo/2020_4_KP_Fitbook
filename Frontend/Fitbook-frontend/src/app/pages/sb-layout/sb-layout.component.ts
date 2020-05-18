@@ -9,14 +9,37 @@ import { UserConnectionService } from 'src/app/services/user.connection.service'
 export class SbLayoutComponent implements OnInit {
 
   friendsList: Array<any> = undefined;
+  invitationsList: Array<any> = undefined;
 
   constructor(private userConnectionService: UserConnectionService) { }
 
   ngOnInit(): void {
     this.userConnectionService.getFriendsByLogin(localStorage.getItem('userLogin')).subscribe(response => {
       this.friendsList = response;
-      console.log(this.friendsList);
     });
+
+    this.userConnectionService.getInvitationsByLogin(localStorage.getItem('userLogin')).subscribe(response => {
+      this.invitationsList = response;
+    });
+  }
+
+  cancelInvitation(item): void{
+    item.status = 0
+    this.userConnectionService.put(item).subscribe(response => item = response)
+    const index = this.invitationsList.indexOf(item, 0);
+    if (index > -1) {
+      this.invitationsList.splice(index, 1);
+    }
+  }
+
+  acceptInvitation(item): void{
+    item.status = 1
+    this.userConnectionService.put(item).subscribe(response => item = response)
+    const index = this.invitationsList.indexOf(item, 0);
+    if (index > -1) {
+      this.invitationsList.splice(index, 1);
+    }
+    this.friendsList.push(item.secondUser)
   }
 
 }
