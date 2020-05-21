@@ -33,4 +33,9 @@ public interface TrainingPlanRepository extends JpaRepository<TrainingPlan, Long
             @Param("typeIds") List<Long> typeIds,
             @Param("userLogin") String userLogin
     );
+
+    @Query( "SELECT tp FROM TrainingPlan tp WHERE UPPER(tp.name) LIKE CONCAT('%', UPPER(:phrase), '%') AND tp.isPrivate = FALSE")
+    List<TrainingPlan> searchTrainingPlansByPhrase(
+            @Param("phrase") String phrase
+    );
 }

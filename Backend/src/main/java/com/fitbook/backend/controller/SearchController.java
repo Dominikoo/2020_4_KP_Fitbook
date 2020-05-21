@@ -1,7 +1,9 @@
 package com.fitbook.backend.controller;
 
+import com.fitbook.backend.model.TrainingPlan;
 import com.fitbook.backend.model.User;
 import com.fitbook.backend.model.UserConnection;
+import com.fitbook.backend.repository.TrainingPlanRepository;
 import com.fitbook.backend.repository.UserConnectionRepository;
 import com.fitbook.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class SearchController {
     private UserRepository userRepository;
     @Autowired
     private UserConnectionRepository userConnectionRepository;
+    @Autowired
+    private TrainingPlanRepository trainingPlanRepository;
 
     @GetMapping("/auth/search/userConnections/{phrase}/{userLogin}")
     public List<UserConnection> searchUserConnections(@PathVariable String phrase, @PathVariable String userLogin){
@@ -33,5 +37,10 @@ public class SearchController {
             userConnections.add(Objects.requireNonNullElseGet(userConnection, () -> new UserConnection(user, foundUser, 0)));
         }
         return userConnections;
+    }
+
+    @GetMapping("/auth/search/trainingPlans/{phrase}")
+    public List<TrainingPlan> searchTrainingPlans(@PathVariable String phrase){
+        return phrase.equals("") ? new ArrayList<>() : trainingPlanRepository.searchTrainingPlansByPhrase(phrase);
     }
 }
