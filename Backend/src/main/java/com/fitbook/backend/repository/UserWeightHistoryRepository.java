@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface UserWeightHistoryRepository extends JpaRepository<UserWeightHistory, Long> {
@@ -16,4 +17,11 @@ public interface UserWeightHistoryRepository extends JpaRepository<UserWeightHis
     List<UserWeightHistory> getUserWeightHistory(
             @Param("userLogin") String userLogin
     );
+
+    @Query( "SELECT uwh FROM UserWeightHistory uwh " +
+            "WHERE uwh.user.login = :userLogin AND uwh.date = :date")
+    UserWeightHistory getUserWeightHistoryByUserAndDate(
+            @Param("userLogin") String userLogin,
+            @Param("date") LocalDate date
+            );
 }

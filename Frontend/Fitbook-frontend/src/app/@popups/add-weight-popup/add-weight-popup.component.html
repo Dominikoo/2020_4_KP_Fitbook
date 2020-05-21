@@ -8,7 +8,10 @@
     <div class="row">
         <div class="col-md-8 offset-md-2 form-group" style="display: grid;">
             <input id="exercise-name" name="exercise-name" class="form-control" style="margin-top: 10px;" [(ngModel)]="user_weight.date"
-            #dateValue="ngModel" required type="date">
+            #dateValue="ngModel" required type="date" (change)="change()">
+            <b *ngIf="exists" style="color: red;">
+                Wpis tego dnia już istnieje, zostanie on nadpisany
+            </b>
             <b class="modal-title pull-left" style="margin-top: 12px;">Waga w Kg:</b>
             <input id="exercise-sets" name="exercise-sets" class="form-control" style="margin-top: 10px;" placeholder="waga w kg" [(ngModel)]="user_weight.weight"
             #weightValue="ngModel" required type="number" min=1 max=500>

@@ -21,7 +21,18 @@ export class UserProgressHistoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.userProgressService.getUserProgressSummary(localStorage.getItem('userLogin')).subscribe(response =>
-      this.userProgressSummary = response);
+      this.userProgressSummary = response)
+    this.loadWeight()
+  }
+
+  addWeight() : void{
+    this.bsModalRef = this.modalService.show(AddWeightPopupComponent)
+    this.bsModalRef.content.onClose.subscribe(response => {
+      if(response) this.loadWeight()
+    })
+  }
+
+  loadWeight(){
     this.userWeightHistoryService.getUserWeightHistory(localStorage.getItem('userLogin')).subscribe(response =>{
       this.userWeightHistory = response
       let weight: Array<any> = this.userWeightHistory[0].series;
@@ -33,13 +44,6 @@ export class UserProgressHistoryComponent implements OnInit {
       }
       this.yWeightMax = this.yWeightMax + 20;
       this.yWeightMin = this.yWeightMin - 30;
-    });
-  }
-
-  addWeight() : void{
-    this.bsModalRef = this.modalService.show(AddWeightPopupComponent)
-    this.bsModalRef.content.onClose.subscribe(response => {
-      console.log(response)
     })
   }
 }

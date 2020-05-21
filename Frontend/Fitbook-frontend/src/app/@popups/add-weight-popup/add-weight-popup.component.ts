@@ -17,6 +17,8 @@ export class AddWeightPopupComponent implements OnInit {
     weight: 0
   }
 
+  exists = false;
+
   constructor( public bsModalRef: BsModalRef, private userWeightHistoryService: UserWeightHistoryService) { }
 
   ngOnInit(): void {
@@ -33,5 +35,11 @@ export class AddWeightPopupComponent implements OnInit {
   onCancel() {
     this.onClose.next(false);
     this.bsModalRef.hide();
+  }
+
+  change(){
+    this.userWeightHistoryService.existsWeightHistory(localStorage.getItem('userLogin'), this.user_weight.date).subscribe(
+      response => this.exists = response
+    )
   }
 }

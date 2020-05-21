@@ -1,9 +1,11 @@
 package com.fitbook.backend.controller;
 
+import com.fitbook.backend.model.User;
 import com.fitbook.backend.model.UserWeightHistory;
 import com.fitbook.backend.repository.UserRepository;
 import com.fitbook.backend.repository.UserWeightHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -21,7 +23,14 @@ public class UserWeightHistoryController {
     public UserWeightHistory postUserWeightHistory(@RequestBody UserWeightHistory newUserWeightHistory, @PathVariable String userLogin){
         newUserWeightHistory.setUser(userRepository.getUserByLogin(userLogin));
         try{
-            return userWeightHistoryRepository.save(newUserWeightHistory);
+            UserWeightHistory oldUserWeightHistory = userWeightHistoryRepository.getUserWeightHistoryByUserAndDate(userLogin, newUserWeightHistory.getDate());
+            if(oldUserWeightHistory == null) {
+                return userWeightHistoryRepository.save(newUserWeightHistory);
+            }
+            else{
+                oldUserWeightHistory.setWeight(newUserWeightHistory.getWeight());
+                return userWeightHistoryRepository.save(oldUserWeightHistory);
+            }
         }
         catch (Exception e){
             return null;
@@ -45,5 +54,10 @@ public class UserWeightHistoryController {
         jsonBuilder.replace(jsonBuilder.length() - 1, jsonBuilder.length(), "");
         jsonBuilder.append("\n]\n}\n]");
         return jsonBuilder.toString();
+    }
+
+    @GetMapping("/auth/userWeightHistory/get/exists/{userLogin}/{date}")
+    public Boolean existUserWeightHistory(@PathVariable String userLogin, @PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
+        return userWeightHistoryRepository.getUserWeightHistoryByUserAndDate(userLogin, date) != null;
     }
 }

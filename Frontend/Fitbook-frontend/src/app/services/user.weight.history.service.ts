@@ -16,4 +16,8 @@ export class UserWeightHistoryService {
   getUserWeightHistory(userLogin): any{
       return this.httpClient.get<any>(this.url + `/get/all/${userLogin}`)
   }
+
+  existsWeightHistory(userLogin, date): any{
+    return this.httpClient.get<any>(this.url + `/get/exists/${userLogin}/${date}`)
+  }
 }
