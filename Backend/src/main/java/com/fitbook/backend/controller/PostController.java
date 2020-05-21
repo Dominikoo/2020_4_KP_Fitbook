@@ -23,7 +23,13 @@ public class PostController {
     @PostMapping("/auth/post")
     public Post postPost(@RequestBody Post newPost) {
         if(newPost.getPublicationDate() == null) newPost.setPublicationDate(LocalDate.now());
-        return postRepository.save(newPost);
+        if(newPost.getType() == 1){
+            return postRepository.save(newPost);
+        }
+        else if(newPost.getType() == 2){
+            return postRepository.save(newPost);
+        }
+        return null;
     }
 
     @GetMapping("/auth/post/byUserLogin/{userLogin}")
