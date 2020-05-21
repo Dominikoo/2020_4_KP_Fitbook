@@ -1,0 +1,76 @@
+<div class="post-container">
+    <div class="header-row row">
+        <div class="col-lg-10 col-md-9 col-sm-8">
+            <span class="float-left"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
+            <span class="float-left" style="padding-top: 4px;"><strong>{{data.user.firstName}} {{data.user.lastName}} ({{data.user.login}})</strong></span>
+            <span class="float-end"></span>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4">
+            {{data.publicationDate}}
+        </div>
+    </div>
+    <hr>
+    <div class="main-row row">
+        <div class="col py-3" style="display: grid; grid-template-columns: 100%;">
+            <div>
+                {{data.content}}fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+                <br> <b>Udostępniony plan treningowy: </b>
+                <div style="display: grid; grid-template-columns: 220px auto 220px; grid-template-rows: 50px auto; background-color: silver; margin-top: 2px;">
+                    <img src='assets/training1.png' width="200" height="200" class='training-item-photo' style="margin: 10px; border-style: solid;border-width: 1px; 
+                    grid-column: 1; grid-row-start: 1; grid-row-end: 3;" alt="LOGO">
+                    <b style="font-size: 24px; grid-column: 2; grid-row: 1; margin-top: 10px; margin-left: 10px;">{{data.sharedTrainingPlan.name}}</b>
+                    <a style="grid-column: 2; grid-row: 2;">{{data.sharedTrainingPlan.description}}</a>
+                    <div style="text-align: right; grid-row-start: 1; grid-row-end: 3; grid-column: 3; margin-right: 10px;">
+                        <br>Typ: <b>{{data.sharedTrainingPlan.trainingType.displayName}}</b> <br> Trudność: <b>{{data.sharedTrainingPlan.trainingDifficulty.displayName}}</b> <br> Długość: <b>{{data.sharedTrainingPlan.trainingLength.displayName}}</b> <br> Intensywność: <b>{{data.sharedTrainingPlan.trainingIntensity.displayName}}</b> <br>
+                    </div>
+                    <button (click)="addTraining(data.sharedTrainingPlan)" type="button" class="btn btn-light" style="position: absolute; right: 20px; bottom: 20px;">Dodaj do moich treningów</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col" style="margin-left: 10px;">
+            <span *ngIf="!alreadyLiked" class="like-icon float-left" (click)="likePost()"><img src="assets/heart-icon-empty.png" class="img-fluid float-left" alt="Responsive image"></span>
+            <span *ngIf="alreadyLiked" class="like-icon float-left" (click)="dislikePost()"><img src="assets/heart-icon.png" class="img-fluid float-left" alt="Responsive image"></span>
+            <span class="likes float-left" style="margin-right: 20px; margin-left: 2px;"><b>{{ likesNumber }}</b></span>
+            <span class="comment-icon float-left" (click)="showComments = !showComments">
+                <img *ngIf="!showComments" src="assets/comment_icon.png" class="img-fluid float-left" alt="Responsive image">
+                <img *ngIf="showComments" src="assets/comment_icon_selected.png" class="img-fluid float-left" alt="Responsive image">
+            </span>
+            <span class="float-end"></span>
+        </div>
+    </div>
+    <div *ngIf="showComments">
+        <hr>
+        <div *ngIf="commentsList.length == 0">
+            <b style="margin-left: 15px;">Brak komentarzy</b>
+        </div>
+        <div class="comment" *ngFor="let comment of commentsList">
+            <div class="header-comment row">
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <span class="float-left"><img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image"></span>
+                    <span class="float-left" style="padding-top: 4px;">{{comment.user.firstName}} {{comment.user.lastName}} ({{comment.user.login}}): </span>
+                    <span class="float-end"></span>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    {{comment.publicationDate}}
+                </div>
+            </div>
+            <div class="comment-body row">
+                <div class="col py-1">
+                    {{comment.commentContent}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comment-input row">
+        <form [formGroup]="form" class="col-lg-9 col-md-8 col-sm-7">
+            <input type="text" class="form-control" formControlName="commentContent" placeholder="Napisz co o tym myślisz...">
+        </form>
+        <div class="col-lg-3 col-md-4 col-sm-5">
+            <button class="btn pull-right col" (click)="commentOnPost()" [disabled]="form.controls.commentContent.invalid">skomentuj</button>
+        </div>
+    </div>
+
+</div>

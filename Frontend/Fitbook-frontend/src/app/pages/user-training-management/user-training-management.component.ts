@@ -12,6 +12,7 @@ import { FiltersService } from 'src/app/services/filters.service';
 import { Router } from '@angular/router';
 import { TrainingSessionService } from 'src/app/services/training.session.service';
 import { AddTrainingPlanPopupComponent } from './../../@popups/add-training-plan-popup/add-training-plan-popup.component'
+import { ShareTrainingPlanPopupComponent} from './../../@popups/share-training-plan-popup/share-training-plan-popup.component'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -135,6 +136,13 @@ export class UserTrainingManagementComponent implements OnInit {
       response => this.trainingPlansActive = response)
     this.trainingPlanService.getFilteredTrainingPlansForUser(this.trainingPlanFilter, localStorage.getItem('userLogin'), 1).subscribe(
       response => this.trainingPlansFinished = response)
+  }
+
+  shareTrainingPlan(training){
+    const initialState = {trainingPlan: training}
+    this.bsModalRef = this.modalService.show(ShareTrainingPlanPopupComponent, {initialState})
+    this.bsModalRef.content.onClose.subscribe(response => {
+    })
   }
 
   sendTraininigInfo(training) {

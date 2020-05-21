@@ -20,6 +20,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { TextPostComponent } from './sb-layout/wall/@components/text-post/text-post.component';
 import { PostCreatorComponent } from './sb-layout/wall/@components/post-creator/post-creator.component';
+import { SharedTrainingPlanPostComponent } from './sb-layout/wall/@components/shared-training-plan-post/shared-training-plan-post.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PostCreatorComponent } from './sb-layout/wall/@components/post-creator/
     AdminPanelComponent,
     SearchResultsComponent,
     TextPostComponent,
-    PostCreatorComponent],
+    PostCreatorComponent,
+    SharedTrainingPlanPostComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,

@@ -60,6 +60,7 @@
             <div class='training-item-traits' style="position: absolute; top: 8px; right: 20px; font-size: 16px; text-align: right;">
                 Typ: <b>{{item.trainingType.displayName}}</b> <br> Trudność: <b>{{item.trainingDifficulty.displayName}}</b> <br> Długość: <b>{{item.trainingLength.displayName}}</b> <br> Intensywność: <b>{{item.trainingIntensity.displayName}}</b> <br>
             </div>
+            <button (click)="shareTrainingPlan(item)" type="button" class="train-button btn btn-light" style="position: absolute; right: 110px; bottom: 20px;">Udostępnij</button>
             <button (click)="sendTraininigInfo(item)" type="button" class="train-button btn btn-light" style="position: absolute; right: 20px; bottom: 20px;">Trenuj</button>
         </div>
     </div>

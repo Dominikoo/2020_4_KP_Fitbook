@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { PostService } from 'src/app/services/post.service';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-post-creator',
@@ -38,7 +39,8 @@ export class PostCreatorComponent implements OnInit {
   private preparePost() {
     return {
       content: this.form.controls.content.value,
-      user: this.user
+      user: this.user,
+      type: 1
     }
   }
 
