@@ -1,5 +1,5 @@
-<div style="width: 540px;">
-    <b style="font-size: 24px; margin-left: 18px;">ZNALEZIENIE UŻYTKOWNICY: {{count}}</b>
+<div style="min-width: 540px;">
+    <b style="font-size: 24px; margin-left: 18px;">ZNALEZIENIE UŻYTKOWNICY: {{countUsers}}</b>
     <hr>
     <li class="user-item" *ngFor="let item of searchedUsers; index as i" style="width: 540px;">
         <div style="margin-top: 10px; margin-left: 10px;">
@@ -12,4 +12,20 @@
             <button *ngIf="item.status==3" type="button" class="btn btn-warning" (click)="cancelInvitation(item)">Anuluj zaproszenie</button>
         </div>
     </li>
+    <hr>
+    <b style="font-size: 24px; margin-left: 18px">ZNALEZIONE PLANY TRENINGOWE: {{countTrainingPlans}}</b>
+    <hr>
+    <div class="trainig-list-container">
+        <div *ngFor="let item of searchedTrainingPlans; index as i">
+            <div class="trainig-item-container" style="margin: 22px; background-color: #cccccc; position: relative; border-style: solid;border-width: 1px;">
+                <img src='assets/training1.png' width="200" height="200" class='training-item-photo' style="margin: 10px; border-style: solid;border-width: 1px;" alt="LOGO">
+                <div class='training-item-name' style="position: absolute; top: 6px; left: 240px; font-size: 24px;"> <b>{{item.name}}</b> </div>
+                <div class='training-item-description' style="position: absolute; top: 44px; left: 220px; right: 400px; font-size: 16px;"> {{item.description}} </div>
+                <div class='training-item-traits' style="position: absolute; top: 8px; right: 20px; font-size: 16px; text-align: right;">
+                    Typ: <b>{{item.trainingType.displayName}}</b> <br> Trudność: <b>{{item.trainingDifficulty.displayName}}</b> <br> Długość: <b>{{item.trainingLength.displayName}}</b> <br> Intensywność: <b>{{item.trainingIntensity.displayName}}</b> <br>
+                </div>
+                <button (click)="addTraining(item)" type="button" class="train-button btn btn-light" style="position: absolute; right: 20px; bottom: 20px;">Dodaj do moich treningów</button>
+            </div>
+        </div>
+    </div>
 </div>
