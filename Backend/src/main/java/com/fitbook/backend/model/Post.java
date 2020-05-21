@@ -24,13 +24,22 @@ public class Post {
     @Column(columnDefinition = "date")
     private LocalDate publicationDate;
 
+    @Column(columnDefinition = "int")
+    private Integer type; // 1 - simple text, 2 - shared training plan
+
+    @JoinColumn(name ="trainingPlan")
+    @ManyToOne
+    private TrainingPlan sharedTrainingPlan;
+
     public Post() {
     }
 
-    public Post(User user, String content, LocalDate publicationDate) {
+    public Post(User user, String content, LocalDate publicationDate, Integer type, TrainingPlan sharedTrainingPlan) {
         this.user = user;
         this.content = content;
         this.publicationDate = publicationDate;
+        this.type = type;
+        this.sharedTrainingPlan = sharedTrainingPlan;
     }
 
     public Long getId() {
@@ -63,5 +72,21 @@ public class Post {
 
     public void setPublicationDate(LocalDate publicationDate) {
         this.publicationDate = publicationDate;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public TrainingPlan getSharedTrainingPlan() {
+        return sharedTrainingPlan;
+    }
+
+    public void setSharedTrainingPlan(TrainingPlan sharedTrainingPlan) {
+        this.sharedTrainingPlan = sharedTrainingPlan;
     }
 }
