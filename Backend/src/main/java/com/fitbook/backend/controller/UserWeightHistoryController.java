@@ -1,5 +1,6 @@
 package com.fitbook.backend.controller;
 
+import com.fitbook.backend.model.Post;
 import com.fitbook.backend.model.User;
 import com.fitbook.backend.model.UserWeightHistory;
 import com.fitbook.backend.repository.UserRepository;
@@ -39,7 +40,27 @@ public class UserWeightHistoryController {
 
     @GetMapping("/auth/userWeightHistory/get/all/{userLogin}")
     public String getAllUserWeightHistory(@PathVariable String userLogin) {
-        List<UserWeightHistory> userWeightHistoryList = userWeightHistoryRepository.getUserWeightHistory(userLogin);
+        return userWeightToJSON(userWeightHistoryRepository.getUserWeightHistory(userLogin));
+    }
+
+    @GetMapping("/auth/userWeightHistory/get/exists/{userLogin}/{date}")
+    public Boolean existUserWeightHistory(@PathVariable String userLogin, @PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
+        return userWeightHistoryRepository.getUserWeightHistoryByUserAndDate(userLogin, date) != null;
+    }
+
+    @GetMapping("/auth/userWeightHistory/get/byPostId/{postId}")
+    public String getUserWeightHistoryByPostId(@PathVariable Long postId) {
+        return userWeightToJSON(userWeightHistoryRepository.getUserWeightsByPostId(postId));
+    }
+
+    public void copyWeightForPost(Post post){
+        List<UserWeightHistory> userWeightHistoryToCopy = userWeightHistoryRepository.getUserWeightHistory(post.getUser().getLogin());
+        for(UserWeightHistory uwh : userWeightHistoryToCopy){
+            userWeightHistoryRepository.save(new UserWeightHistory(uwh.getUser(), uwh.getWeight(), uwh.getDate(), post));
+        }
+    }
+
+    public String userWeightToJSON(List<UserWeightHistory> userWeightHistoryList){
         LocalDate firstDay = userWeightHistoryList.stream().map(UserWeightHistory::getDate).max(LocalDate::compareTo).get();
         LocalDate lastDay = userWeightHistoryList.stream().map(UserWeightHistory::getDate).min(LocalDate::compareTo).get();
         StringBuilder jsonBuilder = new StringBuilder();
@@ -54,10 +75,5 @@ public class UserWeightHistoryController {
         jsonBuilder.replace(jsonBuilder.length() - 1, jsonBuilder.length(), "");
         jsonBuilder.append("\n]\n}\n]");
         return jsonBuilder.toString();
-    }
-
-    @GetMapping("/auth/userWeightHistory/get/exists/{userLogin}/{date}")
-    public Boolean existUserWeightHistory(@PathVariable String userLogin, @PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
-        return userWeightHistoryRepository.getUserWeightHistoryByUserAndDate(userLogin, date) != null;
     }
 }

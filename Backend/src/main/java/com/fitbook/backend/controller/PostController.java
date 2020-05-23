@@ -2,6 +2,7 @@ package com.fitbook.backend.controller;
 
 import com.fitbook.backend.model.*;
 import com.fitbook.backend.repository.PostRepository;
+import com.fitbook.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +17,12 @@ public class PostController {
 
     @Autowired
     private PostRepository postRepository;
-
     @Autowired
     private UserConnectionController userConnectionController;
+    @Autowired
+    private UserWeightHistoryController userWeightHistoryController;
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/auth/post")
     public Post postPost(@RequestBody Post newPost) {
@@ -28,6 +32,16 @@ public class PostController {
         }
         else if(newPost.getType() == 2){
             return postRepository.save(newPost);
+        }
+        else if(newPost.getType() == 3){
+            Optional<User> user = userRepository.findById(newPost.getUser().getId());
+            if(user.isPresent()){
+                newPost.setUser(user.get());
+                Post post = postRepository.save(newPost);
+                userWeightHistoryController.copyWeightForPost(post);
+                return post;
+            }
+            return null;
         }
         return null;
     }

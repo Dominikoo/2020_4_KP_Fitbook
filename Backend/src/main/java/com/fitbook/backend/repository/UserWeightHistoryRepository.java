@@ -12,16 +12,22 @@ import java.util.List;
 
 public interface UserWeightHistoryRepository extends JpaRepository<UserWeightHistory, Long> {
     @Query( "SELECT uwh FROM UserWeightHistory uwh " +
-            "WHERE uwh.user.login = :userLogin " +
+            "WHERE uwh.user.login = :userLogin AND uwh.post = NULL " +
             "ORDER BY uwh.date ASC")
     List<UserWeightHistory> getUserWeightHistory(
             @Param("userLogin") String userLogin
     );
 
     @Query( "SELECT uwh FROM UserWeightHistory uwh " +
-            "WHERE uwh.user.login = :userLogin AND uwh.date = :date")
+            "WHERE uwh.user.login = :userLogin AND uwh.date = :date AND uwh.post = NULL")
     UserWeightHistory getUserWeightHistoryByUserAndDate(
             @Param("userLogin") String userLogin,
             @Param("date") LocalDate date
             );
+
+    @Query( "SELECT uwh FROM UserWeightHistory uwh " +
+            "WHERE uwh.post.id = :postId")
+    List<UserWeightHistory> getUserWeightsByPostId(
+            @Param("postId") Long postId
+    );
 }

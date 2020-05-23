@@ -25,7 +25,7 @@ public class Post {
     private LocalDate publicationDate;
 
     @Column(columnDefinition = "int")
-    private Integer type; // 1 - simple text, 2 - shared training plan
+    private Integer type; // 1 - simple text, 2 - shared training plan, 3 - shared weight
 
     @JoinColumn(name ="trainingPlan")
     @ManyToOne
