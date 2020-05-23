@@ -10,7 +10,8 @@ import java.util.*;
 public interface PostRepository  extends JpaRepository<Post, Long> {
 
     @Query( "SELECT p FROM Post p " +
-            "WHERE p.user.login LIKE :userLogin")
+            "WHERE p.user.login LIKE :userLogin " +
+            "ORDER BY p.publicationDate DESC")
     List<Post> getPostsByUserLogin(
             @Param("userLogin") String userLogin
     );
