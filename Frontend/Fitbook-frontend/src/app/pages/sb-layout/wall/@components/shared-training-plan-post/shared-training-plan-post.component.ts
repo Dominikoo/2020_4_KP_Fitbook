@@ -17,6 +17,8 @@ import { TrainingPlanService } from './../../../../../services/training.plan.ser
 export class SharedTrainingPlanPostComponent implements OnInit {
 
   @Input() data;
+  months: Array<string> = ["STY", "LUT", "MAR", "KWI", "MAJ", "CZE",
+                        "LIP", "SIE", "WRZ", "PAŹ", "LIS", "GRU"];
   alreadyLiked: boolean = false;
   showComments: boolean = false;
   user;
@@ -70,6 +72,7 @@ export class SharedTrainingPlanPostComponent implements OnInit {
         }
       });
     }
+    console.log(this.data.publicationDate);
   }
 
   dislikePost() {

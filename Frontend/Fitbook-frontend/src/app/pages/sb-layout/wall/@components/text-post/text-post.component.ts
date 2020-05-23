@@ -14,6 +14,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class TextPostComponent implements OnInit {
 
   @Input() data;
+  months: Array<string> = ["STY", "LUT", "MAR", "KWI", "MAJ", "CZE",
+                        "LIP", "SIE", "WRZ", "PAŹ", "LIS", "GRU"];
   alreadyLiked: boolean = false;
   showComments: boolean = false;
   user;

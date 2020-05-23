@@ -6,7 +6,7 @@
             <span class="float-end"></span>
         </div>
         <div class="col-lg-2 col-md-3 col-sm-4">
-            {{data.publicationDate}}
+            {{data.publicationDate[2]}} {{months[data.publicationDate[1] - 1]}} {{data.publicationDate[0]}}r.
         </div>
     </div>
     <hr>
@@ -41,7 +41,7 @@
                     <span class="float-end"></span>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-4">
-                    {{comment.publicationDate}}
+                    {{comment.publicationDate[2]}} {{months[comment.publicationDate[1] - 1]}} {{comment.publicationDate[0]}}r.
                 </div>
             </div>
             <div class="comment-body row">
