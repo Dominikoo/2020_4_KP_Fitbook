@@ -37,8 +37,8 @@ export class LoginSidebarComponent implements OnInit {
             this.userService.isUserAdmin(this.form.controls.login.value).subscribe(response =>{
               localStorage.setItem('isAdmin', response)
               console.log(localStorage.getItem('isAdmin'))
-              this.router.navigate(['/pages']);
             })
+            this.router.navigate(['/pages/wall']);
           }
           else{
             this.invalidLoginData = true;
