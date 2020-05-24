@@ -22,6 +22,7 @@ import { ChangePasswordPopupComponent } from './@popups/change-password-popup/ch
 import { ConfirmDeletePopupComponent } from './@popups/confirm-delete-popup/confirm-delete-popup.component';
 import { TrainingAddedInfoPopupComponent } from './@popups/training-added-info-popup/training-added-info-popup.component';
 import { ShareTrainingPlanPopupComponent } from './@popups/share-training-plan-popup/share-training-plan-popup.component';
+import { ShareUserWeightPopupComponent } from './@popups/share-user-weight-popup/share-user-weight-popup.component';
 defineLocale('pl', plLocale);
 
 @NgModule({
@@ -35,7 +36,8 @@ defineLocale('pl', plLocale);
     ConfirmDeletePopupComponent,
     TrainingAddedInfoPopupComponent,
     ChangePasswordPopupComponent,
-    ShareTrainingPlanPopupComponent
+    ShareTrainingPlanPopupComponent,
+    ShareUserWeightPopupComponent
   ],
   imports: [
     BrowserModule,

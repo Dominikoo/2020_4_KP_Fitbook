@@ -3,6 +3,7 @@ import { UserProgressService } from './../../services/user.progress.service';
 import { UserWeightHistoryService} from './../../services/user.weight.history.service';
 import { AddWeightPopupComponent } from 'src/app/@popups/add-weight-popup/add-weight-popup.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ShareUserWeightPopupComponent } from 'src/app/@popups/share-user-weight-popup/share-user-weight-popup.component';
 
 @Component({
   selector: 'app-user-progress-history',
@@ -17,7 +18,9 @@ export class UserProgressHistoryComponent implements OnInit {
   yWeightMax: number;
   bsModalRef: BsModalRef;
 
-  constructor(private userProgressService: UserProgressService, private userWeightHistoryService: UserWeightHistoryService, private modalService: BsModalService) { }
+  constructor(private userProgressService: UserProgressService, 
+              private userWeightHistoryService: UserWeightHistoryService, 
+              private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.userProgressService.getUserProgressSummary(localStorage.getItem('userLogin')).subscribe(response =>
@@ -44,6 +47,12 @@ export class UserProgressHistoryComponent implements OnInit {
       }
       this.yWeightMax = this.yWeightMax + 20;
       this.yWeightMin = this.yWeightMin - 30;
+    })
+  }
+
+  shareWeightChart() {
+    this.bsModalRef = this.modalService.show(ShareUserWeightPopupComponent)
+    this.bsModalRef.content.onClose.subscribe(response => {
     })
   }
 }

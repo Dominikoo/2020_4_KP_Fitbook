@@ -1,4 +1,4 @@
-<div class="wall-container"> 
+<div class="wall-container">
     <ul class="list-group">
         <li class="list-group-item">
             <app-post-creator></app-post-creator>
@@ -7,6 +7,7 @@
         <li *ngFor="let post of posts; index as i" class="list-group-item">
             <app-text-post *ngIf="post.type==1" [data]="post"></app-text-post>
             <app-shared-training-plan-post *ngIf="post.type==2" [data]="post"></app-shared-training-plan-post>
+            <app-shared-weight-chart-post *ngIf="post.type==3" [data]="post"></app-shared-weight-chart-post>
             <br/>
         </li>
     </ul>

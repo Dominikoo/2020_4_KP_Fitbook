@@ -1,15 +1,16 @@
 <div style="margin-top: 8px;">
     <b style="font-size: 24px; margin-left: 36px;">WYKONANE ĆWICZENIA</b>
     <div style="margin-left: 20px; margin-right: 20px;">
-      <app-progress-line-chart [userProgressSummary]="userProgressSummary"></app-progress-line-chart>
+        <app-progress-line-chart [userProgressSummary]="userProgressSummary"></app-progress-line-chart>
     </div>
     <hr>
 </div>
 <div style="margin-top: 8px;">
     <b style="font-size: 24px; margin-left: 36px;">WAGA</b>
     <button (click)="addWeight()" type="button" class="btn btn-success" style="margin-left: 20px; position: relative; top: -5px;">Dodaj Wpis</button>
+    <button (click)="shareWeightChart()" type="button" class="btn" style="margin-left: 20px; position: relative; top: -5px;">Udostępnij</button>
     <div style="margin-left: 20px; margin-right: 20px;">
-      <app-user-weight-line-chart [userWeightHistory]="userWeightHistory" [yScaleMax]="yWeightMax" [yScaleMin]="yWeightMin" ></app-user-weight-line-chart>
+        <app-user-weight-line-chart [userWeightHistory]="userWeightHistory" [yScaleMax]="yWeightMax" [yScaleMin]="yWeightMin"></app-user-weight-line-chart>
     </div>
     <hr>
 </div>
