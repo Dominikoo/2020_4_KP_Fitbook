@@ -78,4 +78,16 @@ public class UserWeightHistory {
     public void setPost(Post post) {
         this.post = post;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        UserWeightHistory other = (UserWeightHistory) obj;
+        return id.equals(other.id);
+    }
 }
