@@ -38,7 +38,7 @@ public class PostController {
             if(user.isPresent()){
                 newPost.setUser(user.get());
                 Post post = postRepository.save(newPost);
-                userWeightHistoryController.copyWeightForPost(post);
+                if(post != null) userWeightHistoryController.copyWeightForPost(post);
                 return post;
             }
             return null;
