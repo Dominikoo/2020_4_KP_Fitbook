@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UrlContainer } from './url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private url = 'https://backend-fitbook.herokuapp.com/users';
+  urlContainer = new UrlContainer();
+
+  private url = this.urlContainer.url + '/users';
+  // private url = 'https://backend-fitbook.herokuapp.com/users';
   // private url = 'http://localhost:8080/users';
   constructor(private httpClient: HttpClient) { }
   getById(userId) {

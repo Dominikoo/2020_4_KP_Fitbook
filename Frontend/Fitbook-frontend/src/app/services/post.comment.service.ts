@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UrlContainer } from './url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostCommentService {
-  private url = 'https://backend-fitbook.herokuapp.com/auth/comment';
+  urlContainer = new UrlContainer();
+
+  private url = this.urlContainer.url + '/auth/comment';
+  // private url = 'https://backend-fitbook.herokuapp.com/auth/comment';
 //   private url = 'http://localhost:8080/auth/comment';
   constructor(private httpClient: HttpClient) { }
 

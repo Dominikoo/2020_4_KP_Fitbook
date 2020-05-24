@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UrlContainer } from './url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostLikeService {
-  private url = 'https://backend-fitbook.herokuapp.com/auth/postLike';
+  urlContainer = new UrlContainer();
+
+  private url = this.urlContainer.url + '/auth/postLike';
+  // private url = 'https://backend-fitbook.herokuapp.com/auth/postLike';
 //   private url = 'http://localhost:8080/auth/postLike';
   constructor(private httpClient: HttpClient) { }
 

@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UrlContainer } from './url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrainingPlanService {
-  private url = 'https://backend-fitbook.herokuapp.com/auth/trainingPlans';
+  urlContainer = new UrlContainer();
+
+  private url = this.urlContainer.url + '/auth/trainingPlans';
+  // private url = 'https://backend-fitbook.herokuapp.com/auth/trainingPlans';
   // private url = 'http://localhost:8080/auth/trainingPlans';
   constructor(private httpClient: HttpClient) { }
 
