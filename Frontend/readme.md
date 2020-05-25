@@ -173,3 +173,35 @@ A serwer sam sobie wszystko zbuduje od nowa.
 
 ![not_found](readme_res/historia_postepow.PNG)
 
+## Strona główna portalu (tzw. ściana):
+
+![not_found](readme_res/wall.PNG)
+
+## Struktura pojedynczego posta na ścianie:
+
+![not_found](readme_res/struktura_posta.PNG)
+
+## Możliwość udostępniania postępów:
+
+![not_found](readme_res/udostepnianie_wykresow_1.PNG)
+
+## Wyskakujące okienko udostępniania postępów użytkownika:
+
+![not_found](readme_res/udostepnianie_wykresow_2.PNG)
+
+## Post z udostępnionym postępem (poniżej również z treningiem):
+
+![not_found](readme_res/udostepnianie_wykresow_3.PNG)
+
+## Ze strony głównej można również zarządzać listą znajomych:
+
+![not_found](readme_res/edycja_znajomych_wall.PNG)
+
+## Z górnego paska można już wyszukiwać zarówno treningi jak i znajomych:
+
+![not_found](readme_res/wyszukiwanie_topbar.PNG)
+
+
+
+
+
