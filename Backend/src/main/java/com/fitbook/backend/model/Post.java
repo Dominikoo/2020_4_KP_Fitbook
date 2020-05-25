@@ -89,4 +89,16 @@ public class Post {
     public void setSharedTrainingPlan(TrainingPlan sharedTrainingPlan) {
         this.sharedTrainingPlan = sharedTrainingPlan;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Post other = (Post) obj;
+        return id.equals(other.id);
+    }
 }
