@@ -18,7 +18,7 @@ export class SharedProgressChartPostComponent implements OnInit {
   months: Array<string> = ["STY", "LUT", "MAR", "KWI", "MAJ", "CZE",
                         "LIP", "SIE", "WRZ", "PAŹ", "LIS", "GRU"];
 
-  userWeightHistory: Array<any>;
+  progressData: Array<any>;
   yWeightMax;
   yWeightMin;
 
@@ -64,8 +64,8 @@ export class SharedProgressChartPostComponent implements OnInit {
     console.log(this.data)
 
     this.sharedChartDataService.getUserProgressByPostId(this.data.id).subscribe(response => {
-      this.userWeightHistory = response
-      let weight: Array<any> = this.userWeightHistory[0].series;
+      this.progressData = response
+      let weight: Array<any> = this.progressData[0].series;
       this.yWeightMin = Number.MAX_VALUE;
       this.yWeightMax = Number.MIN_VALUE;
       for(var i=0;i<weight.length;i++){
