@@ -8,6 +8,7 @@ import org.hibernate.validator.internal.util.privilegedactions.LoadClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -31,19 +32,7 @@ public class UserProgressController {
 
     @GetMapping("/auth/userProgress/get/summary/{userLogin}")
     public String getUserProgressSummary(@PathVariable String userLogin){
-        HashMap<String, Integer> doneExercisesPerDay = new HashMap<>();
-        for(UserProgress progress : userProgressRepository.getDoneUserProgresses(userLogin)){
-            String key = "\"" + (progress.getLastModification().getDayOfMonth() < 10 ? "0" : "")
-                    + progress.getLastModification().getDayOfMonth()
-                    + "." + (progress.getLastModification().getMonthValue() < 10 ? "0" : "")
-                    + progress.getLastModification().getMonthValue() + "\"";
-            if(doneExercisesPerDay.containsKey(key)){
-                doneExercisesPerDay.replace(key, doneExercisesPerDay.get(key) + 1);
-            }
-            else{
-                doneExercisesPerDay.put(key, progress.getProgress());
-            }
-        }
+        HashMap<String, Integer> doneExercisesPerDay = getDoneExercisesPerDay(userLogin);
 
         List<String> days = new ArrayList<>(doneExercisesPerDay.keySet());
         LocalDate localDate = LocalDate.now();
@@ -71,5 +60,35 @@ public class UserProgressController {
         jsonBuilder.replace(jsonBuilder.length() - 1, jsonBuilder.length(), "");
         jsonBuilder.append("\n]");
         return jsonBuilder.toString();
+    }
+
+    public HashMap<String, Integer> getDoneExercisesPerDay(String userLogin){
+        HashMap<String, Integer> doneExercisesPerDay = new HashMap<>();
+        for(UserProgress progress : userProgressRepository.getDoneUserProgresses(userLogin)){
+            String key = "\"" + (progress.getLastModification().getDayOfMonth() < 10 ? "0" : "")
+                    + progress.getLastModification().getDayOfMonth()
+                    + "." + (progress.getLastModification().getMonthValue() < 10 ? "0" : "")
+                    + progress.getLastModification().getMonthValue() + "\"";
+            if(doneExercisesPerDay.containsKey(key)){
+                doneExercisesPerDay.replace(key, doneExercisesPerDay.get(key) + 1);
+            }
+            else{
+                doneExercisesPerDay.put(key, progress.getProgress());
+            }
+        }
+        return doneExercisesPerDay;
+    }
+
+    public HashMap<LocalDate, Integer> getDoneExercisesPerLocalDate(String userLogin){
+        HashMap<LocalDate, Integer> doneExercisesPerDay = new HashMap<>();
+        for(UserProgress progress : userProgressRepository.getDoneUserProgresses(userLogin)){
+            if(doneExercisesPerDay.containsKey(progress.getLastModification())){
+                doneExercisesPerDay.replace(progress.getLastModification(), doneExercisesPerDay.get(progress.getLastModification()) + 1);
+            }
+            else{
+                doneExercisesPerDay.put(progress.getLastModification(), progress.getProgress());
+            }
+        }
+        return doneExercisesPerDay;
     }
 }

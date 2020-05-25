@@ -22,6 +22,8 @@ public class PostController {
     @Autowired
     private UserWeightHistoryController userWeightHistoryController;
     @Autowired
+    private SharedChartDataController sharedChartDataController;
+    @Autowired
     private UserRepository userRepository;
 
     @PostMapping("/auth/post")
@@ -42,6 +44,15 @@ public class PostController {
                 return post;
             }
             return null;
+        }
+        else if(newPost.getType() == 4){
+            Optional<User> user = userRepository.findById(newPost.getUser().getId());
+            if(user.isPresent()){
+                newPost.setUser(user.get());
+                Post post = postRepository.save(newPost);
+                if(post != null) sharedChartDataController.copyNumberOfFinishedExercisesForPost(post);
+                return post;
+            }
         }
         return null;
     }
