@@ -33,4 +33,12 @@ public interface UserConnectionRepository extends JpaRepository<UserConnection, 
     List<UserConnection> getInvitationsByUserLogin(
             @Param("userLogin") String userLogin
     );
+
+    @Query( "SELECT uc FROM UserConnection uc " +
+            "WHERE uc.firstUser.login LIKE :userLogin " +
+            "AND uc.status = 1"
+    )
+    List<UserConnection> getConnectionsByUserLogin(
+            @Param("userLogin") String userLogin
+    );
 }

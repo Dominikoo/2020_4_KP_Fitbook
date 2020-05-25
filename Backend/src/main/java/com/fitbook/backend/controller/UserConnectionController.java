@@ -19,6 +19,10 @@ public class UserConnectionController {
         return userConnectionRepository.getFriendsByUserLogin(userLogin);
     }
 
+    @GetMapping("/auth/userConnections/byUserLogin/{userLogin}")
+    List<UserConnection> getConnectionsByUserLogin(@PathVariable String userLogin){
+        return userConnectionRepository.getConnectionsByUserLogin(userLogin);
+    }
     @GetMapping("/auth/userConnections/invitations/byUserLogin/{userLogin}")
     List<UserConnection> getInvitationsByUserLogin(@PathVariable String userLogin){
         return userConnectionRepository.getInvitationsByUserLogin(userLogin);

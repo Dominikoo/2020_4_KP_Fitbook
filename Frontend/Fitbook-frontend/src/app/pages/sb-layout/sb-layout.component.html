@@ -7,11 +7,13 @@
         <div id="header1">
           <img src="assets/login-iconv2.PNG" class="img-fluid float-left" alt="Responsive image">
           <h4 style="color: white; margin-left: 8px; margin-top: 2px;" class="float-left">Znajomi</h4>
+          <button type="button" class="btn btn-primary float-left" style="margin-left: 10px;" (click)="edit=!edit">Edytuj</button>
         </div>
         <div class="friends-list-container" style="margin-top: 5px;">
-          <div class="block" *ngFor="let data of friendsList; index as i">
-            <a *ngIf="data.firstName != null && data.lastName != null"><b>{{data.firstName}} {{data.lastName}} </b>({{data.login}})</a>
-            <a *ngIf="data.firstName == null && data.lastName == null">{{data.login}}</a>
+          <div class="block" *ngFor="let data of connectionsList; index as i">
+            <a *ngIf="data.secondUser.firstName != null && data.secondUser.lastName != null"><b>{{data.secondUser.firstName}} {{data.secondUser.lastName}} </b>({{data.secondUser.login}})</a>
+            <a *ngIf="data.secondUser.firstName == null && data.secondUser.lastName == null">{{data.secondUser.login}}</a>
+            <button  *ngIf="edit" type="button" class="btn btn-danger btn-sm my-0 py-0" style="margin-left: 10px;" (click)="removeFriend(data)">X</button>
           </div>
         </div>
       </div>
