@@ -4,6 +4,7 @@ import { UserWeightHistoryService} from './../../services/user.weight.history.se
 import { AddWeightPopupComponent } from 'src/app/@popups/add-weight-popup/add-weight-popup.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ShareUserWeightPopupComponent } from 'src/app/@popups/share-user-weight-popup/share-user-weight-popup.component';
+import { ShareUserProgressPopupComponent}from 'src/app/@popups/share-user-progress-popup/share-user-progress-popup.component';
 
 @Component({
   selector: 'app-user-progress-history',
@@ -52,6 +53,12 @@ export class UserProgressHistoryComponent implements OnInit {
 
   shareWeightChart() {
     this.bsModalRef = this.modalService.show(ShareUserWeightPopupComponent)
+    this.bsModalRef.content.onClose.subscribe(response => {
+    })
+  }
+
+  shareProgressChart() {
+    this.bsModalRef = this.modalService.show(ShareUserProgressPopupComponent)
     this.bsModalRef.content.onClose.subscribe(response => {
     })
   }

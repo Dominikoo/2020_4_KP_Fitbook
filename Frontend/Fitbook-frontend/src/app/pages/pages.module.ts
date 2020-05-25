@@ -22,6 +22,7 @@ import { TextPostComponent } from './sb-layout/wall/@components/text-post/text-p
 import { PostCreatorComponent } from './sb-layout/wall/@components/post-creator/post-creator.component';
 import { SharedTrainingPlanPostComponent } from './sb-layout/wall/@components/shared-training-plan-post/shared-training-plan-post.component';
 import { SharedWeightChartPostComponent } from './sb-layout/wall/@components/shared-weight-chart-post/shared-weight-chart-post.component';
+import { SharedProgressChartPostComponent } from './sb-layout/wall/@components/shared-progress-chart-post/shared-progress-chart-post.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SharedWeightChartPostComponent } from './sb-layout/wall/@components/sha
     TextPostComponent,
     PostCreatorComponent,
     SharedTrainingPlanPostComponent,
-    SharedWeightChartPostComponent],
+    SharedWeightChartPostComponent,
+    SharedProgressChartPostComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,

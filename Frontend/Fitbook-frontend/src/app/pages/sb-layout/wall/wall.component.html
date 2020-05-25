@@ -8,6 +8,7 @@
             <app-text-post *ngIf="post.type==1" [data]="post"></app-text-post>
             <app-shared-training-plan-post *ngIf="post.type==2" [data]="post"></app-shared-training-plan-post>
             <app-shared-weight-chart-post *ngIf="post.type==3" [data]="post"></app-shared-weight-chart-post>
+            <app-shared-progress-chart-post *ngIf="post.type==4" [data]="post"></app-shared-progress-chart-post>
             <br/>
         </li>
     </ul>
