@@ -21,6 +21,10 @@ export class UserConnectionService {
     return this.httpClient.get<any>(this.url+`/friends/byUserLogin/${userLogin}`);
   }
 
+  getConnectionsByLogin(userLogin) {
+    return this.httpClient.get<any>(this.url+`/byUserLogin/${userLogin}`);
+  }
+
   getInvitationsByLogin(userLogin) {
     return this.httpClient.get<any>(this.url+`/invitations/byUserLogin/${userLogin}`);
   }
