@@ -197,4 +197,11 @@ export class UserTrainingManagementComponent implements OnInit {
       this.sendTraininigInfo(this.trainingPlan)
     })
   }
+
+  makeInvisible(item): void{
+    item.isVisible = false
+    this.trainingPlanService.putTrainingPlan(item).subscribe()
+    if(this.trainingPlansActive.indexOf(item) > -1) this.trainingPlansActive.splice(this.trainingPlansActive.indexOf(item), 1)
+    if(this.trainingPlansFinished.indexOf(item) > -1) this.trainingPlansFinished.splice(this.trainingPlansFinished.indexOf(item), 1)
+  }
 }

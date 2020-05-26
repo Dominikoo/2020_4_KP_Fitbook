@@ -41,11 +41,14 @@ public class TrainingPlan {
     @Column(columnDefinition = "boolean", unique = false)
     private Boolean isPrivate;
 
+    @Column(columnDefinition = "boolean", unique = false)
+    private Boolean isVisible;
+
     public TrainingPlan() {
     }
 
     public TrainingPlan(String name, String description, TrainingType trainingType, TrainingLength trainingLength,
-                        TrainingIntensity trainingIntensity, TrainingDifficulty trainingDifficulty, Boolean isPrivate) {
+                        TrainingIntensity trainingIntensity, TrainingDifficulty trainingDifficulty, Boolean isPrivate, Boolean isVisible) {
         this.name = name;
         this.description = description;
         this.trainingType = trainingType;
@@ -53,6 +56,7 @@ public class TrainingPlan {
         this.trainingIntensity = trainingIntensity;
         this.trainingDifficulty = trainingDifficulty;
         this.isPrivate = isPrivate;
+        this.isVisible = isVisible;
     }
 
     public Long getId() {
@@ -117,6 +121,14 @@ public class TrainingPlan {
 
     public void setIsPrivate(Boolean isPrivate) {
         this.isPrivate = isPrivate;
+    }
+
+    public Boolean getIsVisible() {
+        return isVisible;
+    }
+
+    public void setIsVisible(Boolean visible) {
+        isVisible = visible;
     }
 
     @Override

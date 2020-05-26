@@ -53,15 +53,16 @@
 
 <div class="trainig-list-container">
     <div *ngFor="let item of trainingPlansActive; index as i">
-        <div class="trainig-item-container" style="margin: 22px; background-color: #cccccc; position: relative; border-style: solid;border-width: 1px;">
+        <div class="trainig-item-container" style="margin: 22px; background-color: #cccccc; position: relative; border-style: solid;border-width: 1px; min-width: 540px;">
             <img src='assets/training1.png' width="200" height="200" class='training-item-photo' style="margin: 10px; border-style: solid;border-width: 1px;" alt="LOGO">
             <div class='training-item-name' style="position: absolute; top: 6px; left: 240px; font-size: 24px;"> <b>{{item.name}}</b> </div>
             <div class='training-item-description' style="position: absolute; top: 44px; left: 220px; right: 400px; font-size: 16px;"> {{item.description}} </div>
             <div class='training-item-traits' style="position: absolute; top: 8px; right: 20px; font-size: 16px; text-align: right;">
                 Typ: <b>{{item.trainingType.displayName}}</b> <br> Trudność: <b>{{item.trainingDifficulty.displayName}}</b> <br> Długość: <b>{{item.trainingLength.displayName}}</b> <br> Intensywność: <b>{{item.trainingIntensity.displayName}}</b> <br>
             </div>
-            <button (click)="shareTrainingPlan(item)" type="button" class="train-button btn btn-light" style="position: absolute; right: 110px; bottom: 20px;">Udostępnij</button>
-            <button (click)="sendTraininigInfo(item)" type="button" class="train-button btn btn-light" style="position: absolute; right: 20px; bottom: 20px;">Trenuj</button>
+            <button (click)="makeInvisible(item)" type="button" class="train-button btn btn-danger" style="position: absolute; right: 20px; bottom: 20px;">Usuń</button>
+            <button (click)="shareTrainingPlan(item)" type="button" class="train-button btn btn-light" style="position: absolute; right: 100px; bottom: 20px;">Udostępnij</button>
+            <button (click)="sendTraininigInfo(item)" type="button" class="train-button btn btn-light" style="position: absolute; right: 224px; bottom: 20px;">Trenuj</button>
         </div>
     </div>
 </div>
@@ -81,7 +82,9 @@
             <div class='training-item-traits' style="position: absolute; top: 8px; right: 20px; font-size: 16px; text-align: right;">
                 Typ: <b>{{item.trainingType.displayName}}</b> <br> Trudność: <b>{{item.trainingDifficulty.displayName}}</b> <br> Długość: <b>{{item.trainingLength.displayName}}</b> <br> Intensywność: <b>{{item.trainingIntensity.displayName}}</b> <br>
             </div>
-            <button (click)="sendTraininigInfo(item)" type="button" class="retrain-button btn btn-light" style="position: absolute; right: 20px; bottom: 20px;">Ponów</button>
+            <button (click)="makeInvisible(item)" type="button" class="train-button btn btn-danger" style="position: absolute; right: 20px; bottom: 20px;">Usuń</button>
+            <button (click)="shareTrainingPlan(item)" type="button" class="train-button btn btn-light" style="position: absolute; right: 100px; bottom: 20px;">Udostępnij</button>
+            <button (click)="sendTraininigInfo(item)" type="button" class="retrain-button btn btn-light" style="position: absolute; right: 224px; bottom: 20px;">Ponów</button>
         </div>
     </div>
 </div>

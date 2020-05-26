@@ -32,4 +32,8 @@ export class TrainingPlanService {
   addTrainigPlanToUser(trainingPlanId, userLogin) {
     return this.httpClient.get(this.url + `/add/${userLogin}/${trainingPlanId}`)
   }
+
+  putTrainingPlan(trainingPlan): any{
+    return this.httpClient.put(this.url + `/put`, trainingPlan)
+  }
 }

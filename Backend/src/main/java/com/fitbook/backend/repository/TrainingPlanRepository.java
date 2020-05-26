@@ -25,7 +25,8 @@ public interface TrainingPlanRepository extends JpaRepository<TrainingPlan, Long
             "up.trainingSessionExercise.trainingSession.trainingPlan.trainingLength.id IN :lengthIds AND " +
             "up.trainingSessionExercise.trainingSession.trainingPlan.trainingType.id IN :typeIds AND " +
             "up.user.login = :userLogin " +
-            "AND up.trainingSessionExercise.trainingSession.trainingPlan.isPrivate = TRUE")
+            "AND up.trainingSessionExercise.trainingSession.trainingPlan.isPrivate = TRUE " +
+            "AND up.trainingSessionExercise.trainingSession.trainingPlan.isVisible = TRUE")
     List<TrainingPlan> getFilteredTrainingPlansForUser(
             @Param("difficultyIds") List<Long> difficultyIds,
             @Param("intensityIds") List<Long> intensityIds,

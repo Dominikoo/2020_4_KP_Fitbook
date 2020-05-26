@@ -67,6 +67,7 @@ public class TrainingPlanController {
     @PostMapping("/auth/trainingPlans/post/{userLogin}")
     public TrainingPlan postTrainingPlan(@RequestBody TrainingPlan trainingPlan, @PathVariable String userLogin){
         try{
+            trainingPlan.setIsVisible(true);
             trainingPlanRepository.save(trainingPlan);
             Optional<TrainingPlan> trainingPlanOptional = trainingPlanRepository.findById(trainingPlan.getId());
             if(trainingPlanOptional.isPresent()){
@@ -118,7 +119,7 @@ public class TrainingPlanController {
         if(oldTrainingPlanOptional.isPresent()){
             TrainingPlan oldTrainingPlan = oldTrainingPlanOptional.get();
             TrainingPlan newTrainingPlan = trainingPlanRepository.save(new TrainingPlan(oldTrainingPlan.getName(), oldTrainingPlan.getDescription(), oldTrainingPlan.getTrainingType(),
-                    oldTrainingPlan.getTrainingLength(), oldTrainingPlan.getTrainingIntensity(), oldTrainingPlan.getTrainingDifficulty(), true));
+                    oldTrainingPlan.getTrainingLength(), oldTrainingPlan.getTrainingIntensity(), oldTrainingPlan.getTrainingDifficulty(), true, true));
             List<TrainingSession> oldTrainingSessions = trainingSessionRepository.getTrainingPlanSession(oldTrainingPlan.getId());
             for(TrainingSession ots : oldTrainingSessions){
                 TrainingSession newTrainingSession = trainingSessionRepository.save(new TrainingSession(newTrainingPlan, ots.getName(), ots.getOrderNumber()));
@@ -136,4 +137,22 @@ public class TrainingPlanController {
             return null;
         }
     }
+
+    @PutMapping("/auth/trainingPlans/put")
+    public TrainingPlan putTrainingPlan(@RequestBody TrainingPlan modifiedTrainingPlan){
+        Optional<TrainingPlan> trainingPlanOptional = trainingPlanRepository.findById(modifiedTrainingPlan.getId());
+        if(trainingPlanOptional.isPresent()){
+            TrainingPlan trainingPlan = trainingPlanOptional.get();
+            if(modifiedTrainingPlan.getIsPrivate() != null) trainingPlan.setIsPrivate(modifiedTrainingPlan.getIsPrivate());
+            if(modifiedTrainingPlan.getIsVisible() != null) trainingPlan.setIsVisible(modifiedTrainingPlan.getIsVisible());
+            if(modifiedTrainingPlan.getName() != null) trainingPlan.setName(modifiedTrainingPlan.getName());
+            if(modifiedTrainingPlan.getDescription() != null) trainingPlan.setDescription(modifiedTrainingPlan.getDescription());
+            return trainingPlanRepository.save(trainingPlan);
+        }
+        else{
+            return null;
+        }
+    }
+
+
 }
