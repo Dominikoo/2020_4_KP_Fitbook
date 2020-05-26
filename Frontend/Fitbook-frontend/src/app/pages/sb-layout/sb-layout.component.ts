@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserConnectionService } from 'src/app/services/user.connection.service';
+import { SocialGroupService } from 'src/app/services/social.group.service';
+import { AddGroupPopupComponent}from 'src/app/@popups/add-group-popup/add-group-popup.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-sb-layout',
@@ -11,9 +14,13 @@ export class SbLayoutComponent implements OnInit {
   friendsList: Array<any> = undefined;
   connectionsList: Array<any> = undefined;
   invitationsList: Array<any> = undefined;
+  socialGroupsList: Array<any> = undefined;
   edit = false;
+  bsModalRef: BsModalRef;
 
-  constructor(private userConnectionService: UserConnectionService) { }
+  constructor(private userConnectionService: UserConnectionService,
+              private socialGroupService: SocialGroupService,
+              private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.userConnectionService.getFriendsByLogin(localStorage.getItem('userLogin')).subscribe(response => {
@@ -26,6 +33,10 @@ export class SbLayoutComponent implements OnInit {
 
     this.userConnectionService.getInvitationsByLogin(localStorage.getItem('userLogin')).subscribe(response => {
       this.invitationsList = response;
+    });
+
+    this.socialGroupService.getSocialGroupsByUserLogin(localStorage.getItem('userLogin')).subscribe(response => {
+      this.socialGroupsList = response;
     });
   }
 
@@ -68,4 +79,12 @@ export class SbLayoutComponent implements OnInit {
     console.log(item);
   }
 
+  createGroup(): void{
+    this.bsModalRef = this.modalService.show(AddGroupPopupComponent)
+    this.bsModalRef.content.onClose.subscribe(response => {
+      if(response) 
+        this.socialGroupService.getSocialGroupsByUserLogin(localStorage.getItem('userLogin')).subscribe(response => {this.socialGroupsList = response;
+      });
+    })
+  }
 }

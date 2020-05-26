@@ -1,0 +1,30 @@
+<div class="modal-header" style="background-color: orange;">
+    <h4 class="modal-title pull-left">Tworzenie grupy</h4>
+    <button type="button" class="cancel-button close pull-right" aria-label="Close" (click)="onCancel()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+<div class="modal-body" style="background-color: lightgray;">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 form-group" style="display: grid;">
+            <form [formGroup]="form">
+                <label>
+                    <input id="group-name" name="group-name" formControlName="name" class="form-control" style="margin-top: 10px;" placeholder="nazwa grupy" >
+                    <div *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)" class="alert alert-danger">
+                        <div *ngIf="form.controls.name.errors.required">
+                            Nazwa jest wymagana
+                        </div>
+                    </div>
+                    <input id="group-description" name="group-description" formControlName="description" class="form-control" style="margin-top: 10px;" placeholder="opis grupy" >
+                    <div *ngIf="form.controls.description.invalid && (form.controls.description.dirty || form.controls.description.touched)" class="alert alert-danger">
+                        <div *ngIf="form.controls.description.errors.required">
+                            Opis jest wymagana
+                        </div>
+                    </div>
+                </label>
+            </form>
+            <button type="button" class="confirm-button btn btn-success" style="margin-top: 20px;" (click)="onConfirm()" [disabled]="form.controls.name.invalid">Dodaj</button>
+            <button type="button" class="cancel-button btn btn-danger btn-block" style="margin-top: 20px;" (click)="onCancel()">Anuluj</button>
+        </div>
+    </div>
+</div>

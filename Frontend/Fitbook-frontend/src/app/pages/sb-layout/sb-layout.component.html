@@ -34,6 +34,21 @@
           </div>
         </div>
       </div>
+      <hr>
+      <div style="display: grid; margin-left: 10%;">
+        <div id="header1">
+          <img src="assets/reg-icon.PNG" class="img-fluid float-left" alt="Responsive image">
+          <h4 style="color: white; margin-left: 8px; margin-top: 2px;" class="float-left">Grupy</h4>
+        </div>
+        <div class="friends-list-container" style="margin-top: 5px;">
+          <div class="block" *ngFor="let data of socialGroupsList; index as i">
+            <b>{{data.name}}</b>
+          </div>
+          <div style="margin-top: 20px;">
+            <button  type="button" class="btn btn-success btn-sm" style="margin-left: 10px;" (click)="createGroup()">Utwórz grupę</button>
+          </div>
+        </div>
+      </div>
     </span>
     <span class="float-end"></span>
 </div>

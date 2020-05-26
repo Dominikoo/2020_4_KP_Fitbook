@@ -12,6 +12,10 @@ export class SocialGroupService {
 
   constructor(private httpClient: HttpClient) { }
   
+  postSocialGroup(socialGroup): any{
+    return this.httpClient.post(this.url + `/post`, socialGroup)
+  }
+
   getSocialGroupsByUserLogin(userLogin): any{
     return this.httpClient.get(this.url + `/get/byUserLogin/${userLogin}`);
   }
