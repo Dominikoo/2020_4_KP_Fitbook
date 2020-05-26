@@ -3,7 +3,7 @@ package com.fitbook.backend.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Social_Group")
+@Table(name = "Social_Groups")
 public class SocialGroup {
     @Id
     @GeneratedValue(generator = "social_group_generator")
