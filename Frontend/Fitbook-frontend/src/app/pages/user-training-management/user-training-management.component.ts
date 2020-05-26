@@ -204,4 +204,10 @@ export class UserTrainingManagementComponent implements OnInit {
     if(this.trainingPlansActive.indexOf(item) > -1) this.trainingPlansActive.splice(this.trainingPlansActive.indexOf(item), 1)
     if(this.trainingPlansFinished.indexOf(item) > -1) this.trainingPlansFinished.splice(this.trainingPlansFinished.indexOf(item), 1)
   }
+
+  repeatTraining(item): void{
+    this.trainingPlanService.addTrainigPlanToUser(item.id, localStorage.getItem("userLogin")).subscribe(
+      response => this.trainingPlansActive.push(response)
+    )
+  }
 }
