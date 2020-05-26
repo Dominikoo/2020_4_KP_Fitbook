@@ -54,7 +54,7 @@ public class TrainingPlanRepositoryTest {
         difficultyIds = new ArrayList<>();
         difficultyIds.add(trainingDifficulty.getId());
         testTrainingPlan = trainingPlanRepository.save(new TrainingPlan("test_1", "opis_testowy_1", trainingType,
-                trainingLength, trainingIntensity, trainingDifficulty, false));
+                trainingLength, trainingIntensity, trainingDifficulty, false, true));
         TrainingPlanController trainingPlanController = new TrainingPlanController();
         user = userRepository.findAll().get(0);
         trainingPlanController.postTrainingPlan(testTrainingPlan, user.getLogin());
