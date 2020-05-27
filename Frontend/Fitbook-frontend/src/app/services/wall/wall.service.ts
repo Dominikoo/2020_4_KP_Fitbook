@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WallService {
 
-  public groupId: Subject<Number>;
+  public groupId: BehaviorSubject<Number> = new BehaviorSubject<Number>(-1);
 
   constructor() { }
 
