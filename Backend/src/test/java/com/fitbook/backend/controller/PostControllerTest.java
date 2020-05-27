@@ -31,7 +31,7 @@ public class PostControllerTest {
 
     @Before
     public void init(){
-        testPost = postRepository.save(new Post(userRepository.findAll().get(0), "content", LocalDate.now(), 1, null));
+        testPost = postRepository.save(new Post(userRepository.findAll().get(0), "content", LocalDate.now(), 1, null, null));
     }
 
     @After
@@ -41,7 +41,7 @@ public class PostControllerTest {
 
     @Test
     public void postPost() {
-        Post testPost2 = postController.postPost(new Post(userRepository.findAll().get(0), "content2", LocalDate.now(), 1, null));
+        Post testPost2 = postController.postPost(new Post(userRepository.findAll().get(0), "content2", LocalDate.now(), 1, null, null));
         Assert.assertTrue(postController.getPostsByUserLogin(testPost.getUser().getLogin()).contains(testPost2));
     }
 
@@ -52,7 +52,7 @@ public class PostControllerTest {
 
     @Test
     public void deletePost() {
-        Post testPost3 = postRepository.save(new Post(userRepository.findAll().get(0), "content3", LocalDate.now(), 1, null));
+        Post testPost3 = postRepository.save(new Post(userRepository.findAll().get(0), "content3", LocalDate.now(), 1, null, null));
         Assert.assertTrue(postController.getPostsByUserLogin(testPost.getUser().getLogin()).contains(testPost3));
         postController.deletePost(testPost3.getId());
         Assert.assertFalse(postController.getPostsByUserLogin(testPost.getUser().getLogin()).contains(testPost3));

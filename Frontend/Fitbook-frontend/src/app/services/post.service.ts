@@ -24,4 +24,8 @@ export class PostService {
     getFriendsPostsByLogin(userLogin) {
         return this.httpClient.get<any>(this.url+`/friends/byUserLogin/${userLogin}`);
     }
+
+    getPostsByGroupId(groupId) {
+      return this.httpClient.get<any>(this.url+`/byGroupId/${groupId}`);
+  }
 }

@@ -28,7 +28,7 @@ public class PostRepositoryTest {
 
     @Before
     public void init(){
-        testPost = postRepository.save(new Post(userRepository.findAll().get(0), "content", LocalDate.now(), 1, null));
+        testPost = postRepository.save(new Post(userRepository.findAll().get(0), "content", LocalDate.now(), 1, null, null));
     }
 
     @After

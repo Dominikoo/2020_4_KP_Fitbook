@@ -43,7 +43,7 @@
         </div>
         <div class="friends-list-container" style="margin-top: 5px;">
           <div class="block" *ngFor="let data of socialGroupsList; index as i">
-            <b>{{data.name}}</b>
+            <b (click)="selectGroup(data.id)" style="cursor: pointer;">{{data.name}}</b>
           </div>
           <div style="margin-top: 20px;">
             <button  type="button" class="btn btn-success btn-sm" style="margin-left: 10px;" (click)="createGroup()">Utwórz grupę</button>
