@@ -95,7 +95,6 @@ export class SbLayoutComponent implements OnInit {
   }
 
   selectGroup(groupId): void {
-    console.log(groupId)
     this.wallService.loadContent(groupId);
   }
 

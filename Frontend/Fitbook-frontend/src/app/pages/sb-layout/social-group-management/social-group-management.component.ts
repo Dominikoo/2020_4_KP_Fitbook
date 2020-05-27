@@ -21,7 +21,7 @@ export class SocialGroupManagementComponent implements OnInit {
   ngOnInit(): void {
     this.wallService.groupId.subscribe(response => {
       if(response != null && response > -1){
-        this.socialGroupService.getSocialGroupByGroupId(response).subscribe(response2 => {
+        this.socialGroupService.getSocialGroupById(response).subscribe(response2 => {
           this.group = response2;
           console.log(this.group);
         });
