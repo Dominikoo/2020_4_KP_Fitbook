@@ -1,6 +1,6 @@
 <div class="wall-container">
     <ul class="list-group">
-        <b *ngIf="groupId != -1 && group != undefined" style="font-size: 40px; margin-left: 20px; margin-bottom: 10px;">{{group.name}}</b>
+        <b *ngIf="groupId.valueOf() != -1 && group != undefined" style="font-size: 40px; margin-left: 20px; margin-bottom: 10px;">{{group.name}}</b>
         <li class="list-group-item">
             <app-post-creator></app-post-creator>
         </li>
