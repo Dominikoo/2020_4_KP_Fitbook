@@ -29,8 +29,8 @@ export class WallComponent implements OnInit {
           this.socialGroupService.getSocialGroupById(this.groupId).subscribe(
             response => {
               this.group = response;
+              this.loadGroupPosts(this.groupId)
             })
-          this.loadGroupPosts(this.groupId)
         }
         else{
           this.loadWallPosts();
