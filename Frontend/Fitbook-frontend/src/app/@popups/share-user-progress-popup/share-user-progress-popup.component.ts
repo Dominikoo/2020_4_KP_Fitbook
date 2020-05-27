@@ -4,6 +4,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
+import { SocialGroupService } from 'src/app/services/social.group.service';
 
 @Component({
   selector: 'app-share-user-progress-popup',
@@ -21,15 +22,24 @@ export class ShareUserProgressPopupComponent implements OnInit {
     login: ''
   };
 
+  userGroups: Array<any> = undefined
+
   form = new FormGroup({
-    content: new FormControl('', [Validators.required])
+    content: new FormControl('', [Validators.required]),
+    groupToShare: new FormControl('')
   })
 
   constructor(public bsModalRef: BsModalRef,
               private postService: PostService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private socialGroupService: SocialGroupService) { }
 
   ngOnInit(): void {
+    this.socialGroupService.getSocialGroupsByUserLogin(localStorage.getItem('userLogin')).subscribe(
+      response => {
+        this.userGroups = response;
+        this.userGroups.unshift(this.getWall())
+      });
     this.userService.getByLogin(localStorage.getItem('userLogin')).subscribe(response => {
       this.user = response;
     });
@@ -47,12 +57,37 @@ export class ShareUserProgressPopupComponent implements OnInit {
     this.bsModalRef.hide();
   }
 
-  
   private preparePost() {
+    let value = this.form.controls['groupToShare'].value;
+    if(value == "Tablica" || value == ""){
+      return {
+        content: this.form.controls.content.value,
+        user: this.user,
+        type: 4,
+      }
+    }
+    else{
+      let chosenGroupId: 0;
+      this.userGroups.forEach( function(group){
+        if(group.name == value){
+          chosenGroupId = group.id;
+        }
+      });
+      return {
+        content: this.form.controls.content.value,
+        user: this.user,
+        type: 4,
+        socialGroup:{
+          id: chosenGroupId
+        }
+      }
+    }
+  }
+
+  private getWall(){
     return {
-      content: this.form.controls.content.value,
-      user: this.user,
-      type: 4
+      id: -1,
+      name: "Tablica"
     }
   }
 
