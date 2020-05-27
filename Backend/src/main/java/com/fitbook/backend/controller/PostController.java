@@ -6,7 +6,7 @@ import com.fitbook.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +28,7 @@ public class PostController {
 
     @PostMapping("/auth/post")
     public Post postPost(@RequestBody Post newPost) {
-        if(newPost.getPublicationDate() == null) newPost.setPublicationDate(LocalDate.now());
+        if(newPost.getPublicationDate() == null) newPost.setPublicationDate(LocalDateTime.now());
         if(newPost.getType() == 1){
             return postRepository.save(newPost);
         }

@@ -1,7 +1,6 @@
 package com.fitbook.backend.repository;
 
 import com.fitbook.backend.model.Post;
-import com.fitbook.backend.model.UserWeightHistory;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDate;
-
-import static org.junit.Assert.*;
+import java.time.LocalDateTime;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,7 +25,7 @@ public class PostRepositoryTest {
 
     @Before
     public void init(){
-        testPost = postRepository.save(new Post(userRepository.findAll().get(0), "content", LocalDate.now(), 1, null, null));
+        testPost = postRepository.save(new Post(userRepository.findAll().get(0), "content", LocalDateTime.now(), 1, null, null));
     }
 
     @After

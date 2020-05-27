@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDate;
-
-import static org.junit.Assert.*;
+import java.time.LocalDateTime;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,7 +29,7 @@ public class PostControllerTest {
 
     @Before
     public void init(){
-        testPost = postRepository.save(new Post(userRepository.findAll().get(0), "content", LocalDate.now(), 1, null, null));
+        testPost = postRepository.save(new Post(userRepository.findAll().get(0), "content", LocalDateTime.now(), 1, null, null));
     }
 
     @After
@@ -41,7 +39,7 @@ public class PostControllerTest {
 
     @Test
     public void postPost() {
-        Post testPost2 = postController.postPost(new Post(userRepository.findAll().get(0), "content2", LocalDate.now(), 1, null, null));
+        Post testPost2 = postController.postPost(new Post(userRepository.findAll().get(0), "content2", LocalDateTime.now(), 1, null, null));
         Assert.assertTrue(postController.getPostsByUserLogin(testPost.getUser().getLogin()).contains(testPost2));
     }
 
@@ -52,7 +50,7 @@ public class PostControllerTest {
 
     @Test
     public void deletePost() {
-        Post testPost3 = postRepository.save(new Post(userRepository.findAll().get(0), "content3", LocalDate.now(), 1, null, null));
+        Post testPost3 = postRepository.save(new Post(userRepository.findAll().get(0), "content3", LocalDateTime.now(), 1, null, null));
         Assert.assertTrue(postController.getPostsByUserLogin(testPost.getUser().getLogin()).contains(testPost3));
         postController.deletePost(testPost3.getId());
         Assert.assertFalse(postController.getPostsByUserLogin(testPost.getUser().getLogin()).contains(testPost3));

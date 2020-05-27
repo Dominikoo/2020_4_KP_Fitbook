@@ -1,7 +1,7 @@
 package com.fitbook.backend.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Posts")
@@ -21,8 +21,8 @@ public class Post {
     @Column(columnDefinition = "text")
     private String content;
 
-    @Column(columnDefinition = "date")
-    private LocalDate publicationDate;
+    @Column(columnDefinition = "timestamp")
+    private LocalDateTime publicationDate;
 
     @Column(columnDefinition = "int")
     private Integer type; // 1 - simple text, 2 - shared training plan, 3 - shared weight
@@ -37,7 +37,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(User user, String content, LocalDate publicationDate, Integer type, TrainingPlan sharedTrainingPlan, SocialGroup socialGroup) {
+    public Post(User user, String content, LocalDateTime publicationDate, Integer type, TrainingPlan sharedTrainingPlan, SocialGroup socialGroup) {
         this.user = user;
         this.content = content;
         this.publicationDate = publicationDate;
@@ -70,11 +70,11 @@ public class Post {
         this.content = content;
     }
 
-    public LocalDate getPublicationDate() {
+    public LocalDateTime getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(LocalDate publicationDate) {
+    public void setPublicationDate(LocalDateTime publicationDate) {
         this.publicationDate = publicationDate;
     }
 
