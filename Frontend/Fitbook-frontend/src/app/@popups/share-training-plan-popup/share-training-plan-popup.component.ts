@@ -57,7 +57,8 @@ export class ShareTrainingPlanPopupComponent implements OnInit {
   }
 
   private preparePost() {
-    if(this.form.controls['groupToShare'].value == "Tablica"){
+    let value = this.form.controls['groupToShare'].value;
+    if(value == "Tablica"){
       return {
         content: this.form.controls.content.value,
         user: this.user,
@@ -68,7 +69,7 @@ export class ShareTrainingPlanPopupComponent implements OnInit {
     else{
       let chosenGroupId: 0;
       this.userGroups.forEach( function(group){
-        if(group.name == this.form.controls['groupToShare'].value){
+        if(group.name == value){
           chosenGroupId = group.id;
         }
       });
