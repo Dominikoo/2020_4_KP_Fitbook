@@ -89,8 +89,7 @@ export class SbLayoutComponent implements OnInit {
     this.bsModalRef = this.modalService.show(AddGroupPopupComponent)
     this.bsModalRef.content.onClose.subscribe(response => {
       if(response) 
-        this.socialGroupService.getSocialGroupsByUserLogin(this.userLogin).subscribe(response => {this.socialGroupsList = response;
-      });
+        this.socialGroupService.getSocialGroupsByUserLogin(this.userLogin).subscribe(response => {this.socialGroupsList = response;});
     })
   }
 

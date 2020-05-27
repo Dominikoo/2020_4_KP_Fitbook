@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
+import { SocialGroupService } from 'src/app/services/social.group.service';
 
 @Component({
   selector: 'app-share-training-plan-popup',
@@ -20,16 +21,24 @@ export class ShareTrainingPlanPopupComponent implements OnInit {
     lastName: '',
     login: ''
   };
+  userGroups: Array<any> = undefined
 
   form = new FormGroup({
-    content: new FormControl('', [Validators.required])
+    content: new FormControl('', [Validators.required]),
+    groupToShare: new FormControl('')
   })
 
   constructor(public bsModalRef: BsModalRef,
               private postService: PostService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private socialGroupService: SocialGroupService) { }
 
   ngOnInit(): void {
+    this.socialGroupService.getSocialGroupsByUserLogin(localStorage.getItem('userLogin')).subscribe(
+      response => {
+        this.userGroups = response;
+        this.userGroups.unshift(this.getWall())
+      });
     this.userService.getByLogin(localStorage.getItem('userLogin')).subscribe(response => {
       this.user = response;
     });
@@ -47,14 +56,38 @@ export class ShareTrainingPlanPopupComponent implements OnInit {
     this.bsModalRef.hide();
   }
 
-  
   private preparePost() {
-    return {
-      content: this.form.controls.content.value,
-      user: this.user,
-      type: 2,
-      sharedTrainingPlan: this.trainingPlan
+    if(this.form.controls['groupToShare'].value == "Tablica"){
+      return {
+        content: this.form.controls.content.value,
+        user: this.user,
+        type: 2,
+        sharedTrainingPlan: this.trainingPlan
+      }
+    }
+    else{
+      let chosenGroupId: 0;
+      this.userGroups.forEach( function(group){
+        if(group.name == this.form.controls['groupToShare'].value){
+          chosenGroupId = group.id;
+        }
+      });
+      return {
+        content: this.form.controls.content.value,
+        user: this.user,
+        type: 2,
+        sharedTrainingPlan: this.trainingPlan,
+        socialGroup:{
+          id: chosenGroupId
+        }
+      }
     }
   }
 
+  private getWall(){
+    return {
+      id: -1,
+      name: "Tablica"
+    }
+  }
 }
