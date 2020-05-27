@@ -20,7 +20,7 @@ export class SocialGroupService {
     return this.httpClient.get(this.url + `/get/byUserLogin/${userLogin}`);
   }
 
-  getSocialGroupByGroupId(groupId): any {
-    return this.httpClient.get(this.url + `/get/${groupId}`)
+  getSocialGroupById(groupId): any{
+    return this.httpClient.get(this.url + `/get/byId/${groupId}`);
   }
 }

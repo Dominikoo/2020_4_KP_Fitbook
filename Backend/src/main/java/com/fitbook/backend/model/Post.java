@@ -31,15 +31,19 @@ public class Post {
     @ManyToOne
     private TrainingPlan sharedTrainingPlan;
 
+    @ManyToOne
+    private SocialGroup socialGroup;
+
     public Post() {
     }
 
-    public Post(User user, String content, LocalDate publicationDate, Integer type, TrainingPlan sharedTrainingPlan) {
+    public Post(User user, String content, LocalDate publicationDate, Integer type, TrainingPlan sharedTrainingPlan, SocialGroup socialGroup) {
         this.user = user;
         this.content = content;
         this.publicationDate = publicationDate;
         this.type = type;
         this.sharedTrainingPlan = sharedTrainingPlan;
+        this.socialGroup = socialGroup;
     }
 
     public Long getId() {
@@ -88,6 +92,14 @@ public class Post {
 
     public void setSharedTrainingPlan(TrainingPlan sharedTrainingPlan) {
         this.sharedTrainingPlan = sharedTrainingPlan;
+    }
+
+    public SocialGroup getSocialGroup() {
+        return socialGroup;
+    }
+
+    public void setSocialGroup(SocialGroup socialGroup) {
+        this.socialGroup = socialGroup;
     }
 
     @Override

@@ -35,8 +35,8 @@ public class SocialGroupController {
         return groupMemberRepository.getSocialGroupsByUserLogin(userLogin);
     }
 
-    @GetMapping("auth/socialGroups/get/{groupId}")
-    public SocialGroup getSocialGroupByGroupId(@PathVariable Long groupId) {
-        return socialGroupRepository.getSocialGroupByGroupId(groupId);
+    @GetMapping("/auth/socialGroups/get/byId/{groupId}")
+    public SocialGroup getSocialGroupById(@PathVariable Long groupId){
+        return socialGroupRepository.findById(groupId).orElse(null);
     }
 }

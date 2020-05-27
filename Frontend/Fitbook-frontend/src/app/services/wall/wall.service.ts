@@ -8,7 +8,9 @@ export class WallService {
 
   public groupId: BehaviorSubject<Number> = new BehaviorSubject<Number>(-1);
 
-  constructor() { }
+  constructor() { 
+    this.groupId = new Subject<Number>();
+  }
 
   loadContent(groupId): void {
     this.groupId.next(groupId);

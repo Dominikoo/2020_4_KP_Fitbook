@@ -72,6 +72,11 @@ public class PostController {
         return friendsPosts;
     }
 
+    @GetMapping("/auth/post/byGroupId/{groupId}")
+    public List<Post> getPostsByGroupId(@PathVariable Long groupId){
+        return postRepository.getPostsByGroupId(groupId);
+    }
+
     @DeleteMapping("/auth/post/{postId}")
     public Post deletePost(@PathVariable Long postId){
         Optional<Post> post = postRepository.findById(postId);
