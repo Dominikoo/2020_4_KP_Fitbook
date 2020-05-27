@@ -2,6 +2,7 @@ package com.fitbook.backend.controller;
 
 import com.fitbook.backend.model.GroupMember;
 import com.fitbook.backend.model.SocialGroup;
+import com.fitbook.backend.model.User;
 import com.fitbook.backend.repository.GroupMemberRepository;
 import com.fitbook.backend.repository.SocialGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,10 @@ public class SocialGroupController {
     @GetMapping("/auth/socialGroups/get/byId/{groupId}")
     public SocialGroup getSocialGroupById(@PathVariable Long groupId){
         return socialGroupRepository.findById(groupId).orElse(null);
+    }
+
+    @GetMapping("/auth/socialGroups/getMembers/byId/{groupId}")
+    public List<User> getMembersByGroupId(@PathVariable Long groupId){
+        return groupMemberRepository.getMembersByGroupId(groupId);
     }
 }
