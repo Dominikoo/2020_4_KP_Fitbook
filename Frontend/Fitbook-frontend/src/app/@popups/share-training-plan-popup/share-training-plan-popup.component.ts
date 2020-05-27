@@ -58,7 +58,7 @@ export class ShareTrainingPlanPopupComponent implements OnInit {
 
   private preparePost() {
     let value = this.form.controls['groupToShare'].value;
-    if(value == "Tablica"){
+    if(value == "Tablica" || value == ""){
       return {
         content: this.form.controls.content.value,
         user: this.user,
