@@ -62,7 +62,6 @@ export class SharedWeightChartPostComponent implements OnInit {
         this.commentsList = response;
       }
     })
-    console.log(this.data)
 
     this.userWeightHistoryService.getUserWeightHistoryByPostId(this.data.id).subscribe(response => {
       this.userWeightHistory = response

@@ -59,7 +59,6 @@ export class SharedTrainingPlanPostComponent implements OnInit {
         this.commentsList = response;
       }
     })
-    console.log(this.data)
   }
 
   likePost() {
@@ -72,7 +71,6 @@ export class SharedTrainingPlanPostComponent implements OnInit {
         }
       });
     }
-    console.log(this.data.publicationDate);
   }
 
   dislikePost() {

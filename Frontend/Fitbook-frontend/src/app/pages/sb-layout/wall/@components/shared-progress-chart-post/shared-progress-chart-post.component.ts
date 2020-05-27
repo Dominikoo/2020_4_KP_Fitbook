@@ -61,39 +61,37 @@ export class SharedProgressChartPostComponent implements OnInit {
         this.commentsList = response;
       }
     })
-    console.log(this.data)
 
     this.sharedChartDataService.getUserProgressByPostId(this.data.id).subscribe(response => {
       this.progressData = response
       let weight: Array<any> = this.progressData[0].series;
       this.yWeightMin = Number.MAX_VALUE;
       this.yWeightMax = Number.MIN_VALUE;
-      for(var i=0;i<weight.length;i++){
-        if(weight[i].value > this.yWeightMax) this.yWeightMax = weight[i].value
-        if(weight[i].value < this.yWeightMin) this.yWeightMin = weight[i].value; 
+      if(weight != undefined){
+        for(var i=0;i<weight.length;i++){
+          if(weight[i].value > this.yWeightMax) this.yWeightMax = weight[i].value
+          if(weight[i].value < this.yWeightMin) this.yWeightMin = weight[i].value; 
+        }
+        this.yWeightMax = this.yWeightMax + 20;
+        this.yWeightMin = this.yWeightMin - 30;
       }
-      this.yWeightMax = this.yWeightMax + 20;
-      this.yWeightMin = this.yWeightMin - 30;
     })
   }
 
   likePost() {
     if(!this.alreadyLiked){
       this.postLikeService.postPostLike(this.prepareInfo()).subscribe(response => {
-        console.log(response);
         if(response != null){
           this.likesNumber = this.likesNumber + 1;
           this.alreadyLiked = true;
         }
       });
     }
-    console.log(this.data.publicationDate);
   }
 
   dislikePost() {
     if(this.alreadyLiked){
       this.postLikeService.deletePostLike(this.user.login, this.data.id).subscribe(response => {
-        console.log(response);
         if(response != null){
           this.likesNumber = this.likesNumber - 1;
           this.alreadyLiked = false;
