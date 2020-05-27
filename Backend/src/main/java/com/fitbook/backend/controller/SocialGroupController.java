@@ -34,4 +34,9 @@ public class SocialGroupController {
     public List<SocialGroup> getSocialGroupsByUserLogin(@PathVariable String userLogin){
         return groupMemberRepository.getSocialGroupsByUserLogin(userLogin);
     }
+
+    @GetMapping("auth/socialGroups/get/{groupId}")
+    public SocialGroup getSocialGroupByGroupId(@PathVariable Long groupId) {
+        return socialGroupRepository.getSocialGroupByGroupId(groupId);
+    }
 }
