@@ -3,6 +3,7 @@ import { SearchService } from './../../services/search.service';
 import { TrainingPlanService } from './../../services/training.plan.service';
 import { TrainingAddedInfoPopupComponent } from './../../@popups/training-added-info-popup/training-added-info-popup.component'
 import { UserConnectionService } from './../../services/user.connection.service';
+import { GroupMemberService } from './../../services/group.member.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 
@@ -14,8 +15,10 @@ import { Router } from '@angular/router';
 export class SearchResultsComponent implements OnInit {
 
   searchedUsers: any;
+  searchedSocialGroups: any;
   searchedTrainingPlans: any;
   countUsers = 0;
+  countSocialGroups: 0;
   countTrainingPlans = 0;
 
   bsModalRef: BsModalRef;
@@ -23,6 +26,7 @@ export class SearchResultsComponent implements OnInit {
   constructor(private searchService: SearchService,
               private trainingPlanService: TrainingPlanService,
               private userConnectionService: UserConnectionService,
+              private groupMemberService: GroupMemberService,
               private modalService: BsModalService,
               private router: Router) { }
 
@@ -31,6 +35,11 @@ export class SearchResultsComponent implements OnInit {
       this.searchedUsers = response
       this.countUsers = this.searchedUsers.length
     });
+    this.searchService.searchSocialGroupsByText(localStorage.getItem("phrase"), localStorage.getItem("userLogin")).subscribe(response =>{
+      this.searchedSocialGroups = response
+      this.countSocialGroups = this.searchedSocialGroups.length
+      console.log(response)
+    })
     this.searchService.searchTrainingPlansByText(localStorage.getItem("phrase")).subscribe(response =>{
       this.searchedTrainingPlans = response
       this.countTrainingPlans = this.searchedTrainingPlans.length
@@ -55,6 +64,21 @@ export class SearchResultsComponent implements OnInit {
   acceptInvitation(item): void{
     item.status = 1
     this.userConnectionService.put(item).subscribe(response => item = response)
+  }
+
+  askForJoinToGroup(item): void{
+    item.status = 2
+    this.groupMemberService.put(item).subscribe(response => item = response)
+  }
+
+  leaveGroup(item): void{
+    item.status = 0
+    this.groupMemberService.put(item).subscribe(response => item = response)
+  }
+
+  cancelAskForJoinToGroup(item): void{
+    item.status = 0
+    this.groupMemberService.put(item).subscribe(response => item = response)
   }
 
   addTraining(item): void{

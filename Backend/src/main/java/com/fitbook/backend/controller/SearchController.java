@@ -1,11 +1,7 @@
 package com.fitbook.backend.controller;
 
-import com.fitbook.backend.model.TrainingPlan;
-import com.fitbook.backend.model.User;
-import com.fitbook.backend.model.UserConnection;
-import com.fitbook.backend.repository.TrainingPlanRepository;
-import com.fitbook.backend.repository.UserConnectionRepository;
-import com.fitbook.backend.repository.UserRepository;
+import com.fitbook.backend.model.*;
+import com.fitbook.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +22,10 @@ public class SearchController {
     private UserConnectionRepository userConnectionRepository;
     @Autowired
     private TrainingPlanRepository trainingPlanRepository;
+    @Autowired
+    private SocialGroupRepository socialGroupRepository;
+    @Autowired
+    private GroupMemberRepository groupMemberRepository;
 
     @GetMapping("/auth/search/userConnections/{phrase}/{userLogin}")
     public List<UserConnection> searchUserConnections(@PathVariable String phrase, @PathVariable String userLogin){
@@ -42,5 +42,22 @@ public class SearchController {
     @GetMapping("/auth/search/trainingPlans/{phrase}")
     public List<TrainingPlan> searchTrainingPlans(@PathVariable String phrase){
         return phrase.equals("") ? new ArrayList<>() : trainingPlanRepository.searchTrainingPlansByPhrase(phrase);
+    }
+
+    @GetMapping("/auth/search/socialGroups/{phrase}/{userLogin}")
+    public List<GroupMember> searchSocialGroups(@PathVariable String phrase, @PathVariable String userLogin){
+        User user = userRepository.getUserByLogin(userLogin);
+        if(user != null){
+            List<SocialGroup> foundSocialGroups = socialGroupRepository.searchSocialGroupByPhrase(phrase);
+            List<GroupMember> groupMembers = new ArrayList<>();
+            for(SocialGroup socialGroup : foundSocialGroups){
+                GroupMember groupMember = groupMemberRepository.getGroupMemberByLoginAndGroupId(userLogin, socialGroup.getId());
+                groupMembers.add(Objects.requireNonNullElseGet(groupMember, () -> new GroupMember(user, socialGroup, 0)));
+            }
+            return groupMembers;
+        }
+        else {
+            return null;
+        }
     }
 }

@@ -20,4 +20,8 @@ export class SearchService {
   searchTrainingPlansByText(phrase){
     return this.httpClient.get(this.url+`/trainingPlans/${phrase}`)
   }
+
+  searchSocialGroupsByText(phrase, userLogin){
+    return this.httpClient.get(this.url+`/socialGroups/${phrase}/${userLogin}`)
+  }
 }

@@ -23,7 +23,7 @@ public class SocialGroupController {
     public SocialGroup postSocialGroup(@RequestBody SocialGroup socialGroup){
         try{
             SocialGroup savedSocialGroup = socialGroupRepository.save(socialGroup);
-            groupMemberRepository.save(new GroupMember(savedSocialGroup.getOwner(), savedSocialGroup));
+            groupMemberRepository.save(new GroupMember(savedSocialGroup.getOwner(), savedSocialGroup, 1));
             return savedSocialGroup;
         }
         catch (Exception e){

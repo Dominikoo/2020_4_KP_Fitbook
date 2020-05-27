@@ -13,6 +13,19 @@
         </div>
     </li>
     <hr>
+    <b style="font-size: 24px; margin-left: 18px;">ZNALEZIONE GRUPY: {{countSocialGroups}}</b>
+    <hr>
+    <li class="user-item" *ngFor="let item of searchedSocialGroups; index as i" style="width: 580px;">
+        <div style="margin-top: 10px; margin-left: 10px;">
+            <b>{{item.socialGroup.name}}</b>
+        </div>
+        <div style="padding: 4px; display: grid;">
+            <button *ngIf="item.status==0" type="button" class="btn btn-dark" (click)="askForJoinToGroup(item)">Poproś o dołączenie</button>
+            <button *ngIf="item.status==1" type="button" class="btn btn-danger" (click)="leaveGroup(item)">Opuść grupę</button>
+            <button *ngIf="item.status==2" type="button" class="btn btn-warning" (click)="cancelAskForJoinToGroup(item)">Anuluj prośbę o dołączenie</button>
+        </div>
+    </li>
+    <hr>
     <b style="font-size: 24px; margin-left: 18px">ZNALEZIONE PLANY TRENINGOWE: {{countTrainingPlans}}</b>
     <hr>
     <div class="trainig-list-container">

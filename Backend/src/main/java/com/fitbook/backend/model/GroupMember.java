@@ -20,12 +20,16 @@ public class GroupMember {
     @ManyToOne
     private SocialGroup socialGroup;
 
+    @Column(columnDefinition = "int")
+    private Integer status; // 0 - brak, 1 - należy do grupy, 2 - poprosił o dołączenie
+
     public GroupMember() {
     }
 
-    public GroupMember(User user, SocialGroup socialGroup) {
+    public GroupMember(User user, SocialGroup socialGroup, Integer status) {
         this.user = user;
         this.socialGroup = socialGroup;
+        this.status = status;
     }
 
     public Long getId() {
@@ -50,5 +54,13 @@ public class GroupMember {
 
     public void setSocialGroup(SocialGroup socialGroup) {
         this.socialGroup = socialGroup;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
