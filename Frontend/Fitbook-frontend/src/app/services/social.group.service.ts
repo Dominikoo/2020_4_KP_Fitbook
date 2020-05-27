@@ -19,4 +19,8 @@ export class SocialGroupService {
   getSocialGroupsByUserLogin(userLogin): any{
     return this.httpClient.get(this.url + `/get/byUserLogin/${userLogin}`);
   }
+
+  getSocialGroupByGroupId(groupId): any {
+    return this.httpClient.get(this.url + `/get/${groupId}`)
+  }
 }
