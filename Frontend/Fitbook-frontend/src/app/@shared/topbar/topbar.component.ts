@@ -43,4 +43,8 @@ export class TopbarComponent implements OnInit {
   logout(){
     this.router.navigate(['']);
   }
+
+  topbarNavigate(path): void {
+    this.router.navigate([path]);
+  }
 }
