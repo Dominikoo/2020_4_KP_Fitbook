@@ -45,4 +45,9 @@ public class SocialGroupController {
     public List<User> getMembersByGroupId(@PathVariable Long groupId){
         return groupMemberRepository.getMembersByGroupId(groupId);
     }
+
+    @GetMapping("/auth/socialGroups/getPendingMembers/byId/{groupId}")
+    public List<User> getPendingMembersByGroupId(@PathVariable Long groupId){
+        return groupMemberRepository.getPendingMembersByGroupId(groupId);
+    }
 }

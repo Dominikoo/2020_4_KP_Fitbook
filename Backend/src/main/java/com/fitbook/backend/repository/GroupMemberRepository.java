@@ -21,6 +21,12 @@ public interface GroupMemberRepository extends JpaRepository<GroupMember, Long>{
             @Param("groupId") Long groupId
     );
 
+    @Query( "SELECT gm.user FROM GroupMember gm " +
+            "WHERE gm.socialGroup.id = :groupId AND gm.status = 2")
+    List<User> getPendingMembersByGroupId(
+            @Param("groupId") Long groupId
+    );
+
     @Query( "SELECT sg FROM SocialGroup sg WHERE UPPER(sg.name) LIKE CONCAT('%', UPPER(:phrase), '%')")
     List<SocialGroup> searchSocialGroupByPhrase(
             @Param("phrase") String phrase
