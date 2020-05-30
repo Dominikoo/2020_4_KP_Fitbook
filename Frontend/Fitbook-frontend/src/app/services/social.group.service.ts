@@ -23,4 +23,12 @@ export class SocialGroupService {
   getSocialGroupById(groupId): any{
     return this.httpClient.get(this.url + `/get/byId/${groupId}`);
   }
+
+  getMembersByGroupId(groupId): any {
+    return this.httpClient.get(this.url + `/getMembers/byId/${groupId}`)
+  }
+
+  getPendingMembersByGroupId(groupId): any {
+    return this.httpClient.get(this.url + `/getPendingMembers/byId/${groupId}`)
+  }
 }

@@ -1,1 +1,94 @@
-<p>social-group-management works!</p>
+<div class="container-fluid social-group-container">
+    <div class="main-header">
+        <h1>Twoja grupa</h1>
+    </div>
+
+
+    <div class="info-header px-4 py-1">
+        <h3>Informacje:</h3>
+        <hr>
+    </div>
+
+    <div class="reg-container my-4 px-2">
+
+        <form [formGroup]="group">
+            <div class="row py-1">
+                <span class="col-2">
+                    <h5>Nazwa grupy:</h5>
+                </span>
+                <span class="col-6">
+                    <input type="text" formControlName="name" class="form-control" placeholder="{{historyGroup.name}}">
+                </span>
+            </div>
+            <div class="row py-1">
+                <span class="col-2">
+                    <h5>Opis:</h5>
+                </span>
+                <span class="col-6">
+                    <textarea type="text" formControlName="description" class="form-control" placeholder="{{historyGroup.description}}" rows=4></textarea>
+                </span>
+            </div>
+            <div class="row py-1">
+                <span class="col-2"></span>
+                <span class="col-6">
+                    <button class="btn float-right" (click)="saveChanges()">Zapisz zmiany</button>
+                </span>
+            </div>
+        </form>
+    </div>
+
+    <div class="info-header px-4 py-1">
+        <h3>Członkowie:</h3>
+        <hr>
+    </div>
+
+    <div class="members-section">
+        <div class="row mx-1">
+            <div class="col px-0 ml-1">
+                <h4 class="my-2 mx-4"> Członkowie </h4>
+                <form [formGroup]="searchForm">
+                    <input type="text" formControlName="search" class="form-control" placeholder="Wyszukaj użytkownika...">
+                </form>
+            </div>
+            <div class="col pr-0 mr-0">
+                <h4 class="my-2 mx-4"> Prośby o dołączenie </h4>
+            </div>
+        </div>
+        <div class="row mx-1">
+            <div class="col px-0 ml-1">
+                <div class="list-group">
+                    <div *ngFor="let item of members; index as i">
+                        <div class="list-group-item" *ngIf="(item.firstName+' '+item.lastName+' '+item.login).includes(searchForm.controls.search.value)">
+                            <span>
+                                <b>{{ item.firstName }}</b> <b> {{ item.lastName }} </b> ({{ item.login }})
+                            </span>
+                            <span class="float-right">
+                                <button type="button" class="btn btn-danger btn-sm my-0 py-1" style="margin-left: 10px;" (click)="removeMember(item)">Usuń</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col pr-0 mr-0">
+                <div class="list-group">
+                    <div *ngFor="let item of pendingMembers; index as i">
+                        <div class="list-group-item">
+                            <span>
+                                <b>{{ item.firstName }}</b> <b> {{ item.lastName }} </b> ({{ item.login }}) 
+                            </span>
+                            <span class="float-right">
+                                <span>
+                                    <button type="button" class="btn btn-success btn-sm my-0 py-1" style="margin-left: 10px;" (click)="acceptRequest(item)">Akceptuj</button>
+                                </span>
+                            <span>
+                                    <button type="button" class="btn btn-danger btn-sm my-0 py-1" style="margin-left: 10px;" (click)="denyRequest(item)">Odrzuć</button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
