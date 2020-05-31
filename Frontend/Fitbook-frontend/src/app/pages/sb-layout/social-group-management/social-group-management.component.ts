@@ -91,11 +91,21 @@ export class SocialGroupManagementComponent implements OnInit {
     }
   }
 
+  removePendingMember(item):void {
+    this.groupMemberService.deleteSocialGroupMember(item.id).subscribe()
+    const index = this.pendingMembers.indexOf(item, 0);
+    if (index > -1) {
+      this.pendingMembers.splice(index, 1);
+    }
+  } 
+   
   acceptRequest(item): void {
+    const index = this.pendingMembers.indexOf(item, 0);
+    if (index > -1) {
+      this.members.push(this.pendingMembers[index])
+      this.pendingMembers.splice(index, 1);
+    }
     item.status = 1;
-    this.groupMemberService.put(item).subscribe(response => {
-      console.log(response);
-      window.location.reload();
-    })
+    this.groupMemberService.put(item).subscribe()
   }
 }
