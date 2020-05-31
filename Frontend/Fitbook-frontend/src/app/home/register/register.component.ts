@@ -38,9 +38,7 @@ export class RegisterComponent implements OnInit {
                 this.userService.post(this.form.value).subscribe(
                   response => {
                     if (response != null) {
-                      localStorage.setItem('token', response.login)
-                      localStorage.setItem('userLogin', response.login)
-                      this.router.navigate(['/pages']);
+                      this.router.navigate(['/about']);
                     }
                     else this.processing = false;
                   }
