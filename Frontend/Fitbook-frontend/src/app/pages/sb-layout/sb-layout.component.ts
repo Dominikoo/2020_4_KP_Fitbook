@@ -93,11 +93,12 @@ export class SbLayoutComponent implements OnInit {
     })
   }
 
-  selectGroup(groupId): void {
-    this.wallService.loadContent(groupId);
+  openSocialGroupPanel(groupId): void {
+    this.selectGroup(groupId);
+    this.router.navigate(['/pages/social-group-management']);
   }
 
-  openSocialGroupPanel(data): void {
-    this.router.navigate(['/pages/social-group-management']);
+  selectGroup(groupId): void {
+    this.wallService.loadContent(groupId);
   }
 }

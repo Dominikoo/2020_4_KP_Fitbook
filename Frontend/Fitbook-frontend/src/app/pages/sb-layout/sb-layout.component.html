@@ -44,7 +44,7 @@
         <div class="friends-list-container" style="margin-top: 5px;">
           <div class="block clickable" *ngFor="let data of socialGroupsList; index as i" (click)="selectGroup(data.id)">
             <b>{{data.name}}</b>
-            <button  *ngIf="data.owner.login == userLogin" type="button" class="btn btn-sm my-0 py-0" style="margin-left: 10px;" (click)="openSocialGroupPanel(data)">M</button>
+            <button  *ngIf="data.owner.login == userLogin" type="button" class="btn btn-sm my-0 py-0" style="margin-left: 10px;" (click)="openSocialGroupPanel(data.id)">M</button>
           </div>
           <div style="margin-top: 20px;">
             <button  type="button" class="btn btn-success btn-sm" style="margin-left: 10px;" (click)="createGroup()">Utwórz grupę</button>
