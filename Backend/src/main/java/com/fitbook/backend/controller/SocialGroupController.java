@@ -31,6 +31,26 @@ public class SocialGroupController {
         }
     }
 
+    @PutMapping("/auth/socialGroups/put")
+    public SocialGroup putSocialGroup(@RequestBody SocialGroup socialGroup){
+        try{
+            SocialGroup temp = socialGroupRepository.getSocialGroupByGroupId(socialGroup.getId());
+
+            if(socialGroup.getName() != null) temp.setName(socialGroup.getName());
+            if(socialGroup.getDescription() != null) temp.setDescription(socialGroup.getDescription());
+            if(socialGroup.getOwner() != null) {
+                groupMemberRepository.delete(groupMemberRepository.getOne(temp.getOwner().getId()));
+                temp.setOwner(socialGroup.getOwner());
+                groupMemberRepository.save(new GroupMember(temp.getOwner(), temp, 1));
+            }
+
+            return socialGroupRepository.save(temp);
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
+
     @GetMapping("/auth/socialGroups/get/byUserLogin/{userLogin}")
     public List<SocialGroup> getSocialGroupsByUserLogin(@PathVariable String userLogin){
         return groupMemberRepository.getSocialGroupsByUserLogin(userLogin);
@@ -42,12 +62,12 @@ public class SocialGroupController {
     }
 
     @GetMapping("/auth/socialGroups/getMembers/byId/{groupId}")
-    public List<User> getMembersByGroupId(@PathVariable Long groupId){
+    public List<GroupMember> getMembersByGroupId(@PathVariable Long groupId){
         return groupMemberRepository.getMembersByGroupId(groupId);
     }
 
     @GetMapping("/auth/socialGroups/getPendingMembers/byId/{groupId}")
-    public List<User> getPendingMembersByGroupId(@PathVariable Long groupId){
+    public List<GroupMember> getPendingMembersByGroupId(@PathVariable Long groupId){
         return groupMemberRepository.getPendingMembersByGroupId(groupId);
     }
 }

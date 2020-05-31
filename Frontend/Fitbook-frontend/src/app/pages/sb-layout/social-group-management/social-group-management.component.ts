@@ -3,6 +3,7 @@ import { WallService } from 'src/app/services/wall/wall.service';
 import { SocialGroupService } from 'src/app/services/social.group.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { isNgTemplate } from '@angular/compiler';
+import { GroupMemberService } from 'src/app/services/group.member.service';
 
 @Component({
   selector: 'app-social-group-management',
@@ -17,9 +18,13 @@ export class SocialGroupManagementComponent implements OnInit {
 
   groupId: Number = undefined;
   group = new FormGroup({
+    id: new FormControl(''),
     name: new FormControl('', [Validators.required]),
     description: new FormControl('')
   })
+  previousName: boolean = false;
+  savedSuccessfully: boolean = undefined;
+
   historyGroup = {
     name: '',
     description: ''
@@ -29,12 +34,14 @@ export class SocialGroupManagementComponent implements OnInit {
   pendingMembers: Array<any> = undefined;
 
   constructor(private wallService: WallService,
-              private socialGroupService: SocialGroupService) { }
+              private socialGroupService: SocialGroupService,
+              private groupMemberService: GroupMemberService) { }
 
   ngOnInit(): void {
     this.wallService.groupId.subscribe(response => {
       if(response != null && response > -1){
         this.socialGroupService.getSocialGroupById(response).subscribe(response2 => {
+          this.group.controls.id.setValue(response2.id);
           this.group.controls.name.setValue(response2.name);
           this.group.controls.description.setValue(response2.description);
           this.historyGroup = response2;
@@ -47,6 +54,7 @@ export class SocialGroupManagementComponent implements OnInit {
         })
         this.socialGroupService.getPendingMembersByGroupId(response).subscribe(response4 => {
           if(response != null) {
+            console.log(this.pendingMembers);
             this.pendingMembers = response4;
           }
         })
@@ -62,18 +70,29 @@ export class SocialGroupManagementComponent implements OnInit {
   }
 
   saveChanges(): void {
-    
+    if(this.historyGroup.name == this.group.controls.name.value && this.historyGroup.description == this.group.controls.description.value) this.previousName = true;
+    else {
+      this.socialGroupService.putSocialGroup(this.group.getRawValue()).subscribe(response => {
+        console.log(response);
+        if(response != null) {
+          this.savedSuccessfully = true;
+          window.location.reload();
+        }
+        else this.savedSuccessfully = false;
+      });
+    }
   }
 
   removeMember(item): void {
-
+    this.groupMemberService.deleteSocialGroupMember(item);
+    window.location.reload();
   }
 
   acceptRequest(item): void {
-
-  }
-
-  denyRequest(item): void {
-
+    item.status = 1;
+    this.groupMemberService.put(item).subscribe(response => {
+      console.log(response);
+      window.location.reload();
+    })
   }
 }

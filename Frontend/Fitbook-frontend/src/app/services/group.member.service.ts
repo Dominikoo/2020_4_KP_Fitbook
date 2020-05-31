@@ -17,4 +17,8 @@ export class GroupMemberService {
     return this.httpClient.put(this.url, modifiedGroupMember)
   }
 
+  deleteSocialGroupMember(groupMember) {
+    this.httpClient.put(this.url + `/delete`, groupMember);
+  }
+
 }

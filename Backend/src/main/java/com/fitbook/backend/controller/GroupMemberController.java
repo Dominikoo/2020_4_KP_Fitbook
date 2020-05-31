@@ -4,10 +4,7 @@ import com.fitbook.backend.model.GroupMember;
 import com.fitbook.backend.model.UserConnection;
 import com.fitbook.backend.repository.GroupMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -27,5 +24,10 @@ public class GroupMemberController {
         else{
             return groupMemberRepository.save(modifiedGroupMember);
         }
+    }
+
+    @PutMapping("/auth/groupMember/delete")
+    void deleteGroupMember(@RequestBody GroupMember groupMember) {
+        groupMemberRepository.delete(groupMember);
     }
 }

@@ -15,15 +15,15 @@ public interface GroupMemberRepository extends JpaRepository<GroupMember, Long>{
             @Param("userLogin") String userLogin
     );
 
-    @Query( "SELECT gm.user FROM GroupMember gm " +
+    @Query( "SELECT gm FROM GroupMember gm " +
             "WHERE gm.socialGroup.id = :groupId AND gm.status = 1")
-    List<User> getMembersByGroupId(
+    List<GroupMember> getMembersByGroupId(
             @Param("groupId") Long groupId
     );
 
-    @Query( "SELECT gm.user FROM GroupMember gm " +
+    @Query( "SELECT gm FROM GroupMember gm " +
             "WHERE gm.socialGroup.id = :groupId AND gm.status = 2")
-    List<User> getPendingMembersByGroupId(
+    List<GroupMember> getPendingMembersByGroupId(
             @Param("groupId") Long groupId
     );
 
