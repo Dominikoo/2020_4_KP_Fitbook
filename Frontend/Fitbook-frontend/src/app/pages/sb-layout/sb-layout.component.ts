@@ -67,9 +67,6 @@ export class SbLayoutComponent implements OnInit {
 
   removeFriend(item): void{
     item.status = 0;
-    console.log(item);
-    console.log(this.friendsList);
-    console.log(this.connectionsList);
     this.userConnectionService.put(item).subscribe(response => item = response)
     const index = this.friendsList.indexOf(item.secondUser, 0);
     if (index > -1) {
@@ -80,9 +77,6 @@ export class SbLayoutComponent implements OnInit {
     if (index2 > -1) {
       this.connectionsList.splice(index2, 1);
     }
-    console.log(this.friendsList);
-    console.log(this.connectionsList);
-    console.log(item);
   }
 
   createGroup(): void{

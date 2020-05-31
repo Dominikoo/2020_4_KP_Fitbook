@@ -84,8 +84,11 @@ export class SocialGroupManagementComponent implements OnInit {
   }
 
   removeMember(item): void {
-    this.groupMemberService.deleteSocialGroupMember(item);
-    window.location.reload();
+    this.groupMemberService.deleteSocialGroupMember(item.id).subscribe()
+    const index = this.members.indexOf(item, 0);
+    if (index > -1) {
+      this.members.splice(index, 1);
+    }
   }
 
   acceptRequest(item): void {

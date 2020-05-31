@@ -6,6 +6,9 @@ import com.fitbook.backend.repository.GroupMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.desktop.OpenFilesEvent;
+import java.util.Optional;
+
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class GroupMemberController {
@@ -26,8 +29,13 @@ public class GroupMemberController {
         }
     }
 
-    @PutMapping("/auth/groupMember/delete")
-    void deleteGroupMember(@RequestBody GroupMember groupMember) {
-        groupMemberRepository.delete(groupMember);
+    @DeleteMapping("/auth/groupMember/delete/{groupMemberId}")
+    public GroupMember deleteGroupMember(@PathVariable Long groupMemberId) {
+        Optional<GroupMember> groupMember = groupMemberRepository.findById(groupMemberId);
+        if(groupMember.isPresent()){
+            groupMemberRepository.delete(groupMember.get());
+            return groupMember.get();
+        }
+        return null;
     }
 }
