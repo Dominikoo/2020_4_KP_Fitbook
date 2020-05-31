@@ -70,7 +70,7 @@
             <div class="col px-0 ml-1">
                 <div class="list-group">
                     <div *ngFor="let item of members; index as i">
-                        <div class="list-group-item" *ngIf="(item.user.firstName+' '+item.user.lastName+' '+item.user.login).includes(searchForm.controls.search.value)">
+                        <div class="list-group-item" *ngIf="(item.user.firstName+' '+item.user.lastName+' '+item.user.login).toUpperCase().includes(searchForm.controls.search.value.toUpperCase())">
                             <span>
                                 <b>{{ item.user.firstName }}</b> <b> {{ item.user.lastName }} </b> ({{ item.user.login }})
                             </span>
