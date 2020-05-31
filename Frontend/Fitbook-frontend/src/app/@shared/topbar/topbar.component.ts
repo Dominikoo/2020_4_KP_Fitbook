@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import { WallService } from 'src/app/services/wall/wall.service';
 
 @Component({
   selector: 'app-topbar',
@@ -16,7 +17,8 @@ export class TopbarComponent implements OnInit {
     searchText: new FormControl('')
   });
   
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private wallService: WallService) { }
 
   ngOnInit() {
     this.form.controls.searchText.setValue('');
@@ -45,6 +47,7 @@ export class TopbarComponent implements OnInit {
   }
 
   topbarNavigate(path): void {
+    this.wallService.loadContent(-1);
     this.router.navigate([path]);
   }
 }
