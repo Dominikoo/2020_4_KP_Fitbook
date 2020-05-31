@@ -34,7 +34,7 @@ public class SearchController {
         List<UserConnection> userConnections = new ArrayList<UserConnection>();
         for(User foundUser : foundUsers){
             UserConnection userConnection = userConnectionRepository.getConnectionByLogins(user.getLogin(), foundUser.getLogin());
-            userConnections.add(Objects.requireNonNullElseGet(userConnection, () -> new UserConnection(user, foundUser, 0)));
+            userConnections.add(Objects.requireNonNullElseGet(userConnection, () -> new UserConnection(user, foundUser, user.getLogin().equals(foundUser.getLogin()) ? -1 : 0)));
         }
         return userConnections;
     }
