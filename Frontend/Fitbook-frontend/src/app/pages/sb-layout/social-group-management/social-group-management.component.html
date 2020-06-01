@@ -75,7 +75,7 @@
                                 <b>{{ item.user.firstName }}</b> <b> {{ item.user.lastName }} </b> ({{ item.user.login }})
                             </span>
                             <span class="float-right">
-                                <button type="button" class="btn btn-danger btn-sm my-0 py-1" style="margin-left: 10px;" (click)="removeMember(item)">Usuń</button>
+                                <button type="button" *ngIf="!isLoggedUser(item.user.login)" class="btn btn-danger btn-sm my-0 py-1" style="margin-left: 10px;" (click)="removeMember(item)">Usuń</button>
                             </span>
                         </div>
                     </div>

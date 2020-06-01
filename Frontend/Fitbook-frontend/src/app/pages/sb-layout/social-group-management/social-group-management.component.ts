@@ -108,4 +108,8 @@ export class SocialGroupManagementComponent implements OnInit {
     item.status = 1;
     this.groupMemberService.put(item).subscribe()
   }
+
+  isLoggedUser(userLogin): boolean{
+    return localStorage.getItem("userLogin") == userLogin
+  }
 }
