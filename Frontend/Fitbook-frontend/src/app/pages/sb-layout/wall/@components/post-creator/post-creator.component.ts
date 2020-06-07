@@ -39,6 +39,7 @@ export class PostCreatorComponent implements OnInit {
   postPost() {
     this.postService.postPost(this.preparePost()).subscribe(response => {
       this.wallService.loadContent(this.wallService.groupId.value);
+      this.form.controls.content.setValue('');
     });
   }
 

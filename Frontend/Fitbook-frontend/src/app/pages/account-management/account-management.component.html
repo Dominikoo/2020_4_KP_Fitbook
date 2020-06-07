@@ -107,7 +107,8 @@
 
         </span>
         <div *ngIf="isSaveSuccesful; else elseBlock">
-            <p style="color: green">Zapis zakończony sukcesem!</p>></div>
+            <p style="color: green">Zapis zakończony sukcesem!</p>
+        </div>
         <ng-template #elseBlock>
             <p style="color: red;">Zapis nie powiódł się...</p>
         </ng-template>
