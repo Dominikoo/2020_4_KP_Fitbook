@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { PostService } from 'src/app/services/post.service';
-import { NgStyle } from '@angular/common';
 import { WallService } from 'src/app/services/wall/wall.service';
 
 @Component({
@@ -39,7 +38,7 @@ export class PostCreatorComponent implements OnInit {
 
   postPost() {
     this.postService.postPost(this.preparePost()).subscribe(response => {
-      window.location.reload();
+      this.wallService.loadContent(this.wallService.groupId.value);
     });
   }
 
