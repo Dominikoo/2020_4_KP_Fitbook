@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -69,6 +67,8 @@ public class PostController {
             friendsPosts.addAll(getPostsByUserLogin(friend.getLogin()));
         }
         friendsPosts.addAll(getPostsByUserLogin(userLogin));
+        friendsPosts.sort(Comparator.comparing(Post::getPublicationDate));
+        Collections.reverse(friendsPosts);
         return friendsPosts;
     }
 
