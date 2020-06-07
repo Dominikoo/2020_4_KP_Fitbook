@@ -2,6 +2,8 @@ import { UserService } from './../../services/user.service';
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ConfirmRegistrationPopupComponent} from 'src/app/@popups/confirm-registration-popup/confirm-registration-popup.component'
 
 const V = Validators;
 
@@ -18,12 +20,15 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('', [V.required, V.minLength(6)]),
   });
 
+  bsModalRef: BsModalRef;
+
   isLoginUsed = false;
   isEmailUsed = false;
 
   processing = false;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService,
+              private modalService: BsModalService) {}
 
   signUp(): void {
     this.processing = true;
@@ -38,7 +43,7 @@ export class RegisterComponent implements OnInit {
                 this.userService.post(this.form.value).subscribe(
                   response => {
                     if (response != null) {
-                      this.router.navigate(['/about']);
+                      this.bsModalRef = this.modalService.show(ConfirmRegistrationPopupComponent)
                     }
                     else this.processing = false;
                   }

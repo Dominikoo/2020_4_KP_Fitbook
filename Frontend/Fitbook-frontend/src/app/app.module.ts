@@ -25,6 +25,7 @@ import { ShareTrainingPlanPopupComponent } from './@popups/share-training-plan-p
 import { ShareUserWeightPopupComponent } from './@popups/share-user-weight-popup/share-user-weight-popup.component';
 import { ShareUserProgressPopupComponent } from './@popups/share-user-progress-popup/share-user-progress-popup.component';
 import { AddGroupPopupComponent } from './@popups/add-group-popup/add-group-popup.component';
+import { ConfirmRegistrationPopupComponent } from './@popups/confirm-registration-popup/confirm-registration-popup.component';
 defineLocale('pl', plLocale);
 
 @NgModule({
@@ -41,7 +42,8 @@ defineLocale('pl', plLocale);
     ShareTrainingPlanPopupComponent,
     ShareUserWeightPopupComponent,
     ShareUserProgressPopupComponent,
-    AddGroupPopupComponent
+    AddGroupPopupComponent,
+    ConfirmRegistrationPopupComponent
   ],
   imports: [
     BrowserModule,
