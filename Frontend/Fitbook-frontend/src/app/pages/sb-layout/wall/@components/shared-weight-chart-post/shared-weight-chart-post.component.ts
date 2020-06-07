@@ -104,7 +104,12 @@ export class SharedWeightChartPostComponent implements OnInit {
 
   commentOnPost() {
     this.postCommentService.postComment(this.prepareComment()).subscribe(response => {
-      window.location.reload();
+      this.postCommentService.getCommentsById(this.data.id).subscribe(response => {
+        if(response != null){
+          this.commentsList = response;
+          this.showComments = true;
+        }
+      })
     });
   }
 
