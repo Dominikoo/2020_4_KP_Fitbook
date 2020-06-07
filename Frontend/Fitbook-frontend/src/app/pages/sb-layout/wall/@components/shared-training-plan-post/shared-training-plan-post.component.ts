@@ -90,6 +90,7 @@ export class SharedTrainingPlanPostComponent implements OnInit {
       this.postCommentService.getCommentsById(this.data.id).subscribe(response => {
         if(response != null){
           this.commentsList = response;
+          this.form.controls.commentContent.setValue("")
           this.showComments = true;
         }
       })
