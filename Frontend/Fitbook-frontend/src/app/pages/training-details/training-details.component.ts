@@ -312,7 +312,31 @@ export class TrainingDetailsComponent implements OnInit {
   cancel() : void{
     if(this.onlyEditMode) this.router.navigate(['/pages/administration'])
     else this.editMode = false;
-    // pobieranie danych z bazy
+
+    var responses = 0;
+    this.progress = [];
+    this.trainingSessionService.getTrainingSessions(this.training.id).subscribe(response =>{ 
+      this.trainingSessions = response;
+      for(var i=0;i<this.trainingSessions.length;i++){
+        this.userProgressService.getTrainingSessionProgress(this.trainingSessions[i].id).subscribe( 
+          response => {
+            responses++;
+            this.progress.push(response)
+            if(responses == this.trainingSessions.length){
+              this.progress = this.progress.sort((p1, p2) => {
+                if(p1[0].trainingSessionExercise.trainingSession.orderNumber > p2[0].trainingSessionExercise.trainingSession.orderNumber){
+                  return 1;
+                }
+                if(p1[0].trainingSessionExercise.trainingSession.orderNumber < p2[0].trainingSessionExercise.trainingSession.orderNumber){
+                  return -1;
+                }
+                return 0;
+              });
+            }
+          }
+        )
+      }
+    })
   }
 
   save() : void{
