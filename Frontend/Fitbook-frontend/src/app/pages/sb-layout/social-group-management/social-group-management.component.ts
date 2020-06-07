@@ -76,7 +76,7 @@ export class SocialGroupManagementComponent implements OnInit {
         console.log(response);
         if(response != null) {
           this.savedSuccessfully = true;
-          window.location.reload();
+          this.wallService.loadContent(this.wallService.groupId.value);
         }
         else this.savedSuccessfully = false;
       });
