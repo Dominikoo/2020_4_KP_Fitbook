@@ -20,7 +20,7 @@ export class TrainingDetailsComponent implements OnInit {
   onlyEditMode = false;
 
   training;
-  trainingSessions;
+  trainingSessions: any[] = [];
   progress: any[] = [];
   bsModalRef: BsModalRef;
 

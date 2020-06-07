@@ -48,7 +48,7 @@
                 </button>
             </div>
         </div>
-        <div *ngIf="isTrainingDone(progress[i])">
+        <div *ngIf="progress[i] != undefined && isTrainingDone(progress[i])">
             <div style="min-height: 40px; line-height: 40px; position: static; background-color: lightsteelblue; font-weight: bold; text-align: center; ">Wykonane!</div>
         </div>
     </div>
