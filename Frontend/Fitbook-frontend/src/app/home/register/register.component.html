@@ -9,8 +9,9 @@
 <div class="container-fluid register-container">
     <p class="reg-title">Rejestracja</p>
     <div class="reg-container">
-        <form [formGroup]="form">
-            <label><p class="reg-text">Login</p>
+        <div (keyup.enter)="signUp()">
+            <form [formGroup]="form">
+                <label><p class="reg-text">Login</p>
         <input type="text" formControlName="login" class="form-control">
         <div *ngIf="form.controls.login.invalid && (form.controls.login.dirty || form.controls.login.touched)" class="alert alert-danger">
           <div *ngIf="form.controls.login.errors.required">
@@ -26,7 +27,7 @@
           </div>
         </div>
       </label>
-            <label><p class="reg-text">E-mail</p>
+                <label><p class="reg-text">E-mail</p>
         <input type="email" formControlName="email" class="form-control">
         <div *ngIf="form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched)" class="alert alert-danger">
           <div *ngIf="form.controls.email.errors.required">
@@ -42,7 +43,7 @@
           </div>
         </div>
       </label>
-            <label><p class="reg-text">Hasło</p>
+                <label><p class="reg-text">Hasło</p>
         <input type="password" formControlName="password" class="form-control">
         <div *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)" class="alert alert-danger">
           <div *ngIf="form.controls.password.errors.required">
@@ -53,7 +54,8 @@
           </div>
         </div>
       </label>
-        </form>
+            </form>
+        </div>
         <button (click)="signUp()" type="button" class="btn btn-light" [disabled]="this.form.invalid">Zarejestruj
       się</button>
     </div>

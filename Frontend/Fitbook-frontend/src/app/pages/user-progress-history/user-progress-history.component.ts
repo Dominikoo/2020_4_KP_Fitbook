@@ -46,8 +46,8 @@ export class UserProgressHistoryComponent implements OnInit {
         if(weight[i].value > this.yWeightMax) this.yWeightMax = weight[i].value
         if(weight[i].value < this.yWeightMin) this.yWeightMin = weight[i].value; 
       }
-      this.yWeightMax = this.yWeightMax + 20;
-      this.yWeightMin = this.yWeightMin - 30;
+      this.yWeightMax = this.yWeightMax + 7;
+      this.yWeightMin = this.yWeightMin - 8;
     })
   }
 

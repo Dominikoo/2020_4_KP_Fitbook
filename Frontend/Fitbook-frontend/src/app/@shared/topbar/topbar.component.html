@@ -18,11 +18,12 @@
 
     <div *ngIf="this.isTokenSet()" class="details collapse navbar-collapse" id="navbarSupportedContent" [collapse]="isCollapsed" [isAnimated]="false">
         <!-- bo sie psuje z [isAnimated]="true" ticket: https://github.com/valor-software/ngx-bootstrap/issues/5369-->
-
-        <form class="form-inline my-2 my-lg-0 mr-auto" [formGroup]="form">
-            <input class="form-control " type="search" formControlName="searchText" placeholder="wpisz szukaną frazę..." aria-label="Search">
-            <button type="button" class="btn btn-outline-warning" style="margin-right: 20px; margin-left: 10px;" (click)="search()">Szukaj</button>
-        </form>
+        <div (keyup.enter)="search()" class="my-2 my-lg-0 mr-auto">
+            <form class="form-inline" [formGroup]="form">
+                <input class="form-control " type="search" formControlName="searchText" placeholder="wpisz szukaną frazę..." aria-label="Search">
+                <button type="button" class="btn btn-outline-warning" style="margin-right: 20px; margin-left: 10px;" (click)="search()">Szukaj</button>
+            </form>
+        </div>
 
         <ul class="navbar-nav mr-auto">
             <li class="pointer nav-item active">
