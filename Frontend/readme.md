@@ -201,7 +201,10 @@ A serwer sam sobie wszystko zbuduje od nowa.
 
 ![not_found](readme_res/wyszukiwanie_topbar.PNG)
 
+## Przeglądanie grupy
 
+![not_found](readme_res/przegladanie_grupy.PNG)
 
+## Zarządzanie grupą 
 
-
+![not_found](readme_res/zarzadzania_grupa.PNG)
