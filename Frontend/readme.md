@@ -201,11 +201,11 @@ A serwer sam sobie wszystko zbuduje od nowa.
 
 ![not_found](readme_res/wyszukiwanie_topbar.PNG)
 
-## Przeglądanie grupy
+## Przeglądanie grupy:
 
 ![not_found](readme_res/przegladanie_grupy.png)
 
-## Zarządzanie grupą 
+## Zarządzanie grupą:
 
 ![not_found](readme_res/zarzadzanie_grupa.png)
 
