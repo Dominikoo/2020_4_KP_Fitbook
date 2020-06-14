@@ -207,5 +207,5 @@ A serwer sam sobie wszystko zbuduje od nowa.
 
 ## Zarządzanie grupą 
 
-![not_found](readme_res/zarzadzania_grupa.png)
+![not_found](readme_res/zarzadzanie_grupa.png)
 
