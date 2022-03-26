@@ -27,7 +27,7 @@
         "angular-aria": "^1.7.9",
         "bootstrap": "^4.4.1",
         "express": "^4.17.1",
-        "minimist": "^1.2.5",
+        "minimist": "^1.2.6",
         "modal": "^1.2.0",
         "ng-sidebar": "^9.2.0",
         "ngx-bootstrap": "^5.5.0",
