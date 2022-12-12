@@ -26,7 +26,7 @@
         "@swimlane/ngx-charts": "^14.0.0",
         "angular-aria": "^1.7.9",
         "bootstrap": "^4.4.1",
-        "express": "^4.17.1",
+        "express": "^4.17.3",
         "minimist": "^1.2.5",
         "modal": "^1.2.0",
         "ng-sidebar": "^9.2.0",
